@@ -1,0 +1,17 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body,
+a,
+button,
+p,
+input {
+  font-family: "Montserrat", sans-serif;
+}
+
+:root {
+  --secondary-clr: #42ba96;
+  --primary-clr: #335eea;
+}

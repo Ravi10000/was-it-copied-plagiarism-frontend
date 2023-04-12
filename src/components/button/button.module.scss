@@ -1,0 +1,16 @@
+.customButton {
+  background: var(--secondary-clr);
+  padding: 10px 20px;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+  &.primary {
+    background: var(--primary-clr);
+  }
+  &.lg {
+    padding: 10px 30px;
+    font-size: 1.5rem;
+  }
+}

@@ -1,0 +1,24 @@
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 10px;
+  border-bottom: 1px solid #f7f7f7;
+  .navIcon {
+    height: 35px;
+    width: fit-content;
+  }
+  .navItemDetails {
+    display: grid;
+    gap: 10px;
+    .name {
+      color: var(--primary-clr);
+      font-weight: 600;
+      text-transform: capitalize;
+    }
+    .info {
+      text-transform: capitalize;
+      color: #506690;
+    }
+  }
+}
