@@ -1,0 +1,50 @@
+.long-text-input {
+  display: grid;
+  gap: 5px;
+  width: 100%;
+  position: relative;
+  max-width: 700px;
+  .text-input {
+    font-family: "Metropolis", sans-serif;
+    resize: none;
+    height: 100px;
+    padding: 15px 20px;
+    border: 2px solid #ced0d6;
+    color: #545a6e;
+    border-radius: 8px;
+    height: 250px;
+    background: #f3f3f3f4;
+    &:focus {
+      animation: pop 0.2s ease-in-out;
+      outline: 1px solid #ced0d6;
+      ~ .placeholderText {
+        opacity: 1;
+        font-size: 1.01rem;
+      }
+    }
+  }
+  .placeholderText {
+    position: absolute;
+    pointer-events: none;
+    width: 250px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    color: #506690;
+    opacity: 0.35;
+    transition: all 0.2s ease-in-out;
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

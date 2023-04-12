@@ -1,6 +1,6 @@
 import styles from "./header.module.scss";
 // packages
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 // components
@@ -11,6 +11,19 @@ import NavItem from "../../components/nav-item/nav-item";
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const navRef = useRef();
+
+  useEffect(() => {
+    function handleMouseDowm(e) {
+      if (navRef.current && !navRef.current.contains(e.target)) {
+        setIsMenuOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleMouseDowm);
+    return () => {
+      document.removeEventListener("mousedown", handleMouseDowm);
+    };
+  }, [navRef]);
 
   return (
     <header className={styles.header}>
@@ -19,8 +32,50 @@ function Header() {
       </div>
       <div className={styles.navContainer}>
         <div className={styles.navList}>
-          <p>Plagiarism Checker</p>
-          <p>Pricing</p>
+          <div
+            className={styles.navItemWithOptions}
+            onClick={() => navigate("/plagiarism-checker")}
+          >
+            <p>Plagiarism Checker</p>
+            <div className={styles.options}>
+              <NavItem
+                name="For Student"
+                info="Cite Your Sources"
+                imgUrl="/student.png"
+              />
+              <NavItem
+                name="For School"
+                info="Empower Yourself"
+                imgUrl="/teachers.png"
+              />
+              <NavItem name="For Copywriters" imgUrl="copywrite.png" />
+            </div>
+          </div>
+          <div
+            className={styles.navItemWithOptions}
+            onClick={() => navigate("/")}
+          >
+            <>Company</>
+            <div className={styles.options}>
+              <NavItem name="About Us" imgUrl="/teachers.png" />
+            </div>
+          </div>
+          <div
+            className={styles.navItemWithOptions}
+            onClick={() => navigate("/pricing")}
+          >
+            <p>Pricing</p>
+          </div>
+          <div
+            className={styles.navItemWithOptions}
+            onClick={() => navigate("/")}
+          >
+            <p>Product</p>
+            <div className={styles.options}>
+              <NavItem name="Deep Search" imgUrl="/copywrite.png" />
+              <NavItem name="Citation Generator" imgUrl="/citation.png" />
+            </div>
+          </div>
           <Button
             onClick={() => {
               navigate("/login");
@@ -28,7 +83,9 @@ function Header() {
           >
             Log in
           </Button>
-          <Button primary>Get Started</Button>
+          <Button primary onClick={() => navigate("/signup")}>
+            Get Started
+          </Button>
         </div>
         <img
           className={styles.toggle}
@@ -38,9 +95,9 @@ function Header() {
         />
         {isMenuOpen && (
           <Backdrop>
-            <nav className={styles.nav}>
+            <nav className={styles.nav} ref={navRef}>
               <div className={styles.navHead}>
-                <h3>Plagiarism Checker</h3>
+                {/* <h3>Plagiarism Checker</h3> */}
                 <img
                   className={styles.closeMenu}
                   src="/close.png"
@@ -49,6 +106,15 @@ function Header() {
                 />
               </div>
               <div className={styles.navItemsContainer}>
+                <h3
+                  className={styles.navListTitle}
+                  onClick={() => {
+                    navigate("/plagiarism-checker");
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  Plagiarism Checker
+                </h3>
                 <NavItem
                   name="For Student"
                   info="for students"
@@ -57,9 +123,22 @@ function Header() {
                 <NavItem
                   name="For School"
                   info="for schools"
-                  imgUrl="teachers.png"
+                  imgUrl="/teachers.png"
                 />
                 <NavItem name="For Copywriters" imgUrl="copywrite.png" />
+              </div>
+              <div className={styles.navItemsContainer}>
+                <h3 className={styles.navListTitle}>Company</h3>
+                <NavItem
+                  name="About Us"
+                  // info=""
+                  imgUrl="/teachers.png"
+                />
+              </div>
+              <div className={styles.navItemsContainer}>
+                <h3 className={styles.navListTitle}>Product</h3>
+                <NavItem name="Deep Search" imgUrl="/copywrite.png" />
+                <NavItem name="Citation Generator" imgUrl="/citation.png" />
               </div>
               <div className={styles.headerButtons}>
                 <Button
@@ -70,7 +149,9 @@ function Header() {
                 >
                   Log in
                 </Button>
-                <Button primary>Get Started</Button>
+                <Button primary onClick={() => navigate("/signup")}>
+                  Get Started
+                </Button>
               </div>
             </nav>
           </Backdrop>

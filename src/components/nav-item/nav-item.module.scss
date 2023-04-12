@@ -2,10 +2,15 @@
   display: flex;
   align-items: center;
   gap: 30px;
-  padding: 10px;
+  padding: 10px 20px;
   border-bottom: 1px solid #f7f7f7;
+  border-radius: 8px;
+  cursor: pointer;
+  &:hover {
+    background: #f7f7f7;
+  }
   .navIcon {
-    height: 35px;
+    height: 25px;
     width: fit-content;
   }
   .navItemDetails {

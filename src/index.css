@@ -14,4 +14,10 @@ input {
 :root {
   --secondary-clr: #42ba96;
   --primary-clr: #335eea;
+
+  --shadom: 0px 2px 20px #a6a6a640; /* just for copy var(--shadow) won't work*/
+}
+
+button {
+  cursor: pointer;
 }

@@ -1,0 +1,130 @@
+.plagiarismChecker {
+  .topSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background: url("/3045584.jpg");
+    background-size: cover;
+    background-position-y: 30%;
+    background-position-x: 50%;
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      background: #bebebe7e;
+      width: 100%;
+      padding: 30px;
+      .title {
+        padding: 0 50px;
+        font-size: 2.5rem;
+        text-align: center;
+        font-weight: 600;
+        max-width: 600px;
+      }
+      .subtitle {
+        font-size: 1.2rem;
+        max-width: 600px;
+        text-align: center;
+        padding: 20px;
+      }
+    }
+  }
+  .howItWorks {
+    padding: 20px;
+    text-align: center;
+  }
+  .processContainer {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    .process {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      .details {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        h3 {
+          color: #2b354f;
+        }
+        p {
+          color: #4a5a71;
+        }
+        ol {
+          align-self: center;
+          text-align: left;
+        }
+      }
+      img {
+        width: 100%;
+        max-width: 400px;
+        border-radius: 5px;
+        box-shadow: 0px 2px 20px #a6a6a640;
+      }
+    }
+  }
+  .benefitsContainer {
+    background: #2b354e;
+    color: #fff;
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    .benefit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 20px;
+    }
+    .benfitForUsers {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      .benefit {
+        img {
+          width: 50px;
+          height: fit-content;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1000px) {
+  .plagiarismChecker {
+    .processContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 50px;
+      .process {
+        flex-direction: row;
+        gap: 50px;
+        .details {
+          width: 400px;
+        }
+        &:nth-child(2n) {
+          flex-direction: row-reverse;
+        }
+      }
+    }
+    .benefitsContainer {
+      align-items: center;
+      width: 100%;
+      .benefit {
+        max-width: 600px;
+      }
+      .benfitForUsers {
+        max-width: 1000px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+import styles from "./long-text-input.module.scss";
+import React, { useEffect, useId, useState, useRef } from "react";
+
+export default function LongTextInput({ label, placeholder, ...otherProps }) {
+  const id = useId();
+  const [value, setValue] = useState("");
+  const placeholderRef = useRef();
+  const inputRef = useRef();
+
+  useEffect(() => {
+    inputRef.current.focus();
+    if (value) {
+      placeholderRef.current.style.display = "none";
+    } else {
+      placeholderRef.current.style.display = "block";
+    }
+  }, [value]);
+
+  return (
+    <div className={styles["long-text-input"]}>
+      <label htmlFor={id}>{label}</label>
+      <textarea
+        ref={inputRef}
+        required
+        id={id}
+        className={styles["text-input"]}
+        {...otherProps}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      ></textarea>
+      <div className={styles.placeholderText} ref={placeholderRef}>
+        <p>Enter Your Text Here</p>
+        <p>and click the button below to check for plagiarism</p>
+      </div>
+    </div>
+  );
+}

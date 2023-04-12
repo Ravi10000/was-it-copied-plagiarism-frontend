@@ -4,18 +4,137 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    .title {
-      padding: 0 50px;
-      font-size: 2.5rem;
-      text-align: center;
-      font-weight: 600;
-      max-width: 600px;
+    background: url("/17876754.jpg");
+    background-size: cover;
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      background: #e3e3e3b1;
+      width: 100%;
+      padding: 30px;
+      .title {
+        padding: 0 50px;
+        font-size: 2.5rem;
+        text-align: center;
+        font-weight: 600;
+        max-width: 600px;
+      }
+      .subtitle {
+        font-size: 1.2rem;
+        max-width: 600px;
+        text-align: center;
+        padding: 20px;
+      }
     }
-    .subtitle {
-      font-size: 1.2rem;
-      max-width: 600px;
-      text-align: center;
-      padding: 20px;
+  }
+  .heading {
+    margin: 50px 0 25px;
+    text-align: center;
+    font-size: 1.5rem;
+  }
+  section.getStarted {
+    background: #2b354f;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    padding: 100px 10px;
+    text-align: center;
+    margin-top: 20px;
+    .title {
+      display: inline-block;
+      border-radius: 50px;
+      padding: 10px 15px;
+      font-size: 0.7rem;
+      background: #506690;
+    }
+    h4 {
+      font-size: 2rem;
+      font-weight: 500;
+    }
+    p {
+      max-width: 500px;
+    }
+  }
+
+  .typesOfPlagiarism {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 20px;
+    background: #f1f4f8;
+    .typesHead {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      p {
+        max-width: 600px;
+      }
+    }
+    .plagiarismItemContainer {
+      margin: 25px 0;
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      .plagiarismItem {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+        h4 {
+          font-size: 1.2rem;
+        }
+        img {
+          height: 50px;
+          width: fit-content;
+        }
+      }
+    }
+  }
+
+  .faqsSection {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    .faq {
+      max-width: 800px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      .question {
+        font-size: 1.2rem;
+      }
+      .answer {
+        line-height: 1.6;
+        color: #506690;
+      }
+    }
+  }
+}
+
+@media (min-width: 800px) {
+  .homePage {
+    .content {
+      height: 600px;
+      justify-content: center;
+    }
+    .typesOfPlagiarism {
+      .plagiarismItemContainer {
+        display: grid;
+        gap: 50px;
+        max-width: 1000px;
+        grid-template-columns: repeat(2, 1fr);
+        .plagiarismItem {
+          align-items: flex-start;
+        }
+      }
     }
   }
 }

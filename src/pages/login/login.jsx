@@ -1,8 +1,10 @@
 import styles from "./login.module.scss";
 import TextInput from "../../components/text-input/text-input";
 import Button from "../../components/button/button";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
+  const navigate = useNavigate();
   return (
     <div className={styles.loginPage}>
       <section className={styles.loginSection}>
@@ -16,7 +18,9 @@ function LoginPage() {
           />
           <Button primary>Continue</Button>
         </form>
-        {/* <p>reset password</p> */}
+        <p className={styles.signupLink} onClick={() => navigate("/signup")}>
+          Don't have an account? <span>Signup</span>
+        </p>
       </section>
     </div>
   );
