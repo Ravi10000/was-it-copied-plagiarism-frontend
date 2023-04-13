@@ -23,7 +23,7 @@
     }
 
     .nav {
-      animation: slideIn 0.1s ease-in-out;
+      animation: slideInPopup 0.1s ease-in-out;
       border-radius: 8px;
       margin: auto;
       height: fit-content;
@@ -65,10 +65,23 @@
 
 @keyframes slideIn {
   from {
-    transform: scale(0.8) translate(-50%, -20%);
+    transform: translate(-50%, -10%);
+    opacity: 0;
   }
   to {
-    transform: scale(1) translate(-50%, 0);
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+@keyframes slideInPopup {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 
@@ -93,7 +106,7 @@
 
           &:hover {
             .options {
-              animation: slideIn 0.1s ease-in-out;
+              animation: slideIn 0.2s ease-in-out;
               display: flex;
               flex-direction: column;
               gap: 10px;

@@ -128,6 +128,20 @@ function Header() {
                 <NavItem name="For Copywriters" imgUrl="copywrite.png" />
               </div>
               <div className={styles.navItemsContainer}>
+                <h3
+                  className={styles.navListTitle}
+                  onClick={() => {
+                    navigate("/pricing");
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  Pricing
+                </h3>
+                <NavItem name="Free Plan" imgUrl="/free.png" />
+                <NavItem name="Premium Plan" imgUrl="/premium.png" />
+                <NavItem name="Enterprise Plan" imgUrl="/enterprise.png" />
+              </div>
+              <div className={styles.navItemsContainer}>
                 <h3 className={styles.navListTitle}>Company</h3>
                 <NavItem
                   name="About Us"

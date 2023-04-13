@@ -48,7 +48,7 @@ function PlagiarismChecker() {
                 <li>Conditional Scoring</li>
               </ol>
             </div>
-            <img src="/process.png" alt="" />
+            <img src="/evaluate.png" alt="" />
           </div>
           <div className={styles.process}>
             <div className={styles.details}>
@@ -60,7 +60,7 @@ function PlagiarismChecker() {
                 text online.
               </p>
             </div>
-            <img src="/process.png" alt="" />
+            <img src="/accurate.png" alt="" />
           </div>
           <div className={styles.process}>
             <div className={styles.details}>
@@ -74,7 +74,7 @@ function PlagiarismChecker() {
                 and insert the citations directly into your document.
               </p>
             </div>
-            <img src="/process.png" alt="" />
+            <img src="/resolve.png" alt="" />
           </div>
         </div>
       </section>
