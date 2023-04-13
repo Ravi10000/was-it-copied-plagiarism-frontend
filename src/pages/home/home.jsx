@@ -19,11 +19,7 @@ function HomePage() {
             for other writing issues, and helps you build citations
           </p>
           <LongTextInput />
-          <Button
-            lg
-            color="#fe5b60"
-            onClick={() => navigate("/plagiarism-checker")}
-          >
+          <Button lg color="#fe5b60" onClick={() => navigate("/search")}>
             Check For Plagiarism
           </Button>
         </div>

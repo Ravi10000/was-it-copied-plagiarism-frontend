@@ -21,3 +21,27 @@ input {
 button {
   cursor: pointer;
 }
+
+.__btn {
+  padding: 5px 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 3px;
+  color: #2a3842;
+  border: 1px solid #c3c7ca;
+  background: #fff;
+  position: relative;
+  width: fit-content;
+}
+.__btn img {
+  width: 20px;
+  height: fit-content;
+}
+
+.__heading {
+  color: #c3c7ca;
+  font-weight: 500;
+  padding: 10px;
+  border-bottom: 2px solid #c3c7ca;
+}

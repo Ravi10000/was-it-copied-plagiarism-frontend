@@ -1,0 +1,44 @@
+.accountSidebar {
+  background: #eaeef1;
+  width: 100%;
+  .accountOptionsContainer {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    color: #2a3842;
+    width: 100%;
+    padding: 10px;
+    .item {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-transform: capitalize;
+      padding: 7px 15px;
+      img {
+        width: 25px;
+        height: fit-content;
+      }
+      &.selected {
+        border-radius: 50px;
+        background: #fff;
+      }
+    }
+  }
+}
+
+@media (min-width: 1000px) {
+  .accountSidebar {
+    min-height: 100vh;
+    background: #eaeef1;
+    width: fit-content;
+    padding: 20px;
+    .accountOptionsContainer {
+      flex-direction: column;
+      color: #2a3842;
+      .item {
+        padding: 10px 20px;
+      }
+    }
+  }
+}

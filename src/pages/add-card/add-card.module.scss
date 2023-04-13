@@ -1,0 +1,51 @@
+.addCardPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+  .heading {
+    width: 100%;
+    font-weight: 600;
+    padding: 5px;
+    color: #c3c7ca;
+    border-bottom: 2px solid #c3c7ca;
+    margin-bottom: 25px;
+  }
+  .cardsContainer {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .addCard {
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 400px;
+      height: 200px;
+      color: #2a3842;
+      opacity: 0.25;
+      border: 2px dashed #2a3842;
+      img {
+        width: 40px;
+        height: fit-content;
+      }
+      p {
+        font-size: 1.2rem;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+@media (min-width: 800px) {
+  .addCardPage {
+    padding: 50px;
+    justify-content: flex-start;
+    .cardsContainer {
+      justify-content: flex-start;
+    }
+  }
+}

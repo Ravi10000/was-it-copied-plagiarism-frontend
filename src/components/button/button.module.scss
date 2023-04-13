@@ -16,6 +16,14 @@
       background: #2a4dc0;
     }
   }
+  &.secondary {
+    background: #fff;
+    color: #2a3842;
+    border: 1px solid #c3c7ca;
+    &:hover {
+      background: #e6e6e6;
+    }
+  }
   &.lg {
     padding: 10px 35px;
     font-size: 1.2rem;

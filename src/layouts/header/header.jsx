@@ -34,7 +34,7 @@ function Header() {
         <div className={styles.navList}>
           <div
             className={styles.navItemWithOptions}
-            onClick={() => navigate("/plagiarism-checker")}
+            onClick={() => navigate("/")}
           >
             <p>Plagiarism Checker</p>
             <div className={styles.options}>

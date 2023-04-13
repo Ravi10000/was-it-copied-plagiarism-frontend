@@ -1,12 +1,15 @@
 .long-text-input {
   display: grid;
+  place-items: center;
   gap: 5px;
   width: 100%;
   position: relative;
-  max-width: 700px;
+  // max-width: 700px;
   .text-input {
     font-family: "Metropolis", sans-serif;
     resize: none;
+    width: 100%;
+    max-width: 700px;
     height: 100px;
     padding: 15px 20px;
     border: 2px solid #ced0d6;
@@ -21,6 +24,10 @@
         opacity: 1;
         font-size: 1.01rem;
       }
+    }
+    &.lg {
+      max-width: 1000px;
+      height: 500px;
     }
   }
   .placeholderText {

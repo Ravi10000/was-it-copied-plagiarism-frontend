@@ -1,0 +1,16 @@
+.optionItem {
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  &.selected {
+    background: #fff;
+    border-radius: 50px;
+  }
+  img {
+    width: 25px;
+    height: fit-content;
+  }
+}

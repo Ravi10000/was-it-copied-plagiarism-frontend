@@ -1,0 +1,29 @@
+.postLoginPage {
+  .toggleSideBar {
+    display: flex;
+    justify-content: flex-start;
+    padding: 20px;
+    background: #e7e7e7;
+    img {
+      cursor: pointer;
+      width: 30px;
+      height: fit-content;
+    }
+  }
+  .page {
+    align-self: stretch;
+  }
+}
+
+@media (min-width: 1000px) {
+  .postLoginPage {
+    display: flex;
+    align-items: center;
+    .toggleSideBar {
+      display: none;
+    }
+    .page {
+      width: 100%;
+    }
+  }
+}

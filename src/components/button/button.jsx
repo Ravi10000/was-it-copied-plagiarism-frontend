@@ -1,11 +1,11 @@
 import styles from "./button.module.scss";
 
-function Button({ children, primary, lg, color, ...props }) {
+function Button({ children, primary, secondary, lg, color, bg, ...props }) {
   return (
     <button
       className={`${styles.customButton} ${primary && styles.primary} ${
-        lg && styles.lg
-      }`}
+        secondary && styles.secondary
+      } ${lg && styles.lg}`}
       style={{ backgroundColor: color ? color : "" }}
       {...props}
     >

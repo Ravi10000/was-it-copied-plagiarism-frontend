@@ -1,9 +1,17 @@
 import styles from "./long-text-input.module.scss";
 import React, { useEffect, useId, useState, useRef } from "react";
 
-export default function LongTextInput({ label, placeholder, ...otherProps }) {
+export default function LongTextInput({
+  label,
+  value,
+  setValue,
+  placeholder,
+  lg,
+  bg,
+  ...otherProps
+}) {
   const id = useId();
-  const [value, setValue] = useState("");
+
   const placeholderRef = useRef();
   const inputRef = useRef();
 
@@ -23,7 +31,8 @@ export default function LongTextInput({ label, placeholder, ...otherProps }) {
         ref={inputRef}
         required
         id={id}
-        className={styles["text-input"]}
+        className={`${styles["text-input"]} ${lg && styles.lg}`}
+        style={{ background: bg || "" }}
         {...otherProps}
         value={value}
         onChange={(e) => setValue(e.target.value)}
