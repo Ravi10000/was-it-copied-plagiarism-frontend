@@ -5,7 +5,6 @@ import Button from "../button/button";
 import { useRef, useEffect } from "react";
 
 function Popup({ title, save, cancel, children, closePopup }) {
-  console.log({ closePopup });
   const popupRef = useRef(null);
   useEffect(() => {
     function handleClosePopup(e) {

@@ -2,13 +2,24 @@ import styles from "./header.module.scss";
 // packages
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 
 // components
 import Button from "../../components/button/button";
 import Backdrop from "../../components/backdrop/backdrop";
 import NavItem from "../../components/nav-item/nav-item";
 
-function Header() {
+// redux selectors
+import { selectCurrentUser } from "../../redux/user/user.selectors";
+
+function Header({ currentUser }) {
+  // const [currentUser, setCurrentUser] = useState({
+  //   fname: "Ravi",
+  //   lname: "Sharma",
+  //   email: "ravisince2k@gmail.com",
+  // });
+  // const [currentUser, setCurrentUser] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
   const navRef = useRef();
@@ -24,6 +35,11 @@ function Header() {
       document.removeEventListener("mousedown", handleMouseDowm);
     };
   }, [navRef]);
+
+  function goTo(path) {
+    navigate(path);
+    setIsMenuOpen(false);
+  }
 
   return (
     <header className={styles.header}>
@@ -76,16 +92,26 @@ function Header() {
               <NavItem name="Citation Generator" imgUrl="/citation.png" />
             </div>
           </div>
-          <Button
-            onClick={() => {
-              navigate("/login");
-            }}
-          >
-            Log in
-          </Button>
-          <Button primary onClick={() => navigate("/signup")}>
-            Get Started
-          </Button>
+          {!currentUser ? (
+            <>
+              <Button
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  navigate("/login");
+                }}
+              >
+                Log in
+              </Button>
+              <Button primary onClick={() => navigate("/signup")}>
+                Get Started
+              </Button>
+            </>
+          ) : (
+            <Button onClick={() => navigate("/account")}>
+              <img src="/page-icons/account.png" alt="" />
+              {currentUser.email}
+            </Button>
+          )}
         </div>
         <img
           className={styles.toggle}
@@ -100,7 +126,7 @@ function Header() {
                 {/* <h3>Plagiarism Checker</h3> */}
                 <img
                   className={styles.closeMenu}
-                  src="/close.png"
+                  src="/close-2-dark.png"
                   alt="menu"
                   onClick={() => setIsMenuOpen(false)}
                 />
@@ -109,8 +135,7 @@ function Header() {
                 <h3
                   className={styles.navListTitle}
                   onClick={() => {
-                    navigate("/plagiarism-checker");
-                    setIsMenuOpen(false);
+                    goTo("/");
                   }}
                 >
                   Plagiarism Checker
@@ -131,8 +156,7 @@ function Header() {
                 <h3
                   className={styles.navListTitle}
                   onClick={() => {
-                    navigate("/pricing");
-                    setIsMenuOpen(false);
+                    goTo("/pricing");
                   }}
                 >
                   Pricing
@@ -155,17 +179,25 @@ function Header() {
                 <NavItem name="Citation Generator" imgUrl="/citation.png" />
               </div>
               <div className={styles.headerButtons}>
-                <Button
-                  onClick={() => {
-                    setIsMenuOpen(false);
-                    navigate("/login");
-                  }}
-                >
-                  Log in
-                </Button>
-                <Button primary onClick={() => navigate("/signup")}>
-                  Get Started
-                </Button>
+                {!currentUser ? (
+                  <>
+                    <Button
+                      onClick={() => {
+                        goTo("/login");
+                      }}
+                    >
+                      Log in
+                    </Button>
+                    <Button primary onClick={() => goTo("/signup")}>
+                      Get Started
+                    </Button>
+                  </>
+                ) : (
+                  <Button onClick={() => goTo("/account")}>
+                    <img src="/page-icons/account.png" alt="" />
+                    {currentUser.email}
+                  </Button>
+                )}
               </div>
             </nav>
           </Backdrop>
@@ -174,5 +206,8 @@ function Header() {
     </header>
   );
 }
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+});
 
-export default Header;
+export default connect(mapStateToProps)(Header);

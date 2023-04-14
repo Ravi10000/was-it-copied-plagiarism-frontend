@@ -1,8 +1,10 @@
 import styles from "./App.module.scss";
 
 // packages
-import { useState } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { Route, Routes, useLocation, Navigate } from "react-router-dom";
 
 // layouts
 import Header from "./layouts/header/header";
@@ -15,19 +17,61 @@ import PricingPage from "./pages/pricing/pricing";
 import PlagiarismChecker from "./pages/plagiarism-checker/plagiarism-checker";
 import PostLoginPage from "./pages/post-login/post-login";
 
+// components
+import Flash from "./components/flash/flash";
+import ProtectedRoute from "./components/protected-route/protected-route";
 
-function App() {
+// redux selectors
+import { selectFlash } from "./redux/flash/flash.selectors";
+import { selectCurrentUser } from "./redux/user/user.selectors";
+
+// redux actions
+import { setCurrentUser } from "./redux/user/user.actions";
+
+// api calls
+import { checkAuth } from "./api/users";
+
+function App({ flash, setCurrentUser, currenUser }) {
   const { pathname } = useLocation();
   const headerRoutes = ["/login", "/signup", "/pricing", "/"];
-  console.log({ pathname });
+  async function handleCheckAuth() {
+    try {
+      const response = await checkAuth();
+      if (response.data.status === "success") {
+        setCurrentUser(response.data.user);
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
+
+  useEffect(() => {
+    const authToken = localStorage.getItem("authToken");
+    console.log({ authToken });
+    if (!authToken) return;
+    handleCheckAuth();
+  }, []);
+
   return (
     <div className={styles.App}>
       {headerRoutes.includes(pathname) && <Header />}
+      {flash && <Flash type={flash.type} message={flash.message} />}
       <Routes>
-        <Route exact path="/login" element={<LoginPage />} />
-        <Route exact path="/signup" element={<SignupPage />} />
+        <Route
+          exact
+          path="/login"
+          element={currenUser ? <Navigate to="/" /> : <LoginPage />}
+        />
+        <Route
+          exact
+          path="/signup"
+          element={currenUser ? <Navigate to="/" /> : <SignupPage />}
+        />
         <Route exact path="/pricing" element={<PricingPage />} />
-        <Route exact path="/:page" element={<PostLoginPage />} />
+        <Route
+          path="/:page"
+          element={!currenUser ? <Navigate to="/login" /> : <PostLoginPage />}
+        />
         {/* <Route
           exact
           path="/plagiarism-checker"
@@ -39,4 +83,13 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = createStructuredSelector({
+  flash: selectFlash,
+  currenUser: selectCurrentUser,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

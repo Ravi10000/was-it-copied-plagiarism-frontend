@@ -22,7 +22,7 @@
     margin-bottom: 20px;
     img {
       cursor: pointer;
-      width: 30px;
+      width: 50px;
       height: fit-content;
     }
   }
@@ -56,10 +56,10 @@
     position: static;
     transform: translate(0, 0);
     animation: none;
-    padding: 50px 20px;
+    padding: 20px 20px 50px;
     min-height: 100vh;
-    .closeSidebar {
-      display: none;
-    }
+    // .closeSidebar {
+    //   display: none;
+    // }
   }
 }

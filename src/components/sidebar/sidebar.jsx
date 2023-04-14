@@ -42,7 +42,6 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
     }
     addEventListener("mousedown", handleMouseDown);
     return () => {
-      console.log("sidebar unmounted");
       removeEventListener("mousedown", handleMouseDown);
     };
   }, [sidebarRef]);
@@ -52,30 +51,23 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
       className={`${styles.sidebar} ${isSidebarOpen && styles.active}`}
       ref={sidebarRef}
     >
-      <div
-        className={styles.closeSidebar}
-        onClick={() => setIsSidebarOpen(false)}
-      >
-        <img src="/close-2.png" alt="" />
+      <div className={styles.closeSidebar} onClick={() => navigate("/")}>
+        <img src="/app-icon.svg" alt="" />
+        {/* <img src="/close-2.png" alt="" /> */}
       </div>
       <div className={styles.optionsContainer}>
-        {options?.map((option) => {
-          console.log({ option });
-          return (
-            <SidebarOption
-              key={option.name}
-              icon={
-                selectedPage !== option.name ? option.icon : option.iconDark
-              }
-              selected={selectedPage === option.name}
-              onClick={() => {
-                setIsSidebarOpen(false);
-                // setSelectedPage(option.name);
-                navigate(`/${option.name}`);
-              }}
-            />
-          );
-        })}
+        {options?.map((option) => (
+          <SidebarOption
+            key={option.name}
+            icon={selectedPage !== option.name ? option.icon : option.iconDark}
+            selected={selectedPage === option.name}
+            onClick={() => {
+              setIsSidebarOpen(false);
+              // setSelectedPage(option.name);
+              navigate(`/${option.name}`);
+            }}
+          />
+        ))}
       </div>
     </section>
   );

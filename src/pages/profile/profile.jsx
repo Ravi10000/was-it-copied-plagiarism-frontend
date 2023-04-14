@@ -2,55 +2,147 @@ import styles from "./profile.module.scss";
 
 // packages
 import { useState } from "react";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { useForm } from "react-hook-form";
 
 // components
 import Popup from "../../components/popup/popup";
 import TextInput from "../../components/text-input/text-input";
 import Button from "../../components/button/button";
 
-const user = {
-  fname: "Ravi",
-  lname: "Sharma",
-  email: "ravisince2k@gmail.com",
-};
+// redux selectors
+import { selectCurrentUser } from "../../redux/user/user.selectors";
 
-function ProfilPage() {
+// redux actions
+import { setCurrentUser } from "../../redux/user/user.actions";
+import { setFlash } from "../../redux/flash/flash.actions";
+
+// api calls
+import { updateUserDetails } from "../../api/users";
+
+function ProfilPage({ currentUser, setCurrentUser }) {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
   const [popupType, setPopupType] = useState(null);
 
   function closePopup() {
     setPopupType(null);
   }
+
+  async function handleUpdateUser(data) {
+    // e.preventDefault();
+    console.log("update user");
+    console.log({ data });
+    try {
+      const response = await updateUserDetails(data);
+      console.log({ response });
+      if (response.data.status === "success") {
+        setCurrentUser(response.data.user);
+        closePopup();
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
   return (
     <section className={styles.profilePage}>
-      {popupType === "editEmail" && (
-        <Popup title="Edit Email" closePopup={closePopup} save="verify">
-          <TextInput type="email" defaultValue={user?.email} label="Email Id" />
-          <p className={styles.msg}>
-            Changing your email will change your login.
-          </p>
-        </Popup>
-      )}
-      {popupType === "editName" && (
-        <Popup title="Edit Name" closePopup={closePopup}>
-          <TextInput defaultValue={user?.fname} label="First Name" />
-          <TextInput defaultValue={user?.lname} label="Last Name" />
-        </Popup>
-      )}
-      {popupType === "editPassword" && (
-        <Popup
-          title="Edit Password"
-          save="Change Password"
-          closePopup={closePopup}
-        >
-          <TextInput type="password" label="Password" />
-          <TextInput type="password" label="Confirm Password" />
-        </Popup>
-      )}
+      <form onSubmit={handleSubmit(handleUpdateUser)} noValidate>
+        {popupType === "editEmail" && (
+          <Popup title="Edit Email" closePopup={closePopup} save="verify">
+            <TextInput
+              // name="email"
+              type="email"
+              label="Email Id"
+              defaultValue={currentUser?.email}
+              error={errors?.email?.message}
+              register={{
+                ...register("email", {
+                  required: "Enter Email ",
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: "Not a valid Email Id",
+                  },
+                }),
+              }}
+            />
+            <p className={styles.msg}>
+              Changing your email will change your login.
+            </p>
+          </Popup>
+        )}
+        {popupType === "editName" && (
+          <Popup title="Edit Name" closePopup={closePopup}>
+            <TextInput
+              defaultValue={currentUser?.fname}
+              label="First Name"
+              error={errors?.fname?.message}
+              register={{
+                ...register("fname", {
+                  required: "Enter First Name",
+                  pattern: {
+                    value: /^[A-Za-z]+$/i,
+                    message: "only alphabets are allowed",
+                  },
+                }),
+              }}
+            />
+            <TextInput
+              defaultValue={currentUser?.lname}
+              label="Last Name"
+              error={errors?.lname?.message}
+              register={{
+                ...register("lname", {
+                  required: "Enter Last Name",
+                  pattern: {
+                    value: /^[A-Za-z]+$/i,
+                    message: "only alphabets are allowed",
+                  },
+                }),
+              }}
+            />
+          </Popup>
+        )}
+        {popupType === "editPassword" && (
+          <Popup
+            title="Edit Password"
+            save="Change Password"
+            closePopup={closePopup}
+          >
+            <TextInput
+              type="password"
+              label="Password"
+              error={errors?.password?.message}
+              register={{
+                ...register("password", {
+                  required: "Enter password",
+                }),
+              }}
+            />
+            <TextInput
+              type="password"
+              label="Confirm Password"
+              error={errors?.confirmPassword?.message}
+              register={{
+                ...register("confirmPassword", {
+                  required: "Confirm your password ",
+                  validate: (value) =>
+                    value === watch("password") || "Passwords do not match",
+                }),
+              }}
+            />
+          </Popup>
+        )}
+      </form>
       <div className={styles.profileDetails}>
         <h2 className={styles.heading}>My Account</h2>
         <div className={styles.entry}>
           <p>Email: </p>
-          <p>{user?.email}</p>
+          <p>{currentUser?.email}</p>
           <img
             className={styles.editIcon}
             src="/edit.png"
@@ -62,7 +154,7 @@ function ProfilPage() {
         </div>
         <div className={styles.entry}>
           <p>First Name: </p>
-          <p>{user?.fname}</p>
+          <p>{currentUser?.fname}</p>
           <img
             className={styles.editIcon}
             src="/edit.png"
@@ -74,7 +166,7 @@ function ProfilPage() {
         </div>
         <div className={styles.entry}>
           <p>Last Name: </p>
-          <p>{user?.lname}</p>
+          <p>{currentUser?.lname}</p>
           <img
             className={styles.editIcon}
             src="/edit.png"
@@ -109,4 +201,9 @@ function ProfilPage() {
   );
 }
 
-export default ProfilPage;
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+});
+export default connect(mapStateToProps, { setCurrentUser, setFlash })(
+  ProfilPage
+);

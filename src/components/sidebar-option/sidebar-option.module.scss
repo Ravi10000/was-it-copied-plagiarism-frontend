@@ -5,12 +5,26 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
   &.selected {
     background: #fff;
     border-radius: 50px;
+    animation: pop 0.15s ease-in-out;
   }
   img {
     width: 25px;
     height: fit-content;
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.9);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1.1);
   }
 }
