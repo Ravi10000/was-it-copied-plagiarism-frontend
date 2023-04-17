@@ -21,6 +21,9 @@ input {
 button {
   cursor: pointer;
 }
+input[type="file"] {
+  cursor: pointer;
+}
 
 .__btn {
   padding: 5px 15px;
@@ -40,7 +43,8 @@ button {
 }
 
 .__heading {
-  color: #c3c7ca;
+  /* color: #c3c7ca; */
+  color: #2b354e;
   font-weight: 500;
   padding: 10px;
   border-bottom: 2px solid #c3c7ca;

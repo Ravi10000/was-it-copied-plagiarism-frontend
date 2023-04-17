@@ -9,11 +9,13 @@
   animation: slideInPopup 0.1s ease-in-out;
   .popupHead {
     display: flex;
+    text-transform: capitalize;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
     padding-bottom: 5px;
     border-bottom: 2px solid #f7f7f7;
+    color: #2b354e;
     img {
       cursor: pointer;
       width: 35px;

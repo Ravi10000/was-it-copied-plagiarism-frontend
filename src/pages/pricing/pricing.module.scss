@@ -12,57 +12,57 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    .plan {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      max-width: 400px;
-      padding: 50px 20px;
-      border-top: 5px solid #42ba96;
-      box-shadow: 0px 2px 20px #a6a6a640;
-      border-radius: 20px;
-      text-align: center;
-      gap: 10px;
-      .planHead {
-        h3 {
-          font-size: 1.2rem;
-        }
-        p {
-          color: #869ab8;
-        }
-      }
-      .feature {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        padding: 20px;
-        img {
-          width: 25px;
-          height: fit-content;
-        }
-      }
+    // .plan {
+    //   display: flex;
+    //   flex-direction: column;
+    //   width: 100%;
+    //   max-width: 400px;
+    //   padding: 50px 20px;
+    //   border-top: 5px solid #42ba96;
+    //   box-shadow: 0px 2px 20px #a6a6a640;
+    //   border-radius: 20px;
+    //   text-align: center;
+    //   gap: 10px;
+    //   .planHead {
+    //     h3 {
+    //       font-size: 1.2rem;
+    //     }
+    //     p {
+    //       color: #869ab8;
+    //     }
+    //   }
+    //   .feature {
+    //     display: flex;
+    //     align-items: center;
+    //     gap: 20px;
+    //     padding: 20px;
+    //     img {
+    //       width: 25px;
+    //       height: fit-content;
+    //     }
+    //   }
 
-      .btnOutlined {
-        width: 100%;
-        background: #fff;
-        border-radius: 50px;
-        border: 2px solid #42ba96;
-        color: #42ba96;
-        font-weight: 600;
-        font-size: 1.1rem;
-        padding: 15px;
-      }
-      .btnFilled {
-        width: 100%;
-        background: #42ba96;
-        border-radius: 50px;
-        border: 2px solid #42ba96;
-        color: #fff;
-        font-weight: 600;
-        font-size: 1.1rem;
-        padding: 15px;
-      }
-    }
+    //   .btnOutlined {
+    //     width: 100%;
+    //     background: #fff;
+    //     border-radius: 50px;
+    //     border: 2px solid #42ba96;
+    //     color: #42ba96;
+    //     font-weight: 600;
+    //     font-size: 1.1rem;
+    //     padding: 15px;
+    //   }
+    //   .btnFilled {
+    //     width: 100%;
+    //     background: #42ba96;
+    //     border-radius: 50px;
+    //     border: 2px solid #42ba96;
+    //     color: #fff;
+    //     font-weight: 600;
+    //     font-size: 1.1rem;
+    //     padding: 15px;
+    //   }
+    // }
   }
 }
 

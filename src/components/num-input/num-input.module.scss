@@ -1,12 +1,11 @@
-.input-container {
+.num-input-container {
   display: grid;
   gap: 5px;
   width: 100%;
   text-align: left;
-  .text-input {
+  .num-input {
     padding: 15px 20px;
     border: 2px solid #ced0d6;
-    // box-shadow:0px 2px 20px #a6a6a640;
     color: #545a6e;
     border-radius: 8px;
     &:focus {
@@ -15,12 +14,5 @@
     &::placeholder {
       color: #545a6e;
     }
-  }
-  .errMsg {
-    font-weight: 500;
-    color: #545a6e;
-    letter-spacing: 2px;
-    padding-left: 10px;
-    font-size: 0.75rem;
   }
 }

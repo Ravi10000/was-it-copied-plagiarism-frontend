@@ -1,14 +1,17 @@
 import styles from "./sidebar.module.scss";
 
 // packages
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { createStructuredSelector } from "reselect";
 
 // components
 import SidebarOption from "../sidebar-option/sidebar-option";
 
 // custom hooks
 import { useSelectedPage } from "../../contexts/selectedPageContext";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
+import { connect } from "react-redux";
 
 const options = [
   {
@@ -27,14 +30,24 @@ const options = [
     iconDark: "/page-icons/account-dark.png",
   },
 ];
+const adminOptions = [
+  {
+    name: "manage subscriptions",
+    icon: "/page-icons/subscription.png",
+    iconDark: "/page-icons/subscription-dark.png",
+  },
+];
 
-function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
+function Sidebar({ isSidebarOpen, setIsSidebarOpen, currentUser }) {
   const navigate = useNavigate();
+  const [isAdmin, setIsAdmin] = useState(false);
+
   const sidebarRef = useRef(null);
   const { page } = useParams();
   const { selectedPage, setSelectedPage } = useSelectedPage(page);
 
   useEffect(() => {
+    if (currentUser?.usertype === "ADMIN") setIsAdmin(true);
     function handleMouseDown(e) {
       if (!sidebarRef.current.contains(e.target)) {
         setIsSidebarOpen(false);
@@ -68,9 +81,27 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
             }}
           />
         ))}
+        {isAdmin &&
+          adminOptions?.map((option) => (
+            <SidebarOption
+              key={option.name}
+              icon={
+                selectedPage !== option.name ? option.icon : option.iconDark
+              }
+              selected={selectedPage === option.name}
+              onClick={() => {
+                setIsSidebarOpen(false);
+                // setSelectedPage(option.name);
+                navigate(`/${option.name}`);
+              }}
+            />
+          ))}
       </div>
     </section>
   );
 }
 
-export default Sidebar;
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+});
+export default connect(mapStateToProps)(Sidebar);

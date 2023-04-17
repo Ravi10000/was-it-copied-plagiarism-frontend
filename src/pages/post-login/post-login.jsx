@@ -14,6 +14,7 @@ import AccountPage from "../account/account";
 
 // custom hooks
 import { useSelectedPage } from "../../contexts/selectedPageContext";
+import ManageSubscriptionsPage from "../manage-subscriptions/manage-subscriptions";
 
 function PostLoginPage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -44,6 +45,7 @@ function PostLoginPage() {
         {selectedPage === "search" && <SearchPage />}
         {selectedPage === "details" && <DetailsPage />}
         {selectedPage === "account" && <AccountPage />}
+        {selectedPage === "manage subscriptions" && <ManageSubscriptionsPage />}
       </div>
     </div>
   );
