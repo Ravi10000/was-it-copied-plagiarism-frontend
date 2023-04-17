@@ -27,3 +27,6 @@ export const updateUserDetails = (formData) =>
       Authorization: "Bearer " + localStorage.getItem("authToken"),
     },
   });
+
+export const resendVerificationEmail = (email) =>
+  api.get("/users/verify/" + email);

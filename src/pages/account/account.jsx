@@ -20,7 +20,7 @@ function AccountPage() {
       />
       <main className={styles.main}>
         {selectedOption === "account" && <ProfilPage />}
-        {selectedOption === "Billing" && <AddCardPage />}
+        {/* {selectedOption === "Billing" && <AddCardPage />} */}
         {selectedOption === "sign out" && <SignoutPage />}
       </main>
     </div>

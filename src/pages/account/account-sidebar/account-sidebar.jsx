@@ -12,11 +12,11 @@ const options = [
     icon: "/account/subscription.png",
     iconDark: "/account/subscription-dark.png",
   },
-  {
-    name: "Billing",
-    icon: "/account/card.png",
-    iconDark: "/account/card-dark.png",
-  },
+  // {
+  //   name: "Billing",
+  //   icon: "/account/card.png",
+  //   iconDark: "/account/card-dark.png",
+  // },
   {
     name: "sign out",
     icon: "/account/sign-out.png",

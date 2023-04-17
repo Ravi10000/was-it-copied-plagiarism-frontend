@@ -29,6 +29,15 @@ function LoginPage({ setCurrentUser, setFlash }) {
     try {
       const response = await signin(formData);
       console.log({ response });
+      if (response.data.status === "not verified") {
+        navigate("/verify-email", {
+          state: { email: formData?.email },
+        });
+        return setFlash({
+          type: "warning",
+          message: "Email not verified, please verify your email",
+        });
+      }
       if (response.data.status === "success") {
         localStorage.setItem("authToken", response.data.authToken);
         console.log(response.data.user);

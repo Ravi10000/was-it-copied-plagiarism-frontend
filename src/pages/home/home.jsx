@@ -2,12 +2,17 @@ import styles from "./home.module.scss";
 
 // packages
 import { useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 
 // components
 import Button from "../../components/button/button";
 import LongTextInput from "../../components/long-text-input/long-text-input";
 
-function HomePage() {
+// redux selectors
+import { selectCurrentUser } from "../../redux/user/user.selectors";
+
+function HomePage({ currentUser }) {
   const navigate = useNavigate();
   return (
     <div className={styles.homePage}>
@@ -91,7 +96,13 @@ function HomePage() {
           Ready to stop wasting time with that old-school "plagiarism tool" from
           the 90's? Start using Quetext today for free!
         </p>
-        <Button onClick={() => navigate("/signup")}>Signup Free!</Button>
+        {currentUser ? (
+          <h2>
+            Welcome <br /> {currentUser?.fname} {currentUser?.lname}
+          </h2>
+        ) : (
+          <Button onClick={() => navigate("/signup")}>Signup Free!</Button>
+        )}
       </section>
 
       <section className={styles.typesOfPlagiarism}>
@@ -279,5 +290,8 @@ function HomePage() {
     </div>
   );
 }
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+});
 
-export default HomePage;
+export default connect(mapStateToProps)(HomePage);

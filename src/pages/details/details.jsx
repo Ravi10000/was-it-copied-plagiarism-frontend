@@ -4,6 +4,11 @@ function DetailsPage() {
   return (
     <section className={styles.detailsPage}>
       <h2 className="__heading">Reports</h2>
+      <input
+        type="search"
+        className={styles.search}
+        placeholder="Search Reports"
+      />
       <table className={styles.table}>
         <thead>
           <tr>

@@ -30,6 +30,8 @@ import { setCurrentUser } from "./redux/user/user.actions";
 
 // api calls
 import { checkAuth } from "./api/users";
+import VerificationPage from "./pages/verification/verification";
+import VerifiedPage from "./pages/verified/verified";
 
 function App({ flash, setCurrentUser, currenUser }) {
   const { pathname } = useLocation();
@@ -68,6 +70,8 @@ function App({ flash, setCurrentUser, currenUser }) {
           element={currenUser ? <Navigate to="/" /> : <SignupPage />}
         />
         <Route exact path="/pricing" element={<PricingPage />} />
+        <Route exact path="/verify-email" element={<VerificationPage />} />
+        <Route exact path="/verified" element={<VerifiedPage />} />
         <Route
           path="/:page"
           element={!currenUser ? <Navigate to="/login" /> : <PostLoginPage />}

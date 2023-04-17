@@ -2,7 +2,7 @@ import styles from "./signup.module.scss";
 
 // packages
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
 
@@ -16,6 +16,12 @@ import { setFlash } from "../../redux/flash/flash.actions";
 import { setCurrentUser } from "../../redux/user/user.actions";
 
 function SignupPage({ setFlash, setCurrentUser }) {
+  // const {
+  //   state: { formData },
+  // } = useLocation();
+
+  // console.log({ formData });
+
   const {
     register,
     handleSubmit,
@@ -23,6 +29,13 @@ function SignupPage({ setFlash, setCurrentUser }) {
     formState: { errors },
   } = useForm();
 
+  // {
+  //   defaultValues: {
+  //     fname: formData?.fname || "",
+  //     lname: formData?.lname || "",
+  //     email: formData?.email || "",
+  //   },
+  // }
   const [disableButton, setDisableButton] = useState(false);
   const navigate = useNavigate();
 
@@ -38,11 +51,8 @@ function SignupPage({ setFlash, setCurrentUser }) {
         });
       }
       if (response.data.status === "success") {
-        navigate("/");
-        setCurrentUser(response.data.user);
-        setFlash({
-          type: "success",
-          message: "Signup Successful",
+        navigate("/verify-email", {
+          state: { email: formData?.email },
         });
       }
     } catch (err) {

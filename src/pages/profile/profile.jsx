@@ -21,7 +21,7 @@ import { setFlash } from "../../redux/flash/flash.actions";
 // api calls
 import { updateUserDetails } from "../../api/users";
 
-function ProfilPage({ currentUser, setCurrentUser }) {
+function ProfilPage({ currentUser, setCurrentUser, setFlash }) {
   const {
     register,
     handleSubmit,
@@ -43,6 +43,10 @@ function ProfilPage({ currentUser, setCurrentUser }) {
       console.log({ response });
       if (response.data.status === "success") {
         setCurrentUser(response.data.user);
+        setFlash({
+          type: "success",
+          message: "User details updated successfully",
+        });
         closePopup();
       }
     } catch (err) {

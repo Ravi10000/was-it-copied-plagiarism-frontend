@@ -22,9 +22,14 @@
       }
     }
     .editIcon {
+      opacity: 0.5;
       cursor: pointer;
       width: 25px;
       height: fit-content;
+      &:hover {
+        opacity: 0.8;
+        transform: scale(0.95);
+      }
     }
   }
   .archiveAccount {
