@@ -1,6 +1,7 @@
 import styles from "./home.module.scss";
 
 // packages
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
@@ -13,6 +14,7 @@ import LongTextInput from "../../components/long-text-input/long-text-input";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 function HomePage({ currentUser }) {
+  const [value, setValue] = useState("");
   const navigate = useNavigate();
   return (
     <div className={styles.homePage}>
@@ -23,7 +25,7 @@ function HomePage({ currentUser }) {
             Quetext's plagiarism checker detects plagiarism in your text, checks
             for other writing issues, and helps you build citations
           </p>
-          <LongTextInput />
+          <LongTextInput value={value} setValue={setValue} />
           <Button lg color="#fe5b60" onClick={() => navigate("/search")}>
             Check For Plagiarism
           </Button>
