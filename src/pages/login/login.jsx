@@ -29,13 +29,20 @@ function LoginPage({ setCurrentUser, setFlash }) {
     try {
       const response = await signin(formData);
       console.log({ response });
+      if (response.data.status === "error") {
+        console.log(response.data);
+        return setFlash({
+          type: "error",
+          message: response.data.message,
+        });
+      }
       if (response.data.status === "not verified") {
         navigate("/verify-email", {
           state: { email: formData?.email },
         });
         return setFlash({
-          type: "warning",
-          message: "Email not verified, please verify your email",
+          type: "success",
+          message: "Verification email sent, please verify your email",
         });
       }
       if (response.data.status === "success") {

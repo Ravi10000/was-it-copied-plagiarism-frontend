@@ -25,8 +25,8 @@ function VerificationPage({ setFlash }) {
   return (
     <section className={styles.verificationPage}>
       <div className={styles.content}>
-        <img src="/verified.png" alt="" />
-        <h2>Verify Your Email</h2>
+        <img src="/verify.png" alt="" />
+        <h2>Check Your Inbox</h2>
         <p>
           We've sent an email to
           <span className={styles.highlightText}>

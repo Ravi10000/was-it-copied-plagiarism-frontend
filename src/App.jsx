@@ -39,6 +39,7 @@ function App({ flash, setCurrentUser, currenUser }) {
   async function handleCheckAuth() {
     try {
       const response = await checkAuth();
+      console.log({ response });
       if (response.data.status === "success") {
         setCurrentUser(response.data.user);
       }
@@ -58,6 +59,7 @@ function App({ flash, setCurrentUser, currenUser }) {
     <div className={styles.App}>
       {headerRoutes.includes(pathname) && <Header />}
       {flash && <Flash type={flash.type} message={flash.message} />}
+      {/* { <Flash type={"success"} message={"This is a flash message"} />} */}
       <Routes>
         <Route
           exact

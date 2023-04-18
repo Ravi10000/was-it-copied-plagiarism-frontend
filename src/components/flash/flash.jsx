@@ -7,10 +7,8 @@ import { clearFlash } from "../../redux/flash/flash.actions";
 
 const Flash = ({ message, type, clearFlash }) => {
   useEffect(() => {
-    // console.log("flash");
     const clearFlashTimeout = setTimeout(function () {
       clearFlash();
-      // console.log("cleared");
     }, 10000);
     return () => {
       clearTimeout(clearFlashTimeout);
