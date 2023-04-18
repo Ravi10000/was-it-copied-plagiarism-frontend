@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite --host --port 3002",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "push": "git push origin master",
+    "pull": "git pull origin master"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
