@@ -33,7 +33,6 @@ export default function LongTextInput({
         required
         id={id}
         className={`${styles["text-input"]} ${lg && styles.lg}`}
-        style={{ background: bg || "" }}
         {...otherProps}
         value={value}
         onChange={(e) => setValue(e.target.value)}

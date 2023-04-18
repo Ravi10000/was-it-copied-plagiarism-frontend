@@ -3,6 +3,12 @@
   margin: 0;
   box-sizing: border-box;
 }
+body {
+  /* background: #1b2841; */
+  background: #f3f6fc;
+  /* color: #fff; */
+}
+
 body,
 a,
 button,
@@ -15,6 +21,7 @@ input {
 :root {
   --secondary-clr: #42ba96;
   --primary-clr: #335eea;
+  --background-clr: #2b354f;
 
   --shadom: 0px 2px 20px #a6a6a640; /* just for copy var(--shadow) won't work*/
 }
@@ -41,6 +48,40 @@ input[type="file"] {
 .__btn img {
   width: 20px;
   height: fit-content;
+}
+
+.__imgBtn {
+  background: #7209b7;
+  border-radius: 50px;
+  padding: 15px 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #2a3842;
+  border: none;
+  position: relative;
+  color: #fff;
+  width: fit-content;
+  border: none;
+}
+.__imgBtn img {
+  width: 20px;
+  height: fit-content;
+}
+.__imgBtn p {
+  font-weight: 500;
+}
+.__imgBtn .fileUpload {
+  outline: 2px solid red;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.__imgBtn:hover {
+  background: #952add;
 }
 
 .__heading {

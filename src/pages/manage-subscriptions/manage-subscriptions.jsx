@@ -28,7 +28,7 @@ function ManageSubscriptionsPage() {
   return (
     <section className={styles.manageSubscriptionsPage}>
       <div className={styles.head}>
-        <h2 className={"__heading"}>Manage Subscriptions</h2>
+        <h2 className={styles.heading}>Manage Subscriptions</h2>
       </div>
       <div className={styles.subscriptionsContainer}>
         {subscriptions?.map((subscription) => (

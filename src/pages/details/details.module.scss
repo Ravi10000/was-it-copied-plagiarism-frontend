@@ -14,7 +14,7 @@
     // padding: 15px 20px 20px 50px;
   }
   .table {
-    max-width: 600px;
+    // max-width: 600px;
     background: #fff;
     border-collapse: collapse;
     table-layout: fixed;
@@ -46,6 +46,13 @@
     tbody {
       tr {
         border-bottom: 2px solid #e6e8ea;
+      }
+      .title {
+        &:hover {
+          cursor: pointer;
+          border-bottom: 2px solid var(--primary-clr);
+          color: var(--primary-clr);
+        }
       }
     }
   }

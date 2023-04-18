@@ -2,8 +2,10 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  color: #fff;
   .main {
     width: 100%;
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
   }
 }
 

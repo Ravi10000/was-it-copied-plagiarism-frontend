@@ -1,0 +1,28 @@
+.record {
+  .menu {
+    cursor: pointer;
+    position: relative;
+    .options {
+      padding: 20px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      background: #fff;
+      .option {
+        text-transform: capitalize;
+        width: 100%;
+        padding: 5px;
+        border-radius: 2px;
+        &:hover {
+          color: #fff;
+          background: var(--primary-clr);
+        }
+      }
+    }
+  }
+}

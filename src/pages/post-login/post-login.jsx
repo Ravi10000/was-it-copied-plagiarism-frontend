@@ -31,7 +31,7 @@ function PostLoginPage() {
       <div className={styles.toggleSideBar}>
         <img
           onClick={() => setIsSidebarOpen((prevState) => !prevState)}
-          src={isSidebarOpen ? "/close-2-dark.png" : "/menu-dark-64.png"}
+          src={isSidebarOpen ? "/close-menu.png" : "/menus.png"}
           alt="menu"
         />
       </div>

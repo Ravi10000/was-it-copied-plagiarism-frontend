@@ -27,12 +27,15 @@ function SignoutPage({ setCurrentUser, setFlash }) {
       <div className={styles.signoutCard}>
         <h2>Are you sure, you want to sign out?</h2>
         <div className={styles.buttonsContainer}>
-          <Button color="tomato" onClick={handleSignout}>
+          <Button color="#F72525" onClick={handleSignout}>
             Sign out
           </Button>
-          <Button secondary onClick={() => navigate("/search")}>
+          <button
+            className={styles.outlined}
+            onClick={() => navigate("/search")}
+          >
             cancel
-          </Button>
+          </button>
         </div>
       </div>
     </section>

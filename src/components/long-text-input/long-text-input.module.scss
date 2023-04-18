@@ -4,7 +4,6 @@
   gap: 5px;
   width: 100%;
   position: relative;
-  // max-width: 700px;
   .text-input {
     font-family: "Metropolis", sans-serif;
     resize: none;
@@ -13,22 +12,22 @@
     height: 100px;
     padding: 15px 20px;
     border: 2px solid #ced0d6;
-    // color: #545a6e;
     color: #fff;
     border-radius: 8px;
     height: 250px;
-    // background: #f3f3f3f4;
     background: rgba(40, 58, 91, 0.15);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border: 1px solid #fff;
+
     &:focus {
       animation: pop 0.2s ease-in-out;
-      outline: 1px solid #ced0d6;
+      // outline: 1px solid #ced0d6;
+      outline: 2px solid #fff;
       ~ .placeholderText {
-        opacity: 1;
+        opacity: 0.35;
         font-size: 1.01rem;
       }
     }
@@ -46,7 +45,7 @@
     transform: translate(-50%, -50%);
     font-weight: 600;
     color: #506690;
-    opacity: 0.35;
+    opacity: 1;
     transition: all 0.2s ease-in-out;
   }
 }

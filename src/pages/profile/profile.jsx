@@ -35,7 +35,6 @@ function ProfilPage({ currentUser, setCurrentUser, setFlash }) {
   }
 
   async function handleUpdateUser(data) {
-    // e.preventDefault();
     console.log("update user");
     console.log({ data });
     try {
@@ -149,7 +148,7 @@ function ProfilPage({ currentUser, setCurrentUser, setFlash }) {
           <p>{currentUser?.email}</p>
           <img
             className={styles.editIcon}
-            src="/edit.png"
+            src="/edit-gradient.png"
             alt="edit"
             onClick={() => {
               setPopupType("editEmail");
@@ -161,7 +160,7 @@ function ProfilPage({ currentUser, setCurrentUser, setFlash }) {
           <p>{currentUser?.fname}</p>
           <img
             className={styles.editIcon}
-            src="/edit.png"
+            src="/edit-gradient.png"
             alt="edit"
             onClick={() => {
               setPopupType("editName");
@@ -173,7 +172,7 @@ function ProfilPage({ currentUser, setCurrentUser, setFlash }) {
           <p>{currentUser?.lname}</p>
           <img
             className={styles.editIcon}
-            src="/edit.png"
+            src="/edit-gradient.png"
             alt="edit"
             onClick={() => {
               setPopupType("editName");
@@ -185,15 +184,15 @@ function ProfilPage({ currentUser, setCurrentUser, setFlash }) {
           <p>..........</p>
           <img
             className={styles.editIcon}
-            src="/edit.png"
+            src="/edit-gradient.png"
             alt="edit"
             onClick={() => {
               setPopupType("editPassword");
             }}
           />
         </div>
-        <button className="__btn">
-          <img src="/details.png" alt="details" />
+        <button className="__imgBtn">
+          <img src="/company-details.png" alt="details" />
           <p>Invoce/Company Details</p>
         </button>
       </div>

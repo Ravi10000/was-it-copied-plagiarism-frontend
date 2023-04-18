@@ -31,7 +31,7 @@ function Popup({ title, save, cancel, children, closePopup }) {
         <div className={styles.inputsContainer}>{children}</div>
         <div className={styles.btnContainer}>
           <Button primary>{save || "save"}</Button>
-          <Button secondary onClick={() => closePopup()}>
+          <Button secondary outlined onClick={() => closePopup()}>
             {cancel || "cancel"}
           </Button>
         </div>

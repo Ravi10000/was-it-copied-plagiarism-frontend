@@ -115,7 +115,7 @@ function Header({ currentUser }) {
         </div>
         <img
           className={styles.toggle}
-          src={isMenuOpen ? "/close-blue.png" : "/menus.png"}
+          src={isMenuOpen ? "/close-menu.png" : "/menus.png"}
           alt="menu"
           onClick={() => setIsMenuOpen((prevState) => !prevState)}
         />
@@ -126,7 +126,7 @@ function Header({ currentUser }) {
                 {/* <h3>Plagiarism Checker</h3> */}
                 <img
                   className={styles.closeMenu}
-                  src="/close-blue.png"
+                  src="/close-menu.png"
                   alt="menu"
                   onClick={() => setIsMenuOpen(false)}
                 />

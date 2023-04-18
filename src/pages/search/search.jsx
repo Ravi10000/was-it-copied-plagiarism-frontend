@@ -17,7 +17,7 @@ function SearchPage() {
         <Button primary>Check Plagiarism</Button>
       ) : (
         <button className={styles.uploadeBtn}>
-          <img src="/upload.png" alt="upload" />
+          <img src="/upload-light.png" alt="upload" />
           <p>Search by Files</p>
           <input className={styles.fileUpload} type="file" />
         </button>

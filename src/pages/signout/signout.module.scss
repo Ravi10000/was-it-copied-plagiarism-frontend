@@ -1,7 +1,12 @@
 .signoutPage {
   height: fit-content;
   .signoutCard {
-    width: 370px;
+    background: #283a5b59;
+    box-shadow: 0 8px 32px 0 #1f26875e;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 10px;
+    max-width: 450px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -10,15 +15,25 @@
     padding: 20px;
     box-shadow: 0px 2px 20px #a6a6a640;
     border-radius: 8px;
-    background: #fff;
+    // background: #fff;
     text-align: center;
     h2 {
       font-weight: 600;
-      color: #c3c7ca;
+      // color: #c3c7ca;
     }
     .buttonsContainer {
       display: flex;
       gap: 20px;
+      .outlined {
+        padding: 15px 30px;
+        border-radius: 50px;
+        background: transparent;
+        color: #fff;
+        border: 1px solid #fff;
+        &:hover {
+          color: var(--primary-clr);
+        }
+      }
     }
   }
 }

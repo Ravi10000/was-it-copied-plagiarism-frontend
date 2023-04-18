@@ -1,11 +1,20 @@
 .manageSubscriptionsPage {
   padding: 25px;
+  background: #2b354f;
+  background: linear-gradient(
+      to right,
+      #24243e,
+      #302b63,
+      #0f0c29
+    );
+  height: 100%;
   .head {
     border-radius: 5px;
     padding: 20px;
     // background: rgb(218, 218, 218);
     margin-bottom: 30px;
-    color: #2b354e;
+    // color: #2b354e;
+    color: #fff;
     h2 {
       font-weight: 600;
     }

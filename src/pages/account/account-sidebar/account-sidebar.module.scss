@@ -1,11 +1,13 @@
 .accountSidebar {
-  background: #eaeef1;
+  // background: #eaeef1;
+  background: #04112B;
   width: 100%;
+  color: #fff;
   .accountOptionsContainer {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
-    color: #2a3842;
+    // color: #2a3842;
     width: 100%;
     padding: 10px;
     .item {
@@ -22,6 +24,7 @@
       &.selected {
         border-radius: 50px;
         background: #fff;
+        color: #2a3842;
       }
     }
   }
@@ -30,12 +33,12 @@
 @media (min-width: 1000px) {
   .accountSidebar {
     min-height: 100vh;
-    background: #eaeef1;
+    // background: #eaeef1;
     width: fit-content;
     padding: 20px;
     .accountOptionsContainer {
       flex-direction: column;
-      color: #2a3842;
+      // color: #2a3842;
       .item {
         padding: 10px 20px;
       }

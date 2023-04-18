@@ -1,6 +1,7 @@
 .planHead {
-  text-transform: capitalize;
+  color: #fff;
   h3 {
+    text-transform: capitalize;
     font-size: 1.2rem;
   }
   p {
@@ -8,6 +9,7 @@
   }
 }
 .feature {
+  color: #fff;
   display: flex;
   align-items: center;
   gap: 20px;
@@ -20,12 +22,11 @@
 
 .btnOutlined {
   width: 100%;
-  background: #fff;
+  background: #283a5b;
   border-radius: 50px;
-  border: 2px solid #42ba96;
-  color: #42ba96;
+  border: none;
+  color: var(--primary-clr);
   font-weight: 600;
-  // font-size: 1.1rem;
   padding: 15px;
 }
 .btnFilled {

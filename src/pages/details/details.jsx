@@ -1,6 +1,9 @@
+import Record from "../../components/record/record";
 import styles from "./details.module.scss";
+import { useEffect, useState } from "react";
 
 function DetailsPage() {
+  const [selectAll, setSelectAll] = useState(false);
   return (
     <section className={styles.detailsPage}>
       <h2 className="__heading">Reports</h2>
@@ -12,7 +15,7 @@ function DetailsPage() {
       <table className={styles.table}>
         <thead>
           <tr>
-            <th>
+            <th onClick={() => setSelectAll(true)}>
               <input type="checkbox" />
             </th>
             <th>Title</th>
@@ -22,7 +25,10 @@ function DetailsPage() {
           </tr>
         </thead>
 
-        <tbody></tbody>
+        <tbody>
+          <Record />
+          <Record />
+        </tbody>
       </table>
     </section>
   );

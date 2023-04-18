@@ -15,6 +15,7 @@ import { setFlash } from "../../redux/flash/flash.actions";
 // api calls
 import { updateSubscription } from "../../api/subscriptions";
 import SubscriptionInfo from "../subscription-info/subscription-info";
+import PricingCard from "../pricing-card/pricing-card";
 
 function SubscriptionCard({ subscription, setSubscriptions, setFlash }) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -84,32 +85,10 @@ function SubscriptionCard({ subscription, setSubscriptions, setFlash }) {
           </Popup>
         </form>
       )}
-      {/* <div className={styles.planHead}>
-        <h3>{subscription?.name}</h3>
-        <p>Key plan features</p>
-      </div>
-      <div className={styles.featuresList}>
-        <div className={styles.feature}>
-          <img src="/check.png" alt="" />
-          <p>No. of seats {subscription?.seats}</p>
-        </div>
-        <div className={styles.feature}>
-          <img src="/check.png" alt="" />
-          <p>Validity {subscription?.validity} Days</p>
-        </div>
-        <div className={styles.feature}>
-          <img src="/check.png" alt="" />
-          <p>Validity {subscription?.description} Days</p>
-        </div>
-      </div>
-      <button className={styles.btnOutlined}>
-        {subscription?.price
-          ? `Starting at ₹${subscription?.price}/month`
-          : "Try For Free"}
-      </button> */}
-      <SubscriptionInfo subscription={subscription} />
+
+      <PricingCard subscription={subscription} />
       <div className={styles.editBtn} onClick={() => setIsPopupOpen(true)}>
-        <img src="/edit.png" alt="" />
+        <img src="/edit-gradient.png" alt="" />
       </div>
     </div>
   );

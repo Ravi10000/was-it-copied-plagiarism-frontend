@@ -1,3 +1,4 @@
+import Button from "../button/button";
 import styles from "./subscription-info.module.scss";
 
 function SubscriptionInfo({ subscription }) {
@@ -9,23 +10,23 @@ function SubscriptionInfo({ subscription }) {
       </div>
       <div className={styles.featuresList}>
         <div className={styles.feature}>
-          <img src="/check.png" alt="" />
+          <img src="/check-gradient.png" alt="" />
           <p>No. of seats {subscription?.seats}</p>
         </div>
         <div className={styles.feature}>
-          <img src="/check.png" alt="" />
+          <img src="/check-gradient.png" alt="" />
           <p>Validity {subscription?.validity} Days</p>
         </div>
         <div className={styles.feature}>
-          <img src="/check.png" alt="" />
+          <img src="/check-gradient.png" alt="" />
           <p>Validity {subscription?.description}</p>
         </div>
       </div>
-      <button className={styles.btnOutlined}>
+      <Button primary>
         {subscription?.price
           ? `Starting at ₹${subscription?.price}/month`
           : "Try For Free"}
-      </button>
+      </Button>
     </>
   );
 }

@@ -1,11 +1,20 @@
 import styles from "./button.module.scss";
 
-function Button({ children, primary, secondary, lg, color, bg, ...props }) {
+function Button({
+  children,
+  primary,
+  outlined,
+  secondary,
+  lg,
+  color,
+  bg,
+  ...props
+}) {
   return (
     <button
       className={`${styles.customButton} ${primary && styles.primary} ${
-        secondary && styles.secondary
-      } ${lg && styles.lg}`}
+        outlined && styles.outlined
+      } ${secondary && styles.secondary} ${lg && styles.lg}`}
       style={{ backgroundColor: color ? color : "" }}
       {...props}
     >

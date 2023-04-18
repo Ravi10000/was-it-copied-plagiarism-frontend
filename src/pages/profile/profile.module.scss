@@ -1,12 +1,12 @@
 .profilePage {
   width: 100%;
   padding: 20px;
+  background: #1b2841;
+  height: 100%;
   .heading {
-    // color: #c3c7ca;
-    color: #2b354e;
     font-weight: 600;
     padding: 10px;
-    border-bottom: 2px solid #c3c7ca;
+    // border-bottom: 2px solid #c3c7ca;
   }
   .profileDetails {
     width: 100%;
@@ -23,13 +23,12 @@
       }
     }
     .editIcon {
-      opacity: 0.5;
+      opacity: 1;
       cursor: pointer;
       width: 25px;
       height: fit-content;
       &:hover {
-        opacity: 0.8;
-        transform: scale(0.95);
+        transform: scale(1.1);
       }
     }
   }

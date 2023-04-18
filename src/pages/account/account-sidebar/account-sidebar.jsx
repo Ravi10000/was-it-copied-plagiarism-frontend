@@ -40,7 +40,12 @@ function AccountSidebar({ selectedOption, setSelectedOption }) {
               setSelectedOption(option.name);
             }}
           >
-            <img src={option.iconDark} alt={option.name} />
+            <img
+              src={
+                selectedOption === option.name ? option.iconDark : option.icon
+              }
+              alt={option.name}
+            />
             <p>{option.name}</p>
           </div>
         ))}
