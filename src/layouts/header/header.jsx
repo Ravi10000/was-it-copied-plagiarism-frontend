@@ -44,7 +44,7 @@ function Header({ currentUser }) {
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
-        <img src="/primary.svg" alt="logo" onClick={() => navigate("/")} />
+        <img src="/logo-light.svg" alt="logo" onClick={() => navigate("/")} />
       </div>
       <div className={styles.navContainer}>
         <div className={styles.navList}>
@@ -107,15 +107,15 @@ function Header({ currentUser }) {
               </Button>
             </>
           ) : (
-            <Button onClick={() => navigate("/account")}>
-              <img src="/page-icons/account.png" alt="" />
+            <Button secondary onClick={() => navigate("/account")}>
+              <img src="/user-account.png" alt="" />
               {currentUser.email}
             </Button>
           )}
         </div>
         <img
           className={styles.toggle}
-          src={isMenuOpen ? "/close.png" : "/menu-dark-64.png"}
+          src={isMenuOpen ? "/close-blue.png" : "/menus.png"}
           alt="menu"
           onClick={() => setIsMenuOpen((prevState) => !prevState)}
         />
@@ -126,7 +126,7 @@ function Header({ currentUser }) {
                 {/* <h3>Plagiarism Checker</h3> */}
                 <img
                   className={styles.closeMenu}
-                  src="/close-2-dark.png"
+                  src="/close-blue.png"
                   alt="menu"
                   onClick={() => setIsMenuOpen(false)}
                 />
@@ -193,8 +193,8 @@ function Header({ currentUser }) {
                     </Button>
                   </>
                 ) : (
-                  <Button onClick={() => goTo("/account")}>
-                    <img src="/page-icons/account.png" alt="" />
+                  <Button secondary onClick={() => navigate("/account")}>
+                    <img src="/user-account.png" alt="" />
                     {currentUser.email}
                   </Button>
                 )}

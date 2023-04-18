@@ -13,10 +13,17 @@
     height: 100px;
     padding: 15px 20px;
     border: 2px solid #ced0d6;
-    color: #545a6e;
+    // color: #545a6e;
+    color: #fff;
     border-radius: 8px;
     height: 250px;
-    background: #f3f3f3f4;
+    // background: #f3f3f3f4;
+    background: rgba(40, 58, 91, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
     &:focus {
       animation: pop 0.2s ease-in-out;
       outline: 1px solid #ced0d6;

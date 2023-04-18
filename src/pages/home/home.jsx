@@ -20,13 +20,13 @@ function HomePage({ currentUser }) {
     <div className={styles.homePage}>
       <section className={styles.homeTopSection}>
         <div className={styles.content}>
-          <h1 className={styles.title}>Plagiarism Checker by Quetext</h1>
+          <h1 className={styles.title}>Plagiarism Checker</h1>
           <p className={styles.subtitle}>
-            Quetext's plagiarism checker detects plagiarism in your text, checks
-            for other writing issues, and helps you build citations
+            Plagiarism checker detects plagiarism in your text, checks for other
+            writing issues, and helps you build citations
           </p>
           <LongTextInput value={value} setValue={setValue} />
-          <Button lg color="#fe5b60" onClick={() => navigate("/search")}>
+          <Button primary lg onClick={() => navigate("/search")}>
             Check For Plagiarism
           </Button>
         </div>

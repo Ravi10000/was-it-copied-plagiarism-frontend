@@ -1,39 +1,45 @@
 .customButton {
   background: var(--secondary-clr);
-  padding: 10px 20px;
+  padding: 15px 20px;
   color: #fff;
   font-weight: 500;
   border-radius: 5px;
   border: none;
   cursor: pointer;
-  transition: all 0.15s ease-in-out;
+  transition: all 0.25s ease-in-out;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 5px;
+  border-radius: 50px;
+
   img {
-    width: 1rem;
+    width: 1.2rem;
     height: fit-content;
   }
   &:hover {
     background: #2f8168;
   }
   &.primary {
-    background: var(--primary-clr);
+    // background: var(--primary-clr);
+    background: linear-gradient(92.65deg, #4361ee 8.73%, #7209b7 104.76%);
     &:hover {
-      background: #2a4dc0;
+      // background: #2a4dc0;
+      background: linear-gradient(92.65deg, #7209b7 8.73%, #4361ee 104.76%);
     }
   }
   &.secondary {
-    background: #fff;
-    color: #2a3842;
-    border: 1px solid #c3c7ca;
+    // background: #fff;
+    background: transparent;
+    color: #fff;
+    border: 2px solid #c3c7ca;
     &:hover {
-      background: #e6e6e6;
+      background: #fff;
+      color: #2a3842;
     }
   }
   &.lg {
-    padding: 10px 35px;
+    padding: 15px 35px;
     font-size: 1.2rem;
   }
 }
