@@ -20,6 +20,7 @@ function HomePage({ currentUser }) {
     <div className={styles.homePage}>
       <section className={styles.homeTopSection}>
         <div className={styles.content}>
+          {/* <img className={styles.hover} src="/patchwork.png" alt="" /> */}
           <h1 className={styles.title}>
             Plagiarism <span>Checker</span>
           </h1>
@@ -105,7 +106,9 @@ function HomePage({ currentUser }) {
 
       <section className={styles.getStarted}>
         {/* <p className={styles.title}>GET STARTED</p> */}
-        <h4 className={styles.title}>Try Quetext today!</h4>
+        <h4 className={`__sectionTitle ${styles.title}`}>
+          Try <span>Plagiarism checker</span> today!
+        </h4>
         <p>
           Ready to stop wasting time with that old-school "plagiarism tool" from
           the 90's? Start using Quetext today for free!

@@ -3,8 +3,7 @@
     display: flex;
     justify-content: flex-start;
     padding: 20px;
-    // background: #e7e7e7;
-    background: linear-gradient(180deg, #1b2841 0%, #04112a 100%);
+    background: var(--heading-clr);
 
     img {
       cursor: pointer;
@@ -13,14 +12,13 @@
     }
   }
   .page {
-    align-self: stretch;
+    background: #1b2841;
   }
 }
 
 @media (min-width: 1000px) {
   .postLoginPage {
     display: flex;
-    // align-items: center;
     .toggleSideBar {
       display: none;
     }

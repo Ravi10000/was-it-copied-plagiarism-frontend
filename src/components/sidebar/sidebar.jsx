@@ -2,7 +2,7 @@ import styles from "./sidebar.module.scss";
 
 // packages
 import { useEffect, useRef, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 
 // components
@@ -32,19 +32,31 @@ const options = [
 ];
 const adminOptions = [
   {
-    name: "manage subscriptions",
+    name: "manage-subscriptions",
     icon: "/page-icons/subscription.png",
     iconDark: "/page-icons/subscription-dark.png",
+  },
+  {
+    name: "users",
+    icon: "/page-icons/users.png",
+    iconDark: "/page-icons/users-dark.png",
   },
 ];
 
 function Sidebar({ isSidebarOpen, setIsSidebarOpen, currentUser }) {
+  console.log({ currentUser });
   const navigate = useNavigate();
   const [isAdmin, setIsAdmin] = useState(false);
 
   const sidebarRef = useRef(null);
   const { page } = useParams();
-  const { selectedPage, setSelectedPage } = useSelectedPage(page);
+  const { pathname } = useLocation();
+  console.log({ pathname });
+  const { selectedPage, setSelectedPage } = useSelectedPage(pathname);
+
+  useEffect(() => {
+    setSelectedPage(pathname);
+  }, [pathname]);
 
   useEffect(() => {
     if (currentUser?.usertype === "ADMIN") setIsAdmin(true);
@@ -72,8 +84,12 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen, currentUser }) {
         {options?.map((option) => (
           <SidebarOption
             key={option.name}
-            icon={selectedPage !== option.name ? option.icon : option.iconDark}
-            selected={selectedPage === option.name}
+            icon={
+              !selectedPage.includes(option.name)
+                ? option.icon
+                : option.iconDark
+            }
+            selected={selectedPage.includes(option.name)}
             onClick={() => {
               setIsSidebarOpen(false);
               // setSelectedPage(option.name);
@@ -86,9 +102,11 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen, currentUser }) {
             <SidebarOption
               key={option.name}
               icon={
-                selectedPage !== option.name ? option.icon : option.iconDark
+                !selectedPage.includes(option.name)
+                  ? option.icon
+                  : option.iconDark
               }
-              selected={selectedPage === option.name}
+              selected={selectedPage.includes(option.name)}
               onClick={() => {
                 setIsSidebarOpen(false);
                 // setSelectedPage(option.name);

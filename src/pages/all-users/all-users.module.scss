@@ -1,24 +1,4 @@
-.detailsPage {
-  display: flex;
-  height: 100%;
-  justify-content: flex-start;
-  gap: 10px;
-  flex-direction: column;
-  padding: 30px 10px;
-  .search {
-    padding: 15px 20px;
-    max-width: 500px;
-    background: var(--text-clr);
-    color: #fff;
-    border-radius: 50px;
-    border: 1px solid #e6e8ea;
-    &:focus {
-      outline: 1px solid #c3c7ca;
-    }
-    &::placeholder {
-      color: #fff;
-    }
-  }
+.allUsersPage {
   h2 {
     padding: 20px;
     text-align: left;
@@ -27,12 +7,14 @@
   .table {
     // max-width: 600px;
     // background: #fff;
+    width: 100%;
+    overflow-x: scroll;
     border-collapse: collapse;
     table-layout: fixed;
     white-space: normal;
     th,
     td {
-      max-width: 200px;
+    //   max-width: 200px;
       word-wrap: break-word;
       text-align: start;
       padding: 20px;
@@ -59,9 +41,8 @@
       tr {
         color: #fff;
         border-bottom: 2px solid var(--heading-clr);
-        // background: #adb4c7;
         background: #3f5b8aad;
-        // box-shadow: 0 8px 32px 0 #2f369498;
+        box-shadow: 0 8px 32px 0 #2f369498;
         // backdrop-filter: blur(20px);
         // -webkit-backdrop-filter: blur(20px);
         border-radius: 10px;
@@ -89,7 +70,7 @@
 }
 
 @media (min-width: 800px) {
-  .detailsPage {
+  .allUsersPage {
     padding: 30px;
     .table {
       width: 100%;

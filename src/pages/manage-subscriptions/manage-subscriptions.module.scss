@@ -1,12 +1,12 @@
 .manageSubscriptionsPage {
   padding: 25px;
-  background: #2b354f;
-  background: linear-gradient(
-      to right,
-      #24243e,
-      #302b63,
-      #0f0c29
-    );
+  // background: #2b354f;
+  // background: linear-gradient(
+  //     to right,
+  //     #24243e,
+  //     #302b63,
+  //     #0f0c29
+  //   );
   height: 100%;
   .head {
     border-radius: 5px;
@@ -36,7 +36,7 @@
       width: 100%;
     }
     .subscriptionsContainer {
-      max-width: 1000px;
+      max-width: 1500px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
     }

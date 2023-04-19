@@ -48,9 +48,14 @@ function SignupPage({ setFlash, setCurrentUser }) {
   }
   return (
     <div className={styles.signupPage}>
-      <section className={styles.signupHero}></section>
+      <div className={styles.signupHero}>
+        <div className={styles.content}>
+          <img src="/logo-light.png" alt="" />
+          <h1 className={styles.title}>Welcome to the community</h1>
+        </div>
+      </div>
       <section className={styles.loginSection}>
-        <h2 className={styles.formTitle}>Create Account</h2>
+        <h2 className="__sectionTitle">Let's get started</h2>
         <form
           className={styles.loginForm}
           onSubmit={handleSubmit(handleSignup)}

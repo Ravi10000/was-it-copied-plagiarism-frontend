@@ -1,9 +1,17 @@
 .record {
+  .title {
+    &:hover {
+      cursor: pointer;
+      color: var(--primary-clr);
+    }
+  }
   .menu {
     cursor: pointer;
     position: relative;
     .options {
-      padding: 20px;
+      // width: fit-content;
+      padding: 20px 10px;
+      border-radius: 5px;
       position: absolute;
       top: 0;
       left: 0;
@@ -12,12 +20,21 @@
       flex-direction: column;
       align-items: flex-start;
       gap: 10px;
-      background: #fff;
+      background: var(--heading-clr);
       .option {
+        display: flex;
+        align-items: center;
+        gap: 5px;
         text-transform: capitalize;
         width: 100%;
-        padding: 5px;
+        padding: 5px 10px;
         border-radius: 2px;
+        img {
+          height: fit-content;
+        }
+        p {
+          width: max-content;
+        }
         &:hover {
           color: #fff;
           background: var(--primary-clr);

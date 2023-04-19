@@ -6,7 +6,9 @@ export default function NumInput({ label, ...otherProps }) {
   const id = useId();
   return (
     <div className={styles["num-input-container"]}>
-      <label htmlFor={id}>{label}</label>
+      <label className={styles.label} htmlFor={id}>
+        {label}
+      </label>
       <input
         required
         id={id}

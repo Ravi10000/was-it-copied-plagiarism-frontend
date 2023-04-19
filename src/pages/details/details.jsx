@@ -1,12 +1,16 @@
-import Record from "../../components/record/record";
 import styles from "./details.module.scss";
+
+import Record from "../../components/record/record";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 function DetailsPage() {
   const [selectAll, setSelectAll] = useState(false);
+  const { id } = useParams();
+  console.log({ id });
   return (
     <section className={styles.detailsPage}>
-      <h2 className="__heading">Reports</h2>
+      <h2 className="__sectionTitle">Reports</h2>
       <input
         type="search"
         className={styles.search}
@@ -26,6 +30,9 @@ function DetailsPage() {
         </thead>
 
         <tbody>
+          <Record />
+          <Record />
+          <Record />
           <Record />
           <Record />
         </tbody>

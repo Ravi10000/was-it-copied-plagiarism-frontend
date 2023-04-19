@@ -6,10 +6,9 @@
     gap: 20px;
     min-height: 100vh;
     background: #010220;
-    outline: 2px solid green;
 
     .content {
-      outline: 2px solid red;
+      position: relative;
       background: url("/bg-gradient.png");
       background-position: 50% 20%;
       background-size: cover;
@@ -22,6 +21,10 @@
       width: 100%;
       padding: 30px;
       color: #fff;
+      // .hover {
+      //   // position: absolute;
+      //   animation: hoverImage 2s ease infinite alternate;
+      // }
       .title {
         padding: 0 50px;
         font-size: 3rem;
@@ -64,6 +67,7 @@
     text-align: center;
     margin-top: 20px;
     .title {
+      color: #fff;
       padding: 10px 15px;
       font-size: 2.5rem;
       font-weight: 700;
@@ -201,6 +205,21 @@
       flex-direction: column;
       gap: 10px;
     }
+  }
+}
+
+@keyframes hoverImage {
+  // 0% {
+  //   transform: translateY(-30%);
+  // }
+  50% {
+    transform: translateY(0%) scale(1.5);
+  }
+  80% {
+    transform: translateY(30%) scale(.9);
+  }
+  100% {
+    transform: translateY(-30%) scale(1);
   }
 }
 

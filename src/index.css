@@ -21,7 +21,7 @@ input {
 :root {
   --secondary-clr: #42ba96;
   --primary-clr: #335eea;
-  --background-clr: #2b354f;
+  --background-clr: #f3f6fc;
   --heading-clr: #0a0b33;
   --text-clr: #30364d;
   --shadom: 0px 2px 20px #a6a6a640; /* just for copy var(--shadow) won't work*/
@@ -52,7 +52,7 @@ input[type="file"] {
 }
 
 .__imgBtn {
-  background: #7209b7;
+  background: var(--primary-clr);
   border-radius: 50px;
   padding: 15px 25px;
   display: flex;
@@ -73,7 +73,6 @@ input[type="file"] {
   font-weight: 500;
 }
 .__imgBtn .fileUpload {
-  outline: 2px solid red;
   width: 100%;
   height: 100%;
   opacity: 0;
@@ -82,7 +81,7 @@ input[type="file"] {
   left: 0;
 }
 .__imgBtn:hover {
-  background: #952add;
+  background: #547cff;
 }
 
 .__heading {

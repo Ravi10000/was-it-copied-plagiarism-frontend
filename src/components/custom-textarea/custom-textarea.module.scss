@@ -3,13 +3,20 @@
   gap: 5px;
   width: 100%;
   text-align: left;
+  color: #a2a5b5;
+  .label {
+    margin-left: 10px;
+  }
   .text-input {
     font-family: "Metropolis", sans-serif;
     resize: none;
     height: 100px;
     padding: 15px 20px;
-    border: 2px solid #ced0d6;
-    color: #545a6e;
+    border: none;
+    color: var(--heading-clr);
+    // border-radius: 50px;
+    // border: 2px solid #ced0d6;
+    // color: #545a6e;
     border-radius: 8px;
     &:focus {
       outline: 1px solid #a9a9a9;

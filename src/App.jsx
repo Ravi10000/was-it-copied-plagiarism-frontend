@@ -4,7 +4,13 @@ import styles from "./App.module.scss";
 import { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { Route, Routes, useLocation, Navigate } from "react-router-dom";
+import {
+  Route,
+  Routes,
+  useLocation,
+  Navigate,
+  useParams,
+} from "react-router-dom";
 
 // layouts
 import Header from "./layouts/header/header";
@@ -14,8 +20,16 @@ import LoginPage from "./pages/login/login";
 import HomePage from "./pages/home/home";
 import SignupPage from "./pages/signup/signup";
 import PricingPage from "./pages/pricing/pricing";
-import PlagiarismChecker from "./pages/plagiarism-checker/plagiarism-checker";
+// import PlagiarismChecker from "./pages/plagiarism-checker/plagiarism-checker";
 import PostLoginPage from "./pages/post-login/post-login";
+import VerificationPage from "./pages/verification/verification";
+import VerifiedPage from "./pages/verified/verified";
+import Sidebar from "./components/sidebar/sidebar";
+import AccountPage from "./pages/account/account";
+import DetailsPage from "./pages/details/details";
+import SearchPage from "./pages/search/search";
+import ManageSubscriptionsPage from "./pages/manage-subscriptions/manage-subscriptions";
+import ReportPage from "./pages/report/report";
 
 // components
 import Flash from "./components/flash/flash";
@@ -30,11 +44,14 @@ import { setCurrentUser } from "./redux/user/user.actions";
 
 // api calls
 import { checkAuth } from "./api/users";
-import VerificationPage from "./pages/verification/verification";
-import VerifiedPage from "./pages/verified/verified";
+import AllUsersPage from "./pages/all-users/all-users";
 
 function App({ flash, setCurrentUser, currenUser }) {
   const { pathname } = useLocation();
+  console.log({ pathname });
+
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   const headerRoutes = ["/login", "/signup", "/pricing", "/"];
   async function handleCheckAuth() {
     try {
@@ -54,37 +71,90 @@ function App({ flash, setCurrentUser, currenUser }) {
     if (!authToken) return;
     handleCheckAuth();
   }, []);
-
   return (
-    <div className={styles.App}>
+    <div
+      className={`${
+        !headerRoutes.includes(pathname) ? styles.postLoginPage : ""
+      }`}
+    >
       {headerRoutes.includes(pathname) && <Header />}
+      {!headerRoutes.includes(pathname) && (
+        <>
+          <div className={styles.toggleSideBar}>
+            <img
+              onClick={() => setIsSidebarOpen((prevState) => !prevState)}
+              src={isSidebarOpen ? "/close-menu.png" : "/menus.png"}
+              // src="/menus.png"
+              alt="menu"
+            />
+          </div>
+          <Sidebar
+            isSidebarOpen={isSidebarOpen}
+            setIsSidebarOpen={setIsSidebarOpen}
+          />
+        </>
+      )}
       {flash && <Flash type={flash.type} message={flash.message} />}
-      {/* { <Flash type={"success"} message={"This is a flash message"} />} */}
-      <Routes>
-        <Route
-          exact
-          path="/login"
-          element={currenUser ? <Navigate to="/" /> : <LoginPage />}
-        />
-        <Route
-          exact
-          path="/signup"
-          element={currenUser ? <Navigate to="/" /> : <SignupPage />}
-        />
-        <Route exact path="/pricing" element={<PricingPage />} />
-        <Route exact path="/verify-email" element={<VerificationPage />} />
-        <Route exact path="/verified" element={<VerifiedPage />} />
-        <Route
+      <div className={`${!headerRoutes.includes(pathname) ? styles.page : ""}`}>
+        <Routes>
+          <Route
+            exact
+            path="/login"
+            element={currenUser ? <Navigate to="/" /> : <LoginPage />}
+          />
+          <Route
+            exact
+            path="/signup"
+            element={currenUser ? <Navigate to="/" /> : <SignupPage />}
+          />
+          <Route exact path="/pricing" element={<PricingPage />} />
+          <Route exact path="/verify-email" element={<VerificationPage />} />
+          <Route exact path="/verified" element={<VerifiedPage />} />
+
+          <Route
+            exact
+            path="/account"
+            element={!currenUser ? <Navigate to="/login" /> : <AccountPage />}
+          />
+          <Route
+            exact
+            path="/details"
+            element={!currenUser ? <Navigate to="/login" /> : <DetailsPage />}
+          />
+          <Route
+            exact
+            path="/details/:id"
+            element={!currenUser ? <Navigate to="/login" /> : <ReportPage />}
+          />
+          <Route
+            exact
+            path="/search"
+            element={!currenUser ? <Navigate to="/login" /> : <SearchPage />}
+          />
+          <Route
+            exact
+            path="/manage-subscriptions"
+            element={
+              !currenUser ? (
+                <Navigate to="/login" />
+              ) : (
+                <ManageSubscriptionsPage />
+              )
+            }
+          />
+          <Route
+            exact
+            path="/users"
+            element={!currenUser ? <Navigate to="/login" /> : <AllUsersPage />}
+          />
+          {/* <Route
           path="/:page"
           element={!currenUser ? <Navigate to="/login" /> : <PostLoginPage />}
-        />
-        {/* <Route
-          exact
-          path="/plagiarism-checker"
-          element={<PlagiarismChecker />}
         /> */}
-        <Route exact path="/" element={<HomePage />} />
-      </Routes>
+
+          <Route exact path="/" element={<HomePage />} />
+        </Routes>
+      </div>
     </div>
   );
 }

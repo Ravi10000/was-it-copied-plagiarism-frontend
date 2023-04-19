@@ -6,7 +6,9 @@ export default function TextInput({ label, register, error, ...otherProps }) {
   const id = useId();
   return (
     <div className={styles["input-container"]}>
-      <label htmlFor={id}>{label}</label>
+      <label className={styles.label} htmlFor={id}>
+        {label}
+      </label>
       <input
         id={id}
         className={styles["text-input"]}

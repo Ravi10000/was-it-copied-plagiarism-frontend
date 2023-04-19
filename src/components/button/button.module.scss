@@ -39,9 +39,11 @@
   &.outlined {
     background: transparent;
     color: #2b354f;
-    border: 1px solid #2b354f;
+    border: 1px solid #404758;
+    padding: 15px 30px;
     &:hover {
       color: var(--primary-clr);
+      border: 1px solid var(--primary-clr);
     }
   }
   &.lg {

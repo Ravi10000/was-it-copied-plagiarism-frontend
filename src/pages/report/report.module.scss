@@ -1,0 +1,128 @@
+.reportPage {
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  .data {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+    .textInput {
+      font-size: 1.4rem;
+      padding: 10px 20px;
+      border: none;
+      width: 100%;
+      max-width: 700px;
+      text-align: center;
+      background: transparent;
+      color: #fff;
+      border-radius: 50px;
+      &:hover {
+        outline: 1px solid #c3c7ca;
+      }
+      &:focus {
+        outline: 1px solid #c3c7ca;
+      }
+      &::placeholder {
+        color: #fff;
+      }
+    }
+    button {
+      padding: 15px 30px;
+    }
+    .text {
+      height: 400px;
+      overflow-y: scroll;
+      padding: 20px;
+      background: #283a5b59;
+      box-shadow: 0 8px 32px 0 #1f26875e;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 10px;
+      border: 1px solid #fff;
+    }
+  }
+  .analysis {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    margin-top: 20px;
+    .percentage {
+      text-align: center;
+      font-size: 3rem;
+    }
+    .head {
+      background: var(--text-clr);
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      width: 100%;
+      max-width: 600px;
+      justify-content: space-between;
+      .left {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .btn {
+        cursor: pointer;
+        height: 35px;
+        width: fit-content;
+      }
+      .forward {
+        transform: rotate(180deg);
+      }
+      .menu {
+        position: relative;
+        .options {
+          padding: 20px 10px;
+          border-radius: 5px;
+          position: absolute;
+          top: 0;
+          left: 0;
+          transform: translateX(-100%);
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+          background: var(--heading-clr);
+          .option {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-transform: capitalize;
+            width: 100%;
+            padding: 5px 10px;
+            border-radius: 2px;
+            img {
+              width: 20px;
+              height: fit-content;
+            }
+            p {
+              width: max-content;
+            }
+            &:hover {
+              color: #fff;
+              background: var(--primary-clr);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 800px) {
+  .reportPage {
+    padding: 50px;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+  }
+}

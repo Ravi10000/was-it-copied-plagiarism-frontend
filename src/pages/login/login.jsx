@@ -66,8 +66,14 @@ function LoginPage({ setCurrentUser, setFlash }) {
 
   return (
     <div className={styles.loginPage}>
+      <div className={styles.signupHero}>
+        <div className={styles.content}>
+          <img src="/logo-light.png" alt="" />
+          <h1 className={styles.title}>Welcome to the community</h1>
+        </div>
+      </div>
       <section className={styles.loginSection}>
-        <h2 className={styles.formTitle}>Account Login</h2>
+        <h2 className="__sectionTitle">Account Login</h2>
         <form
           className={styles.loginForm}
           onSubmit={handleSubmit(handleSignin)}
