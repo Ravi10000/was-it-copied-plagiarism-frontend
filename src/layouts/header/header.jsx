@@ -14,12 +14,6 @@ import NavItem from "../../components/nav-item/nav-item";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 function Header({ currentUser }) {
-  // const [currentUser, setCurrentUser] = useState({
-  //   fname: "Ravi",
-  //   lname: "Sharma",
-  //   email: "ravisince2k@gmail.com",
-  // });
-  // const [currentUser, setCurrentUser] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
   const navRef = useRef();
@@ -52,7 +46,10 @@ function Header({ currentUser }) {
             className={styles.navItemWithOptions}
             onClick={() => navigate("/")}
           >
-            <p>Plagiarism Checker</p>
+            <div className={styles.name}>
+              <p>Plagiarism Checker</p>
+              <img src="/arrow-down.png" alt="" />
+            </div>
             <div className={styles.options}>
               <NavItem
                 name="For Student"
@@ -71,7 +68,10 @@ function Header({ currentUser }) {
             className={styles.navItemWithOptions}
             onClick={() => navigate("/")}
           >
-            <>Company</>
+            <div className={styles.name}>
+              <p>Company</p>
+              <img src="/arrow-down.png" alt="" />
+            </div>
             <div className={styles.options}>
               <NavItem name="About Us" imgUrl="/teachers.png" />
             </div>
@@ -82,28 +82,16 @@ function Header({ currentUser }) {
           >
             <p>Pricing</p>
           </div>
-          <div
-            className={styles.navItemWithOptions}
-            onClick={() => navigate("/")}
-          >
-            <p>Product</p>
-            <div className={styles.options}>
-              <NavItem name="Deep Search" imgUrl="/copywrite.png" />
-              <NavItem name="Citation Generator" imgUrl="/citation.png" />
-            </div>
-          </div>
           {!currentUser ? (
             <>
               <Button
+                secondary
                 onClick={() => {
                   setIsMenuOpen(false);
-                  navigate("/login");
+                  navigate("/signup");
                 }}
               >
-                Log in
-              </Button>
-              <Button primary onClick={() => navigate("/signup")}>
-                Get Started
+                Sign up
               </Button>
             </>
           ) : (
@@ -173,23 +161,21 @@ function Header({ currentUser }) {
                   imgUrl="/teachers.png"
                 />
               </div>
-              <div className={styles.navItemsContainer}>
+              {/* <div className={styles.navItemsContainer}>
                 <h3 className={styles.navListTitle}>Product</h3>
                 <NavItem name="Deep Search" imgUrl="/copywrite.png" />
                 <NavItem name="Citation Generator" imgUrl="/citation.png" />
-              </div>
+              </div> */}
               <div className={styles.headerButtons}>
                 {!currentUser ? (
                   <>
                     <Button
+                      secondary
                       onClick={() => {
-                        goTo("/login");
+                        goTo("/signup");
                       }}
                     >
-                      Log in
-                    </Button>
-                    <Button primary onClick={() => goTo("/signup")}>
-                      Get Started
+                      Sign up
                     </Button>
                   </>
                 ) : (

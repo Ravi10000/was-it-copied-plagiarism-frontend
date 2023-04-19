@@ -20,7 +20,9 @@ function HomePage({ currentUser }) {
     <div className={styles.homePage}>
       <section className={styles.homeTopSection}>
         <div className={styles.content}>
-          <h1 className={styles.title}>Plagiarism Checker</h1>
+          <h1 className={styles.title}>
+            Plagiarism <span>Checker</span>
+          </h1>
           <p className={styles.subtitle}>
             Plagiarism checker detects plagiarism in your text, checks for other
             writing issues, and helps you build citations
