@@ -16,12 +16,6 @@ import { setFlash } from "../../redux/flash/flash.actions";
 import { setCurrentUser } from "../../redux/user/user.actions";
 
 function SignupPage({ setFlash, setCurrentUser }) {
-  // const {
-  //   state: { formData },
-  // } = useLocation();
-
-  // console.log({ formData });
-
   const {
     register,
     handleSubmit,
@@ -29,13 +23,6 @@ function SignupPage({ setFlash, setCurrentUser }) {
     formState: { errors },
   } = useForm();
 
-  // {
-  //   defaultValues: {
-  //     fname: formData?.fname || "",
-  //     lname: formData?.lname || "",
-  //     email: formData?.email || "",
-  //   },
-  // }
   const [disableButton, setDisableButton] = useState(false);
   const navigate = useNavigate();
 
@@ -61,6 +48,7 @@ function SignupPage({ setFlash, setCurrentUser }) {
   }
   return (
     <div className={styles.signupPage}>
+      <section className={styles.signupHero}></section>
       <section className={styles.loginSection}>
         <h2 className={styles.formTitle}>Create Account</h2>
         <form

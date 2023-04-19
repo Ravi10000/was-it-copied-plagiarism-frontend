@@ -34,29 +34,35 @@ function HomePage({ currentUser }) {
         </div>
       </section>
       <section className={styles.howItWorks}>
-        <h2>Free Plagiarism Checker: How It Works</h2>
+        <h2 className="__sectionTitle">
+          Free Plagiarism Checker: <span>How It Works</span>
+        </h2>
         <div className={styles.processContainer}>
           <div className={styles.process}>
             <div className={styles.details}>
-              <h3>Enter text into plagiarism detection tool</h3>
-              <p>
+              <h3 className="__sectionSubHeading">
+                Enter text into plagiarism detection tool
+              </h3>
+              <p className="__text">
                 We make it simple. Just copy and paste all content from your
                 document into our plagiarism checker and hit the 'Check
                 Plagiarism' button to get started.
               </p>
             </div>
-            <img src="/process.png" alt="" />
+            <img src="/homepage.png" alt="" />
           </div>
           <div className={styles.process}>
             <div className={styles.details}>
-              <h3>Evaluate text for plagiarism</h3>
-              <p>
+              <h3 className="__sectionSubHeading">
+                Evaluate text for plagiarism
+              </h3>
+              <p className="__text">
                 Our plagiarism detection tool uses DeepSearch™ Technology to
                 identify any content throughout your document that might be
                 plagiarized. We identify plagiarized content by running the text
                 through three steps:
               </p>
-              <ol>
+              <ol className="__text">
                 <li>Contextual Analysis</li>
                 <li>Fuzzy Matching</li>
                 <li>Conditional Scoring</li>
@@ -66,8 +72,10 @@ function HomePage({ currentUser }) {
           </div>
           <div className={styles.process}>
             <div className={styles.details}>
-              <h3>Accurate plagiarism results</h3>
-              <p>
+              <h3 className="__sectionSubHeading">
+                Accurate plagiarism results
+              </h3>
+              <p className="__text">
                 After evaluating the text against billions of internet sources,
                 you will be provided with a plagiarism score showing the
                 percentage of text that is an exact or near-match to existing
@@ -78,8 +86,10 @@ function HomePage({ currentUser }) {
           </div>
           <div className={styles.process}>
             <div className={styles.details}>
-              <h3>Resolve plagiarism risk and use citations</h3>
-              <p>
+              <h3 className="__sectionSubHeading">
+                Resolve plagiarism risk and use citations
+              </h3>
+              <p className="__text">
                 Our ColorGrade™ feedback feature highlights exact matches vs.
                 near-exact or “fuzzy” matches with corresponding colors. From
                 there, you can resolve plagiarism issues by deleting or altering
@@ -94,8 +104,8 @@ function HomePage({ currentUser }) {
       </section>
 
       <section className={styles.getStarted}>
-        <p className={styles.title}>GET STARTED</p>
-        <h4>Try Quetext today!</h4>
+        {/* <p className={styles.title}>GET STARTED</p> */}
+        <h4 className={styles.title}>Try Quetext today!</h4>
         <p>
           Ready to stop wasting time with that old-school "plagiarism tool" from
           the 90's? Start using Quetext today for free!
@@ -105,14 +115,18 @@ function HomePage({ currentUser }) {
             Welcome <br /> {currentUser?.fname} {currentUser?.lname}
           </h2>
         ) : (
-          <Button onClick={() => navigate("/signup")}>Signup Free!</Button>
+          <Button gradient onClick={() => navigate("/signup")}>
+            Signup Free!
+          </Button>
         )}
       </section>
 
       <section className={styles.typesOfPlagiarism}>
         <div className={styles.typesHead}>
-          <h3 className={styles.heading}>Types of Plagiarism</h3>
-          <p>
+          <h3 className="__sectionTitle">
+            Types of <span>Plagiarism</span>
+          </h3>
+          <p className="__text">
             It's important to understand that plagiarism expands far beyond just
             copying someone else's work word-for-word. There are several
             different types of plagiarism that should be avoided.
@@ -120,8 +134,8 @@ function HomePage({ currentUser }) {
         </div>
         <div className={styles.plagiarismItemContainer}>
           <div className={styles.plagiarismItem}>
-            <img src="/Icon_SelfPlagiarism.png" alt="" />
-            <h4>Self-Plagiarism</h4>
+            <img src="/plagiarism.png" alt="" />
+            <h4 className="__sectionSubHeading">Self-Plagiarism</h4>
             <p>
               Many believe that, as long as they produced the work at some point
               in the past, they can include it in future pieces. However, even
@@ -135,8 +149,8 @@ function HomePage({ currentUser }) {
             </p>
           </div>
           <div className={styles.plagiarismItem}>
-            <img src="/Icon_PatchworkPlagiarism.png" alt="" />
-            <h4>Patchwork Plagiarism</h4>
+            <img src="/patchwork.png" alt="" />
+            <h4 className="__sectionSubHeading">Patchwork Plagiarism</h4>
             <p>
               Patchwork plagiarism is the act of piecing together a "patchwork"
               of existing content to form something new. Assembling unoriginal
@@ -151,8 +165,8 @@ function HomePage({ currentUser }) {
             </p>
           </div>
           <div className={styles.plagiarismItem}>
-            <img src="/Icon_MosaicPlagiarism.png" alt="" />
-            <h4>Mosaic Plagiarism</h4>
+            <img src="/textile.png" alt="" />
+            <h4 className="__sectionSubHeading">Mosaic Plagiarism</h4>
             <p>
               Mosaic plagiarism is synonymous with patchwork plagiarism. It
               describes the process of loosely rearranging or restating
@@ -165,8 +179,8 @@ function HomePage({ currentUser }) {
             </p>
           </div>
           <div className={styles.plagiarismItem}>
-            <img src="/Frame.png" alt="" />
-            <h4>Accidental Plagiarism</h4>
+            <img src="/monitor.png" alt="" />
+            <h4 className="__sectionSubHeading">Accidental Plagiarism</h4>
             <p>
               Plagiarism doesn't have to be intentional to still be considered
               plagiarism — even in early academia, where students are just
@@ -183,7 +197,9 @@ function HomePage({ currentUser }) {
       </section>
       <section className={styles.benefitsContainer}>
         <div className={styles.benefit}>
-          <h2>Plagiarism Checker Benefits</h2>
+          <h2 className="__sectionTitle">
+            Plagiarism Checker <span>Benefits</span>
+          </h2>
           <p>
             Whether producing original content or verifying that of others,
             there's a lot to gain from using a plagiarism checker. Accurate,
@@ -196,7 +212,7 @@ function HomePage({ currentUser }) {
         </div>
         <div className={styles.benfitForUsers}>
           <div className={styles.benefit}>
-            <img src="/teacher-icon.png" alt="" />
+            <img src="/online-education.png" alt="" />
             <h2>For Teachers</h2>
             <p>
               Before homework can be graded for quality, it must first be
@@ -214,7 +230,7 @@ function HomePage({ currentUser }) {
             </p>
           </div>
           <div className={styles.benefit}>
-            <img src="/student-icon.png" alt="" />
+            <img src="/study-group.png" alt="" />
             <h2>For Students</h2>
             <p>
               While the prevalence of academic plagiarism is on the rise, much
@@ -232,7 +248,7 @@ function HomePage({ currentUser }) {
             </p>
           </div>
           <div className={styles.benefit}>
-            <img src="/contentWriters-icon.png" alt="" />
+            <img src="/copywriter.png" alt="" />
             <h2>For Copywriters</h2>
             <p>
               Plagiarism risk is not restricted to academia. Anyone tasked with
@@ -251,11 +267,15 @@ function HomePage({ currentUser }) {
           </div>
         </div>
       </section>
-      <h3 className={styles.heading}>Plagiarism FAQs</h3>
       <section className={styles.faqsSection}>
+        <h3 className="__sectionTitle">
+          Plagiarism <span>FAQs</span>
+        </h3>
         <div className={styles.faq}>
-          <h5 className={styles.question}>What is the pricing for Quetext?</h5>
-          <p className={styles.answer}>
+          <h5 className="__sectionSubHeading">
+            What is the pricing for Quetext?
+          </h5>
+          <p className="__text">
             Quetext has both a free and a paid plan, depending on what your
             needs are. The free plan is a great place to start, as it comes with
             plagiarism checks on 1 page (500 words), ColorGrade™ feedback,
@@ -268,8 +288,8 @@ function HomePage({ currentUser }) {
           </p>
         </div>
         <div className={styles.faq}>
-          <h5 className={styles.question}>How effective is Quetext?</h5>
-          <p className={styles.answer}>
+          <h5 className="__sectionSubHeading">How effective is Quetext?</h5>
+          <p className="__text">
             Quetext is extremely effective for writers who need to verify their
             content's originality. Not only does the plagiarism checker quickly
             and accurately identify any and all instances of plagiarized
@@ -280,8 +300,8 @@ function HomePage({ currentUser }) {
           </p>
         </div>
         <div className={styles.faq}>
-          <h5 className={styles.question}>Is Quetext reliable?</h5>
-          <p className={styles.answer}>
+          <h5 className="__sectionSubHeading">Is Quetext reliable?</h5>
+          <p className="__text">
             Quetext is reliable, safe, and extremely effective for verifying
             original work with ease. Rigorous testing is involved with every
             update made to the product, and the comprehensive plagiarism score

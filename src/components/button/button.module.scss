@@ -26,7 +26,6 @@
     }
   }
   &.secondary {
-    // background: #fff;
     background: transparent;
     color: #fff;
     border: 2px solid #fff;
@@ -48,5 +47,12 @@
   &.lg {
     padding: 15px 35px;
     // font-size: 1.2rem;
+  }
+  &.gradient {
+    padding: 15px 30px;
+    background: linear-gradient(91.56deg, #0d3056 2.9%, #202148 99.79%);
+    &:hover {
+      background: linear-gradient(91.56deg, #202148 2.9%, #0d3056 99.79%);
+    }
   }
 }

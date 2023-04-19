@@ -22,7 +22,8 @@ input {
   --secondary-clr: #42ba96;
   --primary-clr: #335eea;
   --background-clr: #2b354f;
-
+  --heading-clr: #0a0b33;
+  --text-clr: #30364d;
   --shadom: 0px 2px 20px #a6a6a640; /* just for copy var(--shadow) won't work*/
 }
 
@@ -90,4 +91,30 @@ input[type="file"] {
   font-weight: 500;
   padding: 10px;
   border-bottom: 2px solid #c3c7ca;
+}
+
+.__sectionTitle {
+  padding: 0 50px;
+  font-size: 2.5rem;
+  text-align: center;
+  font-weight: 700;
+  color: #0a0b33;
+}
+.__sectionTitle span {
+  background-image: linear-gradient(120deg, #66d4f6, #4d92ff 39%, #bb65ff);
+  text-align: center;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.__sectionSubHeading {
+  color: #0a0b33;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.__text {
+  font-size: 1.2rem;
+  color: #30364d;
 }

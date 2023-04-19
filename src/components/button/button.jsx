@@ -5,6 +5,7 @@ function Button({
   primary,
   outlined,
   secondary,
+  gradient,
   lg,
   color,
   bg,
@@ -12,9 +13,13 @@ function Button({
 }) {
   return (
     <button
-      className={`${styles.customButton} ${primary && styles.primary} ${
-        outlined && styles.outlined
-      } ${secondary && styles.secondary} ${lg && styles.lg}`}
+      className={`${styles.customButton} 
+      ${primary && styles.primary} 
+      ${outlined && styles.outlined} 
+      ${secondary && styles.secondary} 
+      ${lg && styles.lg} 
+      ${gradient && styles.gradient}
+      `}
       style={{ backgroundColor: color ? color : "" }}
       {...props}
     >

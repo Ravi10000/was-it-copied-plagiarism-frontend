@@ -54,7 +54,7 @@
     font-size: 1.5rem;
   }
   section.getStarted {
-    background: #2b354f;
+    background: var(--heading-clr);
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -64,11 +64,9 @@
     text-align: center;
     margin-top: 20px;
     .title {
-      display: inline-block;
-      border-radius: 50px;
       padding: 10px 15px;
-      font-size: 0.7rem;
-      background: #506690;
+      font-size: 2.5rem;
+      font-weight: 700;
     }
     h4 {
       font-size: 2rem;
@@ -84,10 +82,12 @@
     flex-direction: column;
     align-items: center;
     padding: 50px 20px;
-    background: #f1f4f8;
-    color: #2b354f;
+    // background: #f1f4f8;
+    // color: #2b354f;
     .typesHead {
       display: flex;
+      gap: 20px;
+      text-align: center;
       flex-direction: column;
       align-items: center;
       p {
@@ -101,13 +101,14 @@
       flex-direction: column;
       align-items: center;
       gap: 20px;
+      background: #f3f6fc;
       .plagiarismItem {
         display: flex;
         align-items: center;
         flex-direction: column;
         gap: 10px;
         h4 {
-          font-size: 1.2rem;
+          font-size: 1.8rem;
         }
         img {
           height: 35px;
@@ -120,8 +121,7 @@
     padding: 20px;
     text-align: center;
     margin-top: 50px;
-    // background: #f3f6fc;
-    color: var(--background-clr);
+    background: #f3f6fc;
   }
   .processContainer {
     margin-top: 50px;
@@ -138,16 +138,8 @@
         flex-direction: column;
         gap: 20px;
 
-        h3 {
-          font-size: 1.8rem;
-          font-weight: 600;
-          color: #2b354f;
-          // color: #fff;
-        }
         p {
           font-size: 1.2rem;
-          color: #4a5a71;
-          // color: #eeeeeec3;
         }
         ol {
           align-self: center;
@@ -163,13 +155,16 @@
     }
   }
   .benefitsContainer {
-    background: #2b354e;
+    background: var(--heading-clr);
     color: #fff;
     padding: 50px 20px;
     display: flex;
     align-items: center;
     flex-direction: column;
     gap: 25px;
+    h2 {
+      color: #fff;
+    }
     .benefit {
       display: flex;
       flex-direction: column;
@@ -177,6 +172,9 @@
       text-align: center;
       gap: 20px;
       max-width: 600px;
+    }
+    p {
+      font-size: 1.2rem;
     }
     .benfitForUsers {
       display: flex;
@@ -202,13 +200,6 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      .question {
-        font-size: 1.2rem;
-      }
-      .answer {
-        line-height: 1.6;
-        color: #506690;
-      }
     }
   }
 }
@@ -258,6 +249,7 @@
       .benfitForUsers {
         max-width: 1000px;
         display: grid;
+        gap: 50px;
         grid-template-columns: repeat(3, 1fr);
       }
     }
