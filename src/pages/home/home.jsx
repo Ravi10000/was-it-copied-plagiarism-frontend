@@ -114,8 +114,11 @@ function HomePage({ currentUser }) {
           the 90's? Start using Quetext today for free!
         </p>
         {currentUser ? (
-          <h2>
-            Welcome <br /> {currentUser?.fname} {currentUser?.lname}
+          <h2 className={styles.welcome}>
+            Welcome <br />
+            <span>
+              {currentUser?.fname} {currentUser?.lname}
+            </span>
           </h2>
         ) : (
           <Button gradient onClick={() => navigate("/signup")}>

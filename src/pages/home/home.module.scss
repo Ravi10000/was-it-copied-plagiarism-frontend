@@ -79,6 +79,19 @@
     p {
       max-width: 500px;
     }
+    .welcome {
+      span {
+        background-image: linear-gradient(
+          120deg,
+          #66d4f6,
+          #4d92ff 39%,
+          #bb65ff
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
   }
 
   .typesOfPlagiarism {
@@ -216,7 +229,7 @@
     transform: translateY(0%) scale(1.5);
   }
   80% {
-    transform: translateY(30%) scale(.9);
+    transform: translateY(30%) scale(0.9);
   }
   100% {
     transform: translateY(-30%) scale(1);
@@ -230,7 +243,7 @@
         padding: 50px;
         // height: 600px;
         justify-content: center;
-        .title{
+        .title {
           font-size: 4rem;
         }
       }
