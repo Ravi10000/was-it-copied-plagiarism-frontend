@@ -1,8 +1,14 @@
 .allUsersPage {
-  h2 {
+  .head {
     padding: 20px;
-    text-align: left;
-    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h2 {
+      padding: 0;
+      text-align: left;
+      color: #fff;
+    }
   }
   .table {
     // max-width: 600px;
@@ -69,6 +75,14 @@
           color: var(--primary-clr);
         }
       }
+    }
+  }
+}
+@media (min-width: 600px) {
+  .allUsersPage {
+    .head {
+      flex-direction: row;
+      justify-content: space-between;
     }
   }
 }

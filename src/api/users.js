@@ -42,8 +42,8 @@ export const updateUserDetails = (formData) =>
 export const resendVerificationEmail = (email) =>
   api.get("/users/verify/" + email);
 
-export const createAdmin = (formData) =>
-  api.post("/users/admins", formData, {
+export const createUser = (usertype, formData) =>
+  api.post(`/users/create/${usertype}`, formData, {
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + localStorage.getItem("authToken"),

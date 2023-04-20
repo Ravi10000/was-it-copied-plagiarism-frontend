@@ -1,25 +1,26 @@
 import styles from "./list-admins.module.scss";
 import { useEffect, useState } from "react";
-import { fetchAllAdmins, createAdmin } from "../../api/users";
+import { fetchAllAdmins, createUser } from "../../api/users";
 import Button from "../../components/button/button";
 import Popup from "../../components/popup/popup";
 import TextInput from "../../components/text-input/text-input";
 import { useForm } from "react-hook-form";
 import { setFlash } from "../../redux/flash/flash.actions";
 import { connect } from "react-redux";
+import CreateUser from "../../components/create-user/create-user";
 
 function ListAdminsPage({ setFlash }) {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    reset,
-    formState: { errors },
-  } = useForm();
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   watch,
+  //   reset,
+  //   formState: { errors },
+  // } = useForm();
 
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const [users, setUsers] = useState([]);
-  const [addPopup, setAddPopup] = useState(false);
+  // const [addPopup, setAddPopup] = useState(false);
 
   async function handleFetchUsers() {
     try {
@@ -33,44 +34,44 @@ function ListAdminsPage({ setFlash }) {
     }
   }
 
-  async function handleAdminCreation(data) {
-    setIsLoading(true);
-    const formData = new FormData();
-    formData.append("fname", data.fname);
-    formData.append("lname", data.lname);
-    formData.append("email", data.email);
-    formData.append("password", data.password);
-    try {
-      const response = await createAdmin(formData);
-      console.log({ response });
-      if (response.data.status === "error") {
-        setFlash({
-          type: "error",
-          message: response.data.message,
-        });
-      }
-      if (response.data.status === "success") {
-        setUsers(response.data.users);
-        setAddPopup(false);
-        setFlash({
-          type: "success",
-          message: "New admin created successfully",
-        });
-        reset();
-      }
-    } catch (error) {
-      console.log({ error });
-    } finally {
-      setIsLoading(false);
-    }
-  }
+  // async function handleAdminCreation(data) {
+  //   setIsLoading(true);
+  //   const formData = new FormData();
+  //   formData.append("fname", data.fname);
+  //   formData.append("lname", data.lname);
+  //   formData.append("email", data.email);
+  //   formData.append("password", data.password);
+  //   try {
+  //     const response = await createUser("admin", formData);
+  //     console.log({ response });
+  //     if (response.data.status === "error") {
+  //       setFlash({
+  //         type: "error",
+  //         message: response.data.message,
+  //       });
+  //     }
+  //     if (response.data.status === "success") {
+  //       await handleFetchUsers();
+  //       setAddPopup(false);
+  //       setFlash({
+  //         type: "success",
+  //         message: "New admin created successfully",
+  //       });
+  //       reset();
+  //     }
+  //   } catch (error) {
+  //     console.log({ error });
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // }
 
   useEffect(() => {
     handleFetchUsers();
   }, []);
   return (
     <section className={styles.allAdminsPage}>
-      {addPopup && (
+      {/* {addPopup && (
         <form onSubmit={handleSubmit(handleAdminCreation)} noValidate>
           <Popup
             isLoading={isLoading}
@@ -149,13 +150,18 @@ function ListAdminsPage({ setFlash }) {
             />
           </Popup>
         </form>
-      )}
+      )} */}
       <div className={styles.head}>
         <h2 className="__sectionTitle">All Admins</h2>
-        <Button secondary onClick={() => setAddPopup(true)}>
+        {/* <Button secondary onClick={() => setAddPopup(true)}>
           <img src="/add-user-blue.png" alt="" />
           Create New Admin
-        </Button>
+        </Button> */}
+        <CreateUser
+          title="Create New Admin"
+          usertype="admin"
+          handleFetch={handleFetchUsers}
+        />
       </div>
       <table className={styles.table}>
         <thead>
