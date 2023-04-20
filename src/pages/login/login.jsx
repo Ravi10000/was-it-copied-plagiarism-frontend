@@ -1,6 +1,7 @@
 import styles from "./login.module.scss";
 
 // packages
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
@@ -22,13 +23,21 @@ function LoginPage({ setCurrentUser, setFlash }) {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   async function handleSignin(formData) {
+    setIsLoading(true);
     try {
       const response = await signin(formData);
       console.log({ response });
+      if (response.data.status === "warning") {
+        console.log(response.data);
+        return setFlash({
+          type: "warning",
+          message: response.data.message,
+        });
+      }
       if (response.data.status === "error") {
         console.log(response.data);
         return setFlash({
@@ -61,6 +70,8 @@ function LoginPage({ setCurrentUser, setFlash }) {
         message: err.message,
       });
       console.log(err.message);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -105,7 +116,9 @@ function LoginPage({ setCurrentUser, setFlash }) {
               }),
             }}
           />
-          <Button primary>Continue</Button>
+          <Button primary isLoading={isLoading}>
+            Continue
+          </Button>
         </form>
         <p className={styles.signupLink} onClick={() => navigate("/signup")}>
           Don't have an account? <span>Signup</span>

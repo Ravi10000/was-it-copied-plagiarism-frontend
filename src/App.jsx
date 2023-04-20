@@ -53,6 +53,14 @@ function App({ flash, setCurrentUser, currenUser }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const headerRoutes = ["/login", "/signup", "/pricing", "/"];
+  const postLoginRoutes = [
+    "/users",
+    "/manage-subscriptions",
+    "/search",
+    "/details",
+    "/account",
+  ];
+
   async function handleCheckAuth() {
     try {
       const response = await checkAuth();
@@ -74,11 +82,11 @@ function App({ flash, setCurrentUser, currenUser }) {
   return (
     <div
       className={`${
-        !headerRoutes.includes(pathname) ? styles.postLoginPage : ""
+        postLoginRoutes.includes(pathname) ? styles.postLoginPage : ""
       }`}
     >
       {headerRoutes.includes(pathname) && <Header />}
-      {!headerRoutes.includes(pathname) && (
+      {postLoginRoutes.includes(pathname) && (
         <>
           <div className={styles.toggleSideBar}>
             <img

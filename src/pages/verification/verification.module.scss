@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   margin-top: 50px;
+  background: var(--background-clr);
   .content {
     color: #37454f;
     padding: 20px;
@@ -27,5 +28,20 @@
         cursor: text;
       }
     }
+    .loader {
+      border: 2px solid #49adf4;
+      border-top: 2px solid transparent;
+      border-right: 2px solid transparent;
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%;
+      animation: spinLoader 0.5s linear infinite;
+    }
+  }
+}
+
+@keyframes spinLoader {
+  to {
+    transform: rotate(360deg);
   }
 }

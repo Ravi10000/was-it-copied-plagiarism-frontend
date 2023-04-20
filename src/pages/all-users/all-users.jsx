@@ -28,8 +28,8 @@ function AllUsersPage() {
             <th>Name</th>
             <th>Email</th>
             <th>Date</th>
-            <th>verification state</th>
-            <th>subscription</th>
+            <th>Verification State</th>
+            <th>Subscription</th>
           </tr>
         </thead>
 

@@ -1,9 +1,13 @@
 import styles from "./text-input.module.scss";
 
-import React, { useId } from "react";
+import React, { useId, useState } from "react";
 
 export default function TextInput({ label, register, error, ...otherProps }) {
   const id = useId();
+  const [show, setShow] = useState(false);
+  function handleTooglePassword() {
+    setShow((show) => !show);
+  }
   return (
     <div className={styles["input-container"]}>
       <label className={styles.label} htmlFor={id}>
@@ -11,11 +15,29 @@ export default function TextInput({ label, register, error, ...otherProps }) {
       </label>
       <input
         id={id}
-        className={styles["text-input"]}
+        className={`${styles["text-input"]} ${
+          otherProps?.type === "password" && styles.password
+        }`}
         required
         {...register}
         {...otherProps}
+        type={
+          otherProps?.type === "password"
+            ? show
+              ? "text"
+              : "password"
+            : otherProps?.type
+        }
       />
+      {otherProps?.type === "password" && (
+        <div className={styles.togglePassword} onClick={handleTooglePassword}>
+          <img
+            className={styles.toggleShow}
+            src={`/eye-${show ? "opened" : "closed"}.png`}
+            alt=""
+          />
+        </div>
+      )}
       <label htmlFor={id} className={styles.errMsg}>
         {error}
       </label>

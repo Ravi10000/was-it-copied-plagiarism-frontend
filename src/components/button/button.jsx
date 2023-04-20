@@ -9,6 +9,7 @@ function Button({
   lg,
   color,
   bg,
+  isLoading,
   ...props
 }) {
   return (
@@ -19,11 +20,14 @@ function Button({
       ${secondary && styles.secondary} 
       ${lg && styles.lg} 
       ${gradient && styles.gradient}
+      ${isLoading && styles.isLoading}
       `}
+      disabled={isLoading}
       style={{ backgroundColor: color ? color : "" }}
       {...props}
     >
       {children}
+      {isLoading && <div className={styles.loader}></div>}
     </button>
   );
 }

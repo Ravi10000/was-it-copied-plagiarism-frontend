@@ -29,14 +29,14 @@ function ProfilPage({ currentUser, setCurrentUser, setFlash }) {
     formState: { errors },
   } = useForm();
   const [popupType, setPopupType] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   function closePopup() {
     setPopupType(null);
   }
 
   async function handleUpdateUser(data) {
-    console.log("update user");
-    console.log({ data });
+    setIsLoading(true);
     try {
       const response = await updateUserDetails(data);
       console.log({ response });
@@ -49,14 +49,25 @@ function ProfilPage({ currentUser, setCurrentUser, setFlash }) {
         closePopup();
       }
     } catch (err) {
+      setFlash({
+        type: "error",
+        message: err.response?.data?.message || "Something went wrong",
+      });
       console.log(err.message);
+    } finally {
+      setIsLoading(false);
     }
   }
   return (
     <section className={styles.profilePage}>
       <form onSubmit={handleSubmit(handleUpdateUser)} noValidate>
         {popupType === "editEmail" && (
-          <Popup title="Edit Email" closePopup={closePopup} save="verify">
+          <Popup
+            isLoading={isLoading}
+            title="Edit Email"
+            closePopup={closePopup}
+            save="verify"
+          >
             <TextInput
               // name="email"
               type="email"
@@ -79,7 +90,11 @@ function ProfilPage({ currentUser, setCurrentUser, setFlash }) {
           </Popup>
         )}
         {popupType === "editName" && (
-          <Popup title="Edit Name" closePopup={closePopup}>
+          <Popup
+            isLoading={isLoading}
+            title="Edit Name"
+            closePopup={closePopup}
+          >
             <TextInput
               defaultValue={currentUser?.fname}
               label="First Name"
@@ -112,6 +127,7 @@ function ProfilPage({ currentUser, setCurrentUser, setFlash }) {
         )}
         {popupType === "editPassword" && (
           <Popup
+            isLoading={isLoading}
             title="Edit Password"
             save="Change Password"
             closePopup={closePopup}

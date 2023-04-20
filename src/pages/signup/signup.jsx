@@ -23,12 +23,14 @@ function SignupPage({ setFlash, setCurrentUser }) {
     formState: { errors },
   } = useForm();
 
-  const [disableButton, setDisableButton] = useState(false);
+  // const [disableButton, setDisableButton] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   async function handleSignup(formData) {
+    setIsLoading(true);
     try {
-      setDisableButton(true);
+      // setDisableButton(true);
       const response = await signup(formData);
       console.log({ response });
       if (response.data.status === "user exist") {
@@ -38,12 +40,18 @@ function SignupPage({ setFlash, setCurrentUser }) {
         });
       }
       if (response.data.status === "success") {
+        setFlash({
+          type: "success",
+          message: "Verification email sent, please verify your email",
+        });
         navigate("/verify-email", {
           state: { email: formData?.email },
         });
       }
     } catch (err) {
       console.log(err.message);
+    } finally {
+      setIsLoading(false);
     }
   }
   return (
@@ -129,7 +137,7 @@ function SignupPage({ setFlash, setCurrentUser }) {
               }),
             }}
           />
-          <Button primary disabled={disableButton}>
+          <Button primary isLoading={isLoading}>
             Signup
           </Button>
         </form>

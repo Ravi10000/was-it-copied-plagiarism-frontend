@@ -1,14 +1,22 @@
-import { resendVerificationEmail } from "../../api/users";
 import styles from "./verification.module.scss";
+
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { setFlash } from "../../redux/flash/flash.actions";
 import { connect } from "react-redux";
 
+import { resendVerificationEmail } from "../../api/users";
+
 function VerificationPage({ setFlash }) {
   const navigate = useNavigate();
   const { state } = useLocation();
+  const [isLoading, setIsLoading] = useState(false);
+  const [resendAllowed, setResendAllowed] = useState(false);
+
+  // useEffect(() => {}, []);
 
   async function requestVerificationEmail() {
+    setIsLoading(true);
     try {
       const res = await resendVerificationEmail(state?.email);
       console.log({ res });
@@ -20,6 +28,8 @@ function VerificationPage({ setFlash }) {
       }
     } catch (err) {
       console.log(err.message);
+    } finally {
+      setIsLoading(false);
     }
   }
   return (
@@ -35,9 +45,16 @@ function VerificationPage({ setFlash }) {
           verify your email address and verify your account. The link in the
           email will expire in 24hrs
         </p>
-        <p className={styles.highlightText} onClick={requestVerificationEmail}>
-          resend verification email
-        </p>
+        {isLoading ? (
+          <div className={styles.loader}></div>
+        ) : (
+          <p
+            className={styles.highlightText}
+            onClick={requestVerificationEmail}
+          >
+            resend verification email
+          </p>
+        )}
         <p>
           if verified{" "}
           <span
