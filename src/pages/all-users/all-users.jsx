@@ -27,8 +27,9 @@ function AllUsersPage() {
           <tr>
             <th>Name</th>
             <th>Email</th>
-            <th>Date</th>
+            <th>Registration Date</th>
             <th>Verification State</th>
+            <th>School Name</th>
             <th>Subscription</th>
           </tr>
         </thead>
@@ -42,6 +43,9 @@ function AllUsersPage() {
                 <td>{user?.email}</td>
                 <td>{joinedOn}</td>
                 <td>{user?.isVerified ? "verified" : "not verified"}</td>
+                <td>
+                  {user?.schoolName ? user?.schoolName : "unavailable"}
+                </td>
                 <td>
                   {user?.currentSubscriptionPlan
                     ? user?.currentSubscriptionPlan?.name

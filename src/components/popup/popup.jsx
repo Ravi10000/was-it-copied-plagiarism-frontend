@@ -38,6 +38,7 @@ function Popup({ title, save, cancel, children, closePopup, isLoading }) {
             outlined
             onClick={() => closePopup()}
             disabled={isLoading}
+            type="button"
           >
             {cancel || "cancel"}
           </Button>

@@ -1,6 +1,17 @@
 import api from "./index";
 
-export const fetchAllUsers = () => api.get("/users");
+export const fetchAllUsers = () =>
+  api.get("/users", {
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("authToken"),
+    },
+  });
+export const fetchAllAdmins = () =>
+  api.get("/users/admins", {
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("authToken"),
+    },
+  });
 
 export const signup = (formData) =>
   api.post("/users", formData, {
@@ -30,3 +41,11 @@ export const updateUserDetails = (formData) =>
 
 export const resendVerificationEmail = (email) =>
   api.get("/users/verify/" + email);
+
+export const createAdmin = (formData) =>
+  api.post("/users/admins", formData, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("authToken"),
+    },
+  });

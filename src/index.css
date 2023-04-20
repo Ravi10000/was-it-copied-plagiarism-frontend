@@ -21,10 +21,11 @@ input {
 :root {
   --secondary-clr: #42ba96;
   --primary-clr: #335eea;
-  --background-clr: #f3f6fc;
+  --background-clr: #F3F6FC;
   --heading-clr: #0a0b33;
   --text-clr: #30364d;
   --shadom: 0px 2px 20px #a6a6a640; /* just for copy var(--shadow) won't work*/
+  --color: #2a3842;
 }
 
 button {
@@ -101,7 +102,6 @@ input[type="file"] {
 }
 .__sectionTitle span {
   background-image: linear-gradient(120deg, #66d4f6, #4d92ff 39%, #bb65ff);
-  text-align: center;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -116,4 +116,8 @@ input[type="file"] {
 .__text {
   font-size: 1.2rem;
   color: #30364d;
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
 }

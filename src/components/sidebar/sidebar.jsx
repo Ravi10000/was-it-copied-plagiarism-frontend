@@ -41,6 +41,21 @@ const adminOptions = [
     icon: "/page-icons/users.png",
     iconDark: "/page-icons/users-dark.png",
   },
+  {
+    name: "admins",
+    icon: "/page-icons/admin.png",
+    iconDark: "/page-icons/admin-dark.png",
+  },
+  {
+    name: "analysis",
+    icon: "/page-icons/dashboard.png",
+    iconDark: "/page-icons/dashboard-dark.png",
+  },
+  {
+    name: "payments",
+    icon: "/page-icons/card.png",
+    iconDark: "/page-icons/card-dark.png",
+  },
 ];
 
 function Sidebar({ isSidebarOpen, setIsSidebarOpen, currentUser }) {
@@ -84,6 +99,7 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen, currentUser }) {
         {options?.map((option) => (
           <SidebarOption
             key={option.name}
+            name={option.name}
             icon={
               !selectedPage.includes(option.name)
                 ? option.icon
@@ -101,6 +117,7 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen, currentUser }) {
           adminOptions?.map((option) => (
             <SidebarOption
               key={option.name}
+              name={option.name}
               icon={
                 !selectedPage.includes(option.name)
                   ? option.icon

@@ -5,9 +5,6 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 function DetailsPage() {
-  const [selectAll, setSelectAll] = useState(false);
-  const { id } = useParams();
-  console.log({ id });
   return (
     <section className={styles.detailsPage}>
       <h2 className="__sectionTitle">Reports</h2>
@@ -30,6 +27,17 @@ function DetailsPage() {
         </thead>
 
         <tbody>
+          <Record />
+          <Record />
+          <Record />
+          <Record />
+          <Record />
+          <Record />
+          <Record />
+          <Record />
+          <Record />
+          <Record />
+          <Record />
           <Record />
           <Record />
           <Record />

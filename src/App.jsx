@@ -45,12 +45,17 @@ import { setCurrentUser } from "./redux/user/user.actions";
 // api calls
 import { checkAuth } from "./api/users";
 import AllUsersPage from "./pages/all-users/all-users";
+import AnalysisPage from "./pages/analysis/analysis";
+import PaymentDetailsPage from "./pages/payment-details/payment-details";
+import Footer from "./layouts/footer/footer";
+import ListAdminsPage from "./pages/list-admins/list-admins";
 
 function App({ flash, setCurrentUser, currenUser }) {
   const { pathname } = useLocation();
   console.log({ pathname });
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isPostLogin, setIsPostLogin] = useState(false);
 
   const headerRoutes = ["/login", "/signup", "/pricing", "/"];
   const postLoginRoutes = [
@@ -59,8 +64,11 @@ function App({ flash, setCurrentUser, currenUser }) {
     "/search",
     "/details",
     "/account",
+    "/analysis",
+    "/payment",
+    "/admins",
   ];
-
+  console.log({ isPostLogin });
   async function handleCheckAuth() {
     try {
       const response = await checkAuth();
@@ -72,27 +80,28 @@ function App({ flash, setCurrentUser, currenUser }) {
       console.log(err.message);
     }
   }
-
   useEffect(() => {
     const authToken = localStorage.getItem("authToken");
     console.log({ authToken });
     if (!authToken) return;
     handleCheckAuth();
-  }, []);
+    if (pathname === "/") {
+      return setIsPostLogin(false);
+    }
+    postLoginRoutes.forEach((route) => {
+      pathname.includes(route) && setIsPostLogin(true);
+    });
+  }, [pathname]);
   return (
-    <div
-      className={`${
-        postLoginRoutes.includes(pathname) ? styles.postLoginPage : ""
-      }`}
-    >
+    <div className={`${isPostLogin ? styles.postLoginPage : ""}`}>
+      {flash && <Flash type={flash.type} message={flash.message} />}
       {headerRoutes.includes(pathname) && <Header />}
-      {postLoginRoutes.includes(pathname) && (
+      {isPostLogin && (
         <>
           <div className={styles.toggleSideBar}>
             <img
               onClick={() => setIsSidebarOpen((prevState) => !prevState)}
               src={isSidebarOpen ? "/close-menu.png" : "/menus.png"}
-              // src="/menus.png"
               alt="menu"
             />
           </div>
@@ -102,8 +111,7 @@ function App({ flash, setCurrentUser, currenUser }) {
           />
         </>
       )}
-      {flash && <Flash type={flash.type} message={flash.message} />}
-      <div className={`${!headerRoutes.includes(pathname) ? styles.page : ""}`}>
+      <div className={`${isPostLogin ? styles.page : ""}`}>
         <Routes>
           <Route
             exact
@@ -155,14 +163,30 @@ function App({ flash, setCurrentUser, currenUser }) {
             path="/users"
             element={!currenUser ? <Navigate to="/login" /> : <AllUsersPage />}
           />
-          {/* <Route
-          path="/:page"
-          element={!currenUser ? <Navigate to="/login" /> : <PostLoginPage />}
-        /> */}
+          <Route
+            exact
+            path="/analysis"
+            element={!currenUser ? <Navigate to="/login" /> : <AnalysisPage />}
+          />
+          <Route
+            exact
+            path="/payments"
+            element={
+              !currenUser ? <Navigate to="/login" /> : <PaymentDetailsPage />
+            }
+          />
+          <Route
+            exact
+            path="/admins"
+            element={
+              !currenUser ? <Navigate to="/login" /> : <ListAdminsPage />
+            }
+          />
 
           <Route exact path="/" element={<HomePage />} />
         </Routes>
       </div>
+      {headerRoutes.includes(pathname) && <Footer />}
     </div>
   );
 }

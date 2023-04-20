@@ -81,7 +81,9 @@ function ReportPage() {
             className={styles.menu}
             onClick={() => setShowOptions((prevState) => !prevState)}
           >
-            <img className={styles.btn} src="/menu.png" alt="" />
+            <div className={styles.menuIconContainer}>
+              <img className={styles.menuIcon} src="/more-dots-filled.png" alt="" />
+            </div>
             {showOptions && (
               <div className={styles.options} ref={optionsRef}>
                 <div className={styles.option}>

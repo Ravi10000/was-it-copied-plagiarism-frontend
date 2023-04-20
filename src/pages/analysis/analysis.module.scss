@@ -33,10 +33,10 @@
     th {
       position: sticky;
       top: 0;
-      &:first-child,
-      &:last-child {
-        width: 100px;
-      }
+      //   &:first-child,
+      //   &:last-child {
+      //     width: 100px;
+      //   }
     }
     th,
     td {
@@ -67,19 +67,18 @@
       tr {
         color: #fff;
         border-bottom: 2px solid var(--heading-clr);
-        // background: #adb4c7;
         background: #3f5b8aad;
-        // box-shadow: 0 8px 32px 0 #2f369498;
-        // backdrop-filter: blur(20px);
-        // -webkit-backdrop-filter: blur(20px);
         border-radius: 10px;
+        &:hover {
+          background: #486494ad;
+          cursor: pointer;
+        }
         &:nth-child(2n) {
-          // background: #8990a3;
           background: #283a5b59;
-          box-shadow: 0 8px 32px 0 #1f26875e;
-          // backdrop-filter: blur(20px);
-          // -webkit-backdrop-filter: blur(20px);
           border-radius: 10px;
+          &:hover {
+            background: #394f7859;
+          }
         }
         &:last-child {
           border: none;
