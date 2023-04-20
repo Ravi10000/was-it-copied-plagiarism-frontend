@@ -1,5 +1,3 @@
-import styles from "./create-user.module.scss";
-
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Button from "../button/button";
