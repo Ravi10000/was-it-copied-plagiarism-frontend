@@ -1,0 +1,38 @@
+.record {
+  display: grid;
+  padding: 10px 20px;
+  grid-template-columns: repeat(4, 1fr);
+  background: #3f5b8aad;
+  &:nth-child(2n) {
+    background: #283a5b59;
+  }
+  .small {
+    display: flex;
+    gap: 20px;
+  }
+  .btn {
+    background: var(--primary-clr);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #fff;
+    display: flex;
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+      background: #547cff;
+    }
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  .delete {
+    background: #ff3d71;
+    &:hover {
+      background: #f56e92;
+    }
+  }
+}

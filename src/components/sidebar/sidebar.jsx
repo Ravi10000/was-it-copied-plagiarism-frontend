@@ -56,6 +56,11 @@ const adminOptions = [
     icon: "/page-icons/card.png",
     iconDark: "/page-icons/card-dark.png",
   },
+  {
+    name: "how-it-works",
+    icon: "/page-icons/info.png",
+    iconDark: "/page-icons/info-dark.png",
+  },
 ];
 
 function Sidebar({ isSidebarOpen, setIsSidebarOpen, currentUser }) {
@@ -113,6 +118,7 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen, currentUser }) {
             }}
           />
         ))}
+        <div className={styles.seperator}></div>
         {isAdmin &&
           adminOptions?.map((option) => (
             <SidebarOption

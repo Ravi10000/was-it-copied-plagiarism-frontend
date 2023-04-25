@@ -4,7 +4,15 @@ import Button from "../button/button";
 
 import { useRef, useEffect } from "react";
 
-function Popup({ title, save, cancel, children, closePopup, isLoading }) {
+function Popup({
+  handleSave,
+  title,
+  save,
+  cancel,
+  children,
+  closePopup,
+  isLoading,
+}) {
   const popupRef = useRef(null);
   useEffect(() => {
     function handleClosePopup(e) {
@@ -30,10 +38,16 @@ function Popup({ title, save, cancel, children, closePopup, isLoading }) {
         </div>
         <div className={styles.inputsContainer}>{children}</div>
         <div className={styles.btnContainer}>
-          <Button primary isLoading={isLoading}>
+          <Button
+            noFit
+            primary
+            isLoading={isLoading}
+            onClick={handleSave && handleSave}
+          >
             {save || "save"}
           </Button>
           <Button
+            noFit
             secondary
             outlined
             onClick={() => closePopup()}

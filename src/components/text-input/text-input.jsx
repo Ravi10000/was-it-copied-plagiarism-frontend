@@ -18,7 +18,6 @@ export default function TextInput({ label, register, error, ...otherProps }) {
         className={`${styles["text-input"]} ${
           otherProps?.type === "password" && styles.password
         }`}
-        required
         {...register}
         {...otherProps}
         type={

@@ -7,11 +7,7 @@
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   position: relative;
-  &:hover {
-    .name {
-      display: inline-block;
-    }
-  }
+
   &.selected {
     background: #fff;
     border-radius: 50px;
@@ -31,6 +27,14 @@
     border-radius: 5px;
     width: max-content;
     color: var(--heading-clr);
+  }
+}
+
+@media (hover: hover) {
+  .optionItem:hover {
+    .name {
+      display: inline-block;
+    }
   }
 }
 

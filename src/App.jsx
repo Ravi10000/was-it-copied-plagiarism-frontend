@@ -49,6 +49,7 @@ import AnalysisPage from "./pages/analysis/analysis";
 import PaymentDetailsPage from "./pages/payment-details/payment-details";
 import Footer from "./layouts/footer/footer";
 import ListAdminsPage from "./pages/list-admins/list-admins";
+import HowItWorksPage from "./pages/how-it-works/how-it-works";
 
 function App({ flash, setCurrentUser, currenUser }) {
   const { pathname } = useLocation();
@@ -67,6 +68,7 @@ function App({ flash, setCurrentUser, currenUser }) {
     "/analysis",
     "/payment",
     "/admins",
+    "/how-it-works",
   ];
   console.log({ isPostLogin });
   async function handleCheckAuth() {
@@ -180,6 +182,13 @@ function App({ flash, setCurrentUser, currenUser }) {
             path="/admins"
             element={
               !currenUser ? <Navigate to="/login" /> : <ListAdminsPage />
+            }
+          />
+          <Route
+            exact
+            path="/how-it-works"
+            element={
+              !currenUser ? <Navigate to="/login" /> : <HowItWorksPage />
             }
           />
 

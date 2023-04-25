@@ -1,0 +1,29 @@
+.howItWorksPage {
+  .head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  h2 {
+    padding: 20px;
+    color: #fff;
+  }
+  .processContainer {
+    padding: 20px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+  }
+}
+
+@media (min-width: 800px) {
+  .howItWorksPage {
+    .processContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 50px;
+    }
+  }
+}

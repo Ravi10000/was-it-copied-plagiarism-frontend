@@ -9,7 +9,9 @@ function Button({
   lg,
   color,
   bg,
+  danger,
   isLoading,
+  noFit,
   ...props
 }) {
   return (
@@ -20,10 +22,14 @@ function Button({
       ${secondary && styles.secondary} 
       ${lg && styles.lg} 
       ${gradient && styles.gradient}
-      ${isLoading && styles.isLoading}
+      ${isLoading && styles.isLoading} 
+      ${danger && styles.danger}
       `}
       disabled={isLoading}
-      style={{ backgroundColor: color ? color : "" }}
+      style={{
+        backgroundColor: color ? color : "",
+        width: !noFit ? "fit-content" : "100%",
+      }}
       {...props}
     >
       {children}

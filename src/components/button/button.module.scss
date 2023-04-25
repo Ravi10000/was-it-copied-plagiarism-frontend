@@ -21,11 +21,13 @@
     animation: spinLoader 0.5s linear infinite;
   }
   img {
-    width: 1.2rem;
-    height: fit-content;
+    height: 1.2rem;
+    width: fit-content;
+    // width: 1.2rem;
+    // height: fit-content;
   }
-  &.isLoading{
-    opacity: .75;
+  &.isLoading {
+    opacity: 0.75;
     cursor: not-allowed;
   }
   &:hover {
@@ -68,6 +70,12 @@
     background: linear-gradient(91.56deg, #0d3056 2.9%, #202148 99.79%);
     &:hover {
       background: linear-gradient(91.56deg, #202148 2.9%, #0d3056 99.79%);
+    }
+  }
+  &.danger {
+    background: #ff3d71;
+    &:hover {
+      background: #f56e92;
     }
   }
 }

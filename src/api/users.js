@@ -38,6 +38,13 @@ export const updateUserDetails = (formData) =>
       Authorization: "Bearer " + localStorage.getItem("authToken"),
     },
   });
+export const updateAdminDetails = (id, formData) =>
+  api.put(`/users/${id}`, formData, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("authToken"),
+    },
+  });
 
 export const resendVerificationEmail = (email) =>
   api.get("/users/verify/" + email);
@@ -49,3 +56,5 @@ export const createUser = (usertype, formData) =>
       Authorization: "Bearer " + localStorage.getItem("authToken"),
     },
   });
+
+export const deleteUser = (id) => api.delete(`/users/${id}`);
