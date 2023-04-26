@@ -22,6 +22,9 @@
     th {
       position: sticky;
       top: 0;
+      &:last-child {
+        width: 120px;
+      }
     }
     th,
     td {
