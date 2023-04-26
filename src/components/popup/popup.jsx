@@ -29,7 +29,7 @@ function Popup({
     <Backdrop>
       <div className={styles.popup} ref={popupRef}>
         <div className={styles.popupHead}>
-          <h4>{title}</h4>
+          <h4 className={styles.title}>{title}</h4>
           <img
             src="/close-2-dark.png"
             alt="close"
@@ -51,7 +51,7 @@ function Popup({
             secondary
             outlined
             onClick={() => closePopup()}
-            disabled={isLoading}
+            isLoading={isLoading}
             type="button"
           >
             {cancel || "cancel"}

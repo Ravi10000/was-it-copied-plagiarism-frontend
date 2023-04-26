@@ -61,6 +61,16 @@ const adminOptions = [
     icon: "/page-icons/info.png",
     iconDark: "/page-icons/info-dark.png",
   },
+  {
+    name: "plagiarism-types",
+    icon: "/page-icons/types.png",
+    iconDark: "/page-icons/types-dark.png",
+  },
+  {
+    name: "edit-faqs",
+    icon: "/page-icons/faq.png",
+    iconDark: "/page-icons/faq-dark.png",
+  },
 ];
 
 function Sidebar({ isSidebarOpen, setIsSidebarOpen, currentUser }) {

@@ -1,7 +1,12 @@
 import styles from "./image-input.module.scss";
 import React, { useState, useEffect } from "react";
 
-export default function ImageInput({ label, defaultValue, ...otherProps }) {
+export default function ImageInput({
+  isIcon,
+  label,
+  defaultValue,
+  ...otherProps
+}) {
   const [image, setImage] = useState(null);
   const [defaultImage, setDefaultImage] = useState(null);
 
@@ -13,7 +18,9 @@ export default function ImageInput({ label, defaultValue, ...otherProps }) {
     }
   }, []);
   return (
-    <div className={styles["upload-img"]}>
+    <div
+      className={`${styles["upload-img"]} ${isIcon ? styles.iconInput : ""}`}
+    >
       <label>{label}</label>
       <div className={styles["upload-input"]}>
         {defaultImage ? (

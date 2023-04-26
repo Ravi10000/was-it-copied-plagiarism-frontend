@@ -15,19 +15,20 @@ function SignoutPage({ setCurrentUser, setFlash }) {
   const navigate = useNavigate();
   function handleSignout() {
     localStorage.removeItem("authToken");
-    setCurrentUser(null);
     setFlash({
       type: "success",
       message: "Signout Successful",
     });
+    setCurrentUser(null);
     navigate("/");
+    // window.location.reload();
   }
   return (
     <section className={styles.signoutPage}>
       <div className={styles.signoutCard}>
         <h2>Are you sure, you want to sign out?</h2>
         <div className={styles.buttonsContainer}>
-          <Button color="#F72525" onClick={handleSignout}>
+          <Button color="var(--error-clr)" onClick={handleSignout}>
             Sign out
           </Button>
           <button

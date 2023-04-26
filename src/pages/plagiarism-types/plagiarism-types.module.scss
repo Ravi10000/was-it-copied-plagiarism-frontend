@@ -1,0 +1,42 @@
+.typesOfPlagiarism {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 20px;
+  .typesHead {
+    display: flex;
+    gap: 20px;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    p {
+      max-width: 600px;
+    }
+  }
+  .plagiarismItemContainer {
+    margin: 25px 0;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background: #f3f6fc;
+  }
+}
+.typesOfPlagiarism.editMode {
+  color: #fff;
+  .plagiarismItemContainer {
+    background: transparent;
+  }
+}
+
+@media (min-width: 800px) {
+  .typesOfPlagiarism {
+    .plagiarismItemContainer {
+      display: grid;
+      gap: 50px;
+      max-width: 1000px;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}

@@ -209,7 +209,7 @@ function ProfilPage({ currentUser, setCurrentUser, setFlash }) {
         </div>
         <button className="__imgBtn">
           <img src="/company-details.png" alt="details" />
-          <p>Invoce/Company Details</p>
+          <p>Invoce / School Details</p>
         </button>
       </div>
       <div className={styles.archiveAccount}>

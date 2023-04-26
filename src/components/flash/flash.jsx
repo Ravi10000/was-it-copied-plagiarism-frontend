@@ -26,7 +26,7 @@ const Flash = ({ message, type, clearFlash }) => {
       {message && (
         <>
           <div className={styles.main}>
-            <img src={`/${type}.png`} alt={type} />
+            <img src={`/flash-icons/${type}.png`} alt={type} />
             <p>{message}</p>
           </div>
           <div
@@ -35,7 +35,7 @@ const Flash = ({ message, type, clearFlash }) => {
               clearFlash();
             }}
           >
-            <img src={`/close-${type}.png`} alt="" />
+            <img src={`/flash-icons/close-${type}.png`} alt="" />
           </div>
         </>
       )}

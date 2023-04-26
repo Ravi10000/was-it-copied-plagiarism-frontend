@@ -2,18 +2,19 @@
   position: fixed;
   top: -100%;
   left: 0;
-  background-color: #fff;
-  padding: 20px 20px;
+  background-color: #ffffffe6;
+  padding: 5px 20px;
   font-weight: 500;
   z-index: 4000000;
   width: 100%;
-  color: #0aa06e;
+  // color: #0aa06e;
+  color: var(--primary-clr);
   display: flex;
   gap: 50px;
   align-items: center;
   justify-content: space-between;
   border: 1px solid #a6a6a640;
-  border-radius: 5px;
+  border-radius: 50px;
   box-shadow: 2px 4px 4px 5px rgba(57, 57, 57, 0.25);
   // box-shadow: 0px 2px 20px #a6a6a640;
   transition: all 0.2s ease-in-out;
@@ -35,11 +36,13 @@
 }
 
 .flash.error {
-  color: #fc476e;
+  // color: #fc476e;
+  color: var(--error-clr);
 }
 
-.flash.warning {
-  color: #ffc048;
+.flash.info {
+  // color: #ffc048;
+  color: var(--info-clr);
 }
 
 @media (min-width: 800px) {

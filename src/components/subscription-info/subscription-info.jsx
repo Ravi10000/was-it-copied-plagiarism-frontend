@@ -22,7 +22,7 @@ function SubscriptionInfo({ subscription }) {
           <p>Validity {subscription?.description}</p>
         </div>
       </div>
-      <Button primary>
+      <Button primary noFit>
         {subscription?.price
           ? `Starting at ₹${subscription?.price}/month`
           : "Try For Free"}

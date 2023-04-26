@@ -27,4 +27,15 @@
       width: 100%;
     }
   }
+  &.iconInput {
+    .upload-input {
+      img {
+        width: 35px;
+        height: fit-content;
+      }
+      .imgIcon {
+        width: 150px;
+      }
+    }
+  }
 }

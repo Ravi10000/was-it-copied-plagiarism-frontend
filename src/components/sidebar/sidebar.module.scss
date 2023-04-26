@@ -1,11 +1,11 @@
 .sidebar {
   min-height: 100vh;
-  height: 100%;
+  // height: fit-content;
   padding: 20px 10px;
   width: fit-content;
   // background: #2b354e;
   background: var(--heading-clr);
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   z-index: 1000;

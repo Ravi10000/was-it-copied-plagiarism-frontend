@@ -10,12 +10,19 @@ import { createStructuredSelector } from "reselect";
 import Button from "../../components/button/button";
 import LongTextInput from "../../components/long-text-input/long-text-input";
 
+// sections
+import HIW from "./hiw/hiw";
+
 // redux selectors
 import { selectCurrentUser } from "../../redux/user/user.selectors";
+import { getHowItWorks } from "../../api/howItWorks";
+import PlagiarismTypes from "../plagiarism-types/plagiarism-types";
+import FaqList from "../edit-faq/faq-list/faq-list";
 
 function HomePage({ currentUser }) {
   const [value, setValue] = useState("");
   const navigate = useNavigate();
+
   return (
     <div className={styles.homePage}>
       <section className={styles.homeTopSection}>
@@ -34,76 +41,7 @@ function HomePage({ currentUser }) {
           </Button>
         </div>
       </section>
-      <section className={styles.howItWorks}>
-        <h2 className="__sectionTitle">
-          Free Plagiarism Checker: <span>How It Works</span>
-        </h2>
-        <div className={styles.processContainer}>
-          <div className={styles.process}>
-            <div className={styles.details}>
-              <h3 className="__sectionSubHeading">
-                Enter text into plagiarism detection tool
-              </h3>
-              <p className="__text">
-                We make it simple. Just copy and paste all content from your
-                document into our plagiarism checker and hit the 'Check
-                Plagiarism' button to get started.
-              </p>
-            </div>
-            <img src="/homepage.png" alt="" />
-          </div>
-          <div className={styles.process}>
-            <div className={styles.details}>
-              <h3 className="__sectionSubHeading">
-                Evaluate text for plagiarism
-              </h3>
-              <p className="__text">
-                Our plagiarism detection tool uses DeepSearch™ Technology to
-                identify any content throughout your document that might be
-                plagiarized. We identify plagiarized content by running the text
-                through three steps:
-              </p>
-              <ol className="__text">
-                <li>Contextual Analysis</li>
-                <li>Fuzzy Matching</li>
-                <li>Conditional Scoring</li>
-              </ol>
-            </div>
-            <img src="/evaluate.png" alt="" />
-          </div>
-          <div className={styles.process}>
-            <div className={styles.details}>
-              <h3 className="__sectionSubHeading">
-                Accurate plagiarism results
-              </h3>
-              <p className="__text">
-                After evaluating the text against billions of internet sources,
-                you will be provided with a plagiarism score showing the
-                percentage of text that is an exact or near-match to existing
-                text online.
-              </p>
-            </div>
-            <img src="/accurate.png" alt="" />
-          </div>
-          <div className={styles.process}>
-            <div className={styles.details}>
-              <h3 className="__sectionSubHeading">
-                Resolve plagiarism risk and use citations
-              </h3>
-              <p className="__text">
-                Our ColorGrade™ feedback feature highlights exact matches vs.
-                near-exact or “fuzzy” matches with corresponding colors. From
-                there, you can resolve plagiarism issues by deleting or altering
-                the at-risk copy. Or, you can use our handy “Cite Source”
-                feature to generate citations in MLA, APA, and Chicago formats
-                and insert the citations directly into your document.
-              </p>
-            </div>
-            <img src="/resolve.png" alt="" />
-          </div>
-        </div>
-      </section>
-
+      <HIW />
       <section className={styles.getStarted}>
         {/* <p className={styles.title}>GET STARTED</p> */}
         <h4 className={`__sectionTitle ${styles.title}`}>
@@ -126,81 +64,7 @@ function HomePage({ currentUser }) {
           </Button>
         )}
       </section>
-
-      <section className={styles.typesOfPlagiarism}>
-        <div className={styles.typesHead}>
-          <h3 className="__sectionTitle">
-            Types of <span>Plagiarism</span>
-          </h3>
-          <p className="__text">
-            It's important to understand that plagiarism expands far beyond just
-            copying someone else's work word-for-word. There are several
-            different types of plagiarism that should be avoided.
-          </p>
-        </div>
-        <div className={styles.plagiarismItemContainer}>
-          <div className={styles.plagiarismItem}>
-            <img src="/plagiarism.png" alt="" />
-            <h4 className="__sectionSubHeading">Self-Plagiarism</h4>
-            <p>
-              Many believe that, as long as they produced the work at some point
-              in the past, they can include it in future pieces. However, even
-              if you were the original author, that original work must be cited
-              in order to not be flagged as plagiarism.
-            </p>
-            <p>
-              Treat your past self as a totally separate author; be sure to
-              include all relevant citations and quotations, the same as you
-              would for any other source.
-            </p>
-          </div>
-          <div className={styles.plagiarismItem}>
-            <img src="/patchwork.png" alt="" />
-            <h4 className="__sectionSubHeading">Patchwork Plagiarism</h4>
-            <p>
-              Patchwork plagiarism is the act of piecing together a "patchwork"
-              of existing content to form something new. Assembling unoriginal
-              content in this manner often involves some paraphrasing, with only
-              slight changes.
-            </p>
-            <p>
-              This type of plagiarism can be tricky and can certainly occur
-              unintentionally, especially in academia. Since academic writing is
-              largely based on the research of others, a well-meaning student
-              can inadvertently end up plagiarizing.
-            </p>
-          </div>
-          <div className={styles.plagiarismItem}>
-            <img src="/textile.png" alt="" />
-            <h4 className="__sectionSubHeading">Mosaic Plagiarism</h4>
-            <p>
-              Mosaic plagiarism is synonymous with patchwork plagiarism. It
-              describes the process of loosely rearranging or restating
-              another's work without issuing proper credit. It can occur
-              accidentally or intentionally. For authors, mosaic plagiarism
-              endangers their academic integrity or reputation as a writer. For
-              those checking content originality, such as teachers, mosaic
-              plagiarism can easily appear to be original content, which can
-              make mosaic plagiarism especially difficult to detect manually.
-            </p>
-          </div>
-          <div className={styles.plagiarismItem}>
-            <img src="/monitor.png" alt="" />
-            <h4 className="__sectionSubHeading">Accidental Plagiarism</h4>
-            <p>
-              Plagiarism doesn't have to be intentional to still be considered
-              plagiarism — even in early academia, where students are just
-              learning how to properly cite others' work. While there may be no
-              ill intent from the student, most schools have policies explicitly
-              treating accidental plagiarism the same as intentional plagiarism.
-              Students are expected to know how to properly issue credit to
-              other authors. Similarly, content writers risk damage to their
-              reputation if they produce plagiarized content, regardless of
-              intent.
-            </p>
-          </div>
-        </div>
-      </section>
+      <PlagiarismTypes />
       <section className={styles.benefitsContainer}>
         <div className={styles.benefit}>
           <h2 className="__sectionTitle">
@@ -273,7 +137,8 @@ function HomePage({ currentUser }) {
           </div>
         </div>
       </section>
-      <section className={styles.faqsSection}>
+      <FaqList />
+      {/* <section className={styles.faqsSection}>
         <h3 className="__sectionTitle">
           Plagiarism <span>FAQs</span>
         </h3>
@@ -316,7 +181,7 @@ function HomePage({ currentUser }) {
             accurate verification.
           </p>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

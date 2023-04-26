@@ -50,6 +50,9 @@ import PaymentDetailsPage from "./pages/payment-details/payment-details";
 import Footer from "./layouts/footer/footer";
 import ListAdminsPage from "./pages/list-admins/list-admins";
 import HowItWorksPage from "./pages/how-it-works/how-it-works";
+import ScrollToTop from "./components/scrollToTop";
+import EditPlagiarismTypes from "./pages/edit-plagiarism-types/edit-plagiarism-types";
+import EditFAQ from "./pages/edit-faq/edit-faq";
 
 function App({ flash, setCurrentUser, currenUser }) {
   const { pathname } = useLocation();
@@ -69,8 +72,10 @@ function App({ flash, setCurrentUser, currenUser }) {
     "/payment",
     "/admins",
     "/how-it-works",
+    "/plagiarism-types",
+    "/edit-faqs",
   ];
-  console.log({ isPostLogin });
+  console.log({ isPostLogin, pathname });
   async function handleCheckAuth() {
     try {
       const response = await checkAuth();
@@ -84,18 +89,19 @@ function App({ flash, setCurrentUser, currenUser }) {
   }
   useEffect(() => {
     const authToken = localStorage.getItem("authToken");
-    console.log({ authToken });
-    if (!authToken) return;
-    handleCheckAuth();
+
+    if (authToken) handleCheckAuth();
     if (pathname === "/") {
       return setIsPostLogin(false);
     }
     postLoginRoutes.forEach((route) => {
+      console.log({ route });
       pathname.includes(route) && setIsPostLogin(true);
     });
   }, [pathname]);
   return (
     <div className={`${isPostLogin ? styles.postLoginPage : ""}`}>
+      <ScrollToTop />
       {flash && <Flash type={flash.type} message={flash.message} />}
       {headerRoutes.includes(pathname) && <Header />}
       {isPostLogin && (
@@ -190,6 +196,18 @@ function App({ flash, setCurrentUser, currenUser }) {
             element={
               !currenUser ? <Navigate to="/login" /> : <HowItWorksPage />
             }
+          />
+          <Route
+            exact
+            path="/plagiarism-types"
+            element={
+              !currenUser ? <Navigate to="/login" /> : <EditPlagiarismTypes />
+            }
+          />
+          <Route
+            exact
+            path="/edit-faqs"
+            element={!currenUser ? <Navigate to="/login" /> : <EditFAQ />}
           />
 
           <Route exact path="/" element={<HomePage />} />

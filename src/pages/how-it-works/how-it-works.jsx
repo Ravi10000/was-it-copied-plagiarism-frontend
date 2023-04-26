@@ -1,16 +1,16 @@
 import styles from "./how-it-works.module.scss";
 import { useState, useEffect } from "react";
 import { getHowItWorks } from "../../api/howItWorks";
-import Button from "../../components/button/button";
-import Popup from "../../components/popup/popup";
 import ProcessEditable from "./process-editable/process-editable";
-import ImageInput from "../../components/image-input/image-input";
-import TextInput from "../../components/text-input/text-input";
-import { createHowItWorks } from "../../api/howItWorks";
+// import Popup from "../../components/popup/popup";
+// import Button from "../../components/button/button";
+// import ImageInput from "../../components/image-input/image-input";
+// import TextInput from "../../components/text-input/text-input";
+// import { createHowItWorks } from "../../api/howItWorks";
 
 function HowItWorksPage() {
   const [howItWorks, setHowItWorks] = useState([]);
-  const [showPopup, setShowPopup] = useState(false);
+  // const [showPopup, setShowPopup] = useState(false);
 
   async function fetchHowItWorks() {
     try {
@@ -23,27 +23,27 @@ function HowItWorksPage() {
     }
   }
 
-  async function handleCreateHowItWorks(e) {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    try {
-      const response = await createHowItWorks(formData);
-      console.log({ response });
-      if (response.data.status === "success") {
-        setShowPopup(false);
-        fetchHowItWorks();
-      }
-    } catch (err) {
-      console.log(err.message);
-    }
-  }
+  // async function handleCreateHowItWorks(e) {
+  //   e.preventDefault();
+  //   const formData = new FormData(e.target);
+  //   try {
+  //     const response = await createHowItWorks(formData);
+  //     console.log({ response });
+  //     if (response.data.status === "success") {
+  //       setShowPopup(false);
+  //       fetchHowItWorks();
+  //     }
+  //   } catch (err) {
+  //     console.log(err.message);
+  //   }
+  // }
   useEffect(() => {
     fetchHowItWorks();
   }, []);
 
   return (
     <div className={styles.howItWorksPage}>
-      {showPopup && (
+      {/* {showPopup && (
         <form onSubmit={handleCreateHowItWorks}>
           <Popup
             title="Create How It Works Item"
@@ -62,13 +62,13 @@ function HowItWorksPage() {
             />
           </Popup>
         </form>
-      )}
+      )} */}
       <div className={styles.head}>
-        <h2 className="__sectionTitle">How it works</h2>
-        <Button primary onClick={() => setShowPopup(true)}>
+        <h2 className="__sectionTitle">Edit How It Works Section</h2>
+        {/* <Button primary onClick={() => setShowPopup(true)}>
           <img src="/plus.png" alt="add" />
           <p>Create New</p>
-        </Button>
+        </Button> */}
       </div>
       <div className={styles.processContainer}>
         {howItWorks?.map((item) => (
