@@ -65,10 +65,10 @@ function ProcessEditable({ item, noEdit }) {
               <img src="/edit-2.png" alt="" />
               <p>Edit</p>
             </Button>
-            <Button danger>
+            {/* <Button danger>
               <img src="/delete.png" alt="" />
               <p>Delete</p>
-            </Button>
+            </Button> */}
           </div>
         )}
       </div>

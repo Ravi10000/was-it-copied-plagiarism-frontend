@@ -1,29 +1,27 @@
-import styles from "./plagiarism-item.module.scss";
-
 import Button from "../../../components/button/button";
+import styles from "./benefit-item.module.scss";
 import { useState } from "react";
-import { editPlagiarismType } from "../../../api/plagiarism-types";
 import Popup from "../../../components/popup/popup";
-import ImageInput from "../../../components/image-input/image-input";
 import TextInput from "../../../components/text-input/text-input";
+import ImageInput from "../../../components/image-input/image-input";
+import { editBenefit } from "../../../api/benefits";
 import CustomTextarea from "../../../components/custom-textarea/custom-textarea";
 import { setFlash } from "../../../redux/flash/flash.actions";
 import { connect } from "react-redux";
 
-function PlagiarismItem({ item, enableEdit, fetchPlagiarismTypes, setFlash }) {
+function BenefitItem({ benefit, enableEdit, fetchBenefits, setFlash }) {
   const [showPopup, setShowPopup] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  async function handleEditType(e) {
+  async function handleEditBenefit(e) {
     e.preventDefault();
     setIsLoading(true);
     const formData = new FormData(e.target);
     try {
-      const response = await editPlagiarismType(item?._id, formData);
+      const response = await editBenefit(benefit?._id, formData);
       console.log({ response });
       if (response.data.status === "success") {
-        setShowPopup(false);
-        fetchPlagiarismTypes();
+        fetchBenefits();
         setFlash({
           type: "success",
           message: "Plagiarism Type Edited Successfully",
@@ -32,59 +30,49 @@ function PlagiarismItem({ item, enableEdit, fetchPlagiarismTypes, setFlash }) {
     } catch (err) {
       console.log(err.message);
     } finally {
+      setShowPopup(false);
       setIsLoading(false);
     }
   }
-
   return (
-    <div
-      className={`${styles.plagiarismItem} ${
-        enableEdit ? styles.editMode : ""
-      }`}
-    >
+    <div className={`${styles.benefit} ${enableEdit && styles.editMode}`}>
       {enableEdit && showPopup && (
-        <form onSubmit={handleEditType}>
+        <form onSubmit={handleEditBenefit}>
           <Popup
-            title="Edit Type"
+            title="Edit Benefit"
             closePopup={() => setShowPopup(false)}
             isLoading={isLoading}
           >
-            <ImageInput isIcon name="icon" defaultValue={item?.icon} />
+            <ImageInput isIcon name="icon" defaultValue={benefit?.icon} />
             <TextInput
               name="title"
               label="Title"
               placeholder="Enter Title Here"
-              defaultValue={item?.title}
+              defaultValue={benefit?.title}
             />
             <CustomTextarea
               name="description"
               label="Description"
-              defaultValue={item?.description}
+              defaultValue={benefit?.description}
             />
           </Popup>
         </form>
       )}
       <img
         className={styles.icon}
-        src={`${import.meta.env.VITE_REACT_APP_SERVER_URL}/${item?.icon}`}
-        alt={item?.title}
+        src={`${import.meta.env.VITE_REACT_APP_SERVER_URL}/${benefit?.icon}`}
+        alt={benefit?.title}
       />
-      <h4 className="__sectionSubHeading">{item?.title}</h4>
-      <p>{item?.description}</p>
+      <h2>{benefit?.title}</h2>
+      <p>{benefit?.description}</p>
       {enableEdit && (
-        <div className={styles.btnsContainer}>
-          <Button primary onClick={() => setShowPopup(true)}>
-            <img src="/edit-2.png" alt="" />
-            <p>Edit</p>
-          </Button>
-          {/* <Button danger>
-            <img src="/delete.png" alt="" />
-            <p>Delete</p>
-          </Button> */}
-        </div>
+        <Button primary onClick={() => setShowPopup(true)}>
+          <img src="/edit-2.png" alt="" />
+          <p>Edit</p>
+        </Button>
       )}
     </div>
   );
 }
 
-export default connect(null, { setFlash })(PlagiarismItem);
+export default connect(null, { setFlash })(BenefitItem);

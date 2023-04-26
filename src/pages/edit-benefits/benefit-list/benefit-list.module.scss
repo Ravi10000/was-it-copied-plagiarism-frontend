@@ -1,0 +1,50 @@
+.benefitsContainer {
+  background: var(--heading-clr);
+  color: #fff;
+  padding: 50px 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 25px;
+  h2 {
+    color: #fff;
+  }
+  .benefit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    max-width: 600px;
+  }
+  p {
+    font-size: 1.2rem;
+  }
+  .benfitForUsers {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    .benefit {
+      img {
+        width: 50px;
+        height: fit-content;
+      }
+    }
+  }
+}
+.benefitsContainer.editMode{
+    background: transparent;
+}
+
+@media (min-width: 800px) {
+  .benefitsContainer {
+    align-items: center;
+    width: 100%;
+    .benfitForUsers {
+      max-width: 1000px;
+      display: grid;
+      gap: 50px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}

@@ -68,20 +68,24 @@ const adminOptions = [
   },
   {
     name: "edit-faqs",
-    icon: "/page-icons/faq.png",
-    iconDark: "/page-icons/faq-dark.png",
+    icon: "/page-icons/faq-2.png",
+    iconDark: "/page-icons/faq-2-dark.png",
+  },
+  {
+    name: "edit-benefits",
+    icon: "/page-icons/benefits.png",
+    iconDark: "/page-icons/benefits-dark.png",
   },
 ];
 
 function Sidebar({ isSidebarOpen, setIsSidebarOpen, currentUser }) {
-  console.log({ currentUser });
+  // console.log({ currentUser });
   const navigate = useNavigate();
   const [isAdmin, setIsAdmin] = useState(false);
 
   const sidebarRef = useRef(null);
-  const { page } = useParams();
   const { pathname } = useLocation();
-  console.log({ pathname });
+  // console.log({ pathname });
   const { selectedPage, setSelectedPage } = useSelectedPage(pathname);
 
   useEffect(() => {

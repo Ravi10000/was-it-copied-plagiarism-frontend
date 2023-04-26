@@ -15,7 +15,7 @@ export default function LongTextInput({
   const placeholderRef = useRef();
   const inputRef = useRef();
 
-  console.log({ value });
+  // console.log({ value });
   useEffect(() => {
     inputRef.current.focus();
     if (value) {

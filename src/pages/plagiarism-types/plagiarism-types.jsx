@@ -11,7 +11,7 @@ function PlagiarismTypes({ enableEdit }) {
   async function fetchPlagiarismTypes() {
     try {
       const response = await fetchAllPlagiarismTypes();
-      console.log({ response });
+      // console.log({ response });
       if (response.data.status === "success")
         setPlagiarismTypes(response.data.plagiarismTypes);
     } catch (err) {

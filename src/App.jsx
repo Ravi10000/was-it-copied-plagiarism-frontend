@@ -53,10 +53,11 @@ import HowItWorksPage from "./pages/how-it-works/how-it-works";
 import ScrollToTop from "./components/scrollToTop";
 import EditPlagiarismTypes from "./pages/edit-plagiarism-types/edit-plagiarism-types";
 import EditFAQ from "./pages/edit-faq/edit-faq";
+import EditBenefits from "./pages/edit-benefits/edit-benefits";
 
 function App({ flash, setCurrentUser, currenUser }) {
   const { pathname } = useLocation();
-  console.log({ pathname });
+  // console.log({ pathname });
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isPostLogin, setIsPostLogin] = useState(false);
@@ -74,12 +75,13 @@ function App({ flash, setCurrentUser, currenUser }) {
     "/how-it-works",
     "/plagiarism-types",
     "/edit-faqs",
+    "/edit-benefits",
   ];
-  console.log({ isPostLogin, pathname });
+  // console.log({ isPostLogin, pathname });
   async function handleCheckAuth() {
     try {
       const response = await checkAuth();
-      console.log({ response });
+      // console.log({ response });
       if (response.data.status === "success") {
         setCurrentUser(response.data.user);
       }
@@ -95,7 +97,7 @@ function App({ flash, setCurrentUser, currenUser }) {
       return setIsPostLogin(false);
     }
     postLoginRoutes.forEach((route) => {
-      console.log({ route });
+      // console.log({ route });
       pathname.includes(route) && setIsPostLogin(true);
     });
   }, [pathname]);
@@ -208,6 +210,11 @@ function App({ flash, setCurrentUser, currenUser }) {
             exact
             path="/edit-faqs"
             element={!currenUser ? <Navigate to="/login" /> : <EditFAQ />}
+          />
+          <Route
+            exact
+            path="/edit-benefits"
+            element={!currenUser ? <Navigate to="/login" /> : <EditBenefits />}
           />
 
           <Route exact path="/" element={<HomePage />} />

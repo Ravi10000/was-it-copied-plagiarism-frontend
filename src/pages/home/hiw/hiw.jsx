@@ -8,7 +8,7 @@ function HIW() {
   async function fetchHowItWorks() {
     try {
       const response = await getHowItWorks();
-      console.log({ response });
+      // console.log({ response });
       if (response.data.status === "success")
         setHowItWorks(response.data.howItWorks);
     } catch (err) {

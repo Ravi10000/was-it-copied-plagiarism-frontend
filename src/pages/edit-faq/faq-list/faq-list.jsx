@@ -9,7 +9,7 @@ const FaqList = forwardRef(({ enableEdit }, ref) => {
   async function handleFetchFaqs() {
     try {
       const res = await fetchAllFaqs();
-      console.log({ res });
+      // console.log({ res });
       if (res.data.status === "success") {
         setFaqs(res.data.faqs);
       }
