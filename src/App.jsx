@@ -91,15 +91,16 @@ function App({ flash, setCurrentUser, currenUser }) {
   }
   useEffect(() => {
     const authToken = localStorage.getItem("authToken");
-
+    console.log({ pathname });
     if (authToken) handleCheckAuth();
     if (pathname === "/") {
       return setIsPostLogin(false);
     }
+    let isPostLoginTemp = false;
     postLoginRoutes.forEach((route) => {
-      // console.log({ route });
-      pathname.includes(route) && setIsPostLogin(true);
+      pathname.includes(route) && isPostLoginTemp === true;
     });
+    setIsPostLogin(isPostLoginTemp);
   }, [pathname]);
   return (
     <div className={`${isPostLogin ? styles.postLoginPage : ""}`}>
