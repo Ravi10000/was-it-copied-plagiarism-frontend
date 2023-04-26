@@ -6,6 +6,7 @@ import { updateAdminDetails, deleteUser } from "../../../api/users";
 import { useForm } from "react-hook-form";
 import { setFlash } from "../../../redux/flash/flash.actions";
 import { connect } from "react-redux";
+import ConfirmPopup from "../../../components/confirm-popup/confirm-popup";
 
 function AdminRecord({ user, handleFetchUsers, setFlash }) {
   const {
@@ -17,6 +18,8 @@ function AdminRecord({ user, handleFetchUsers, setFlash }) {
 
   const [isLoading, setIsLoading] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [deletePopup, setDeletePopup] = useState(false);
+
   const joinedOn = new Date(user?.createdAt).toDateString();
   console.log({ user });
 
@@ -66,6 +69,15 @@ function AdminRecord({ user, handleFetchUsers, setFlash }) {
   }
   return (
     <>
+      {deletePopup && (
+        <ConfirmPopup
+          msg="Are you sure you want to delete this admin?"
+          handleConfirm={handleDeleteUser}
+          handleCancel={() => {
+            setDeletePopup(false);
+          }}
+        />
+      )}
       {showPopup && (
         <form onSubmit={handleSubmit(handleUpdateAdmin)}>
           <Popup
@@ -166,7 +178,7 @@ function AdminRecord({ user, handleFetchUsers, setFlash }) {
           </button>
           <button
             className={styles.btn + " " + styles.delete}
-            onClick={handleDeleteUser}
+            onClick={() => setDeletePopup(true)}
           >
             <img src="/delete.png" alt="" />
           </button>

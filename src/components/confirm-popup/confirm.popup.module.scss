@@ -1,0 +1,19 @@
+.confirmPopup {
+  background: #f3f6fc;
+  height: fit-content;
+  padding: 20px 40px;
+  display: grid;
+  text-align: center;
+  gap: 20px;
+  border-radius: 10px;
+  margin: auto;
+  place-items: end;
+  .title {
+    width: 100%;
+    color: var(--heading-clr);
+  }
+  .btnContainer {
+    display: flex;
+    gap: 20px;
+  }
+}
