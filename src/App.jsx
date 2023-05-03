@@ -61,7 +61,7 @@ function App({ flash, setCurrentUser, currenUser }) {
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isPostLogin, setIsPostLogin] = useState(false);
-
+  console.log({ isPostLogin });
   const headerRoutes = ["/login", "/signup", "/pricing", "/"];
   const postLoginRoutes = [
     "/users",
@@ -77,7 +77,6 @@ function App({ flash, setCurrentUser, currenUser }) {
     "/edit-faqs",
     "/edit-benefits",
   ];
-  // console.log({ isPostLogin, pathname });
   async function handleCheckAuth() {
     try {
       const response = await checkAuth();
@@ -98,7 +97,10 @@ function App({ flash, setCurrentUser, currenUser }) {
     }
     let isPostLoginTemp = false;
     postLoginRoutes.forEach((route) => {
-      pathname.includes(route) && isPostLoginTemp === true;
+      if (pathname.includes(route)) {
+        isPostLoginTemp = true;
+      }
+      // console.log({ route, isPostLoginTemp });
     });
     setIsPostLogin(isPostLoginTemp);
   }, [pathname]);

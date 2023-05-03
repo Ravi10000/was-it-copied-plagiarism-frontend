@@ -150,7 +150,8 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen, currentUser }) {
                 navigate(`/${option.name}`);
               }}
             />
-          ))}
+          ))
+          }
       </div>
     </section>
   );
