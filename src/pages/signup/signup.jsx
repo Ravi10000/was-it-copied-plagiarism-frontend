@@ -35,7 +35,7 @@ function SignupPage({ setFlash, setCurrentUser }) {
       console.log({ response });
       if (response.data.status === "user exist") {
         return setFlash({
-          type: "warning",
+          type: "info",
           message: "User already exists, try logging in",
         });
       }

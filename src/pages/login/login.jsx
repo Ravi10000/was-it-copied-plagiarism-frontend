@@ -34,7 +34,7 @@ function LoginPage({ setCurrentUser, setFlash }) {
       if (response.data.status === "warning") {
         console.log(response.data);
         return setFlash({
-          type: "warning",
+          type: "info",
           message: response.data.message,
         });
       }

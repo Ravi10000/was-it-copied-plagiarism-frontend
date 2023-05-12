@@ -20,9 +20,9 @@ input {
 
 :root {
   --primary-clr: #335eea;
-  --secondary-clr: #42ba96;
   --error-clr: #ff3d71;
   --info-clr: #fcbf49;
+  --secondary-clr: #42ba96;
   --background-clr: #f3f6fc;
   --heading-clr: #0a0b33;
   --text-clr: #30364d;
