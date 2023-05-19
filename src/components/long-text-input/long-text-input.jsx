@@ -3,11 +3,10 @@ import React, { useEffect, useId, useState, useRef } from "react";
 
 export default function LongTextInput({
   label,
-  value,
-  setValue,
   placeholder,
   lg,
   bg,
+  text,
   ...otherProps
 }) {
   const id = useId();
@@ -18,12 +17,12 @@ export default function LongTextInput({
   // console.log({ value });
   useEffect(() => {
     inputRef.current.focus();
-    if (value) {
+    if (text) {
       placeholderRef.current.style.display = "none";
     } else {
       placeholderRef.current.style.display = "block";
     }
-  }, [value]);
+  }, [text]);
 
   return (
     <div className={styles["long-text-input"]}>
@@ -34,8 +33,8 @@ export default function LongTextInput({
         id={id}
         className={`${styles["text-input"]} ${lg && styles.lg}`}
         {...otherProps}
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
+        // value={value}
+        // onChange={(e) => setValue(e.target.value)}
       ></textarea>
       <div className={styles.placeholderText} ref={placeholderRef}>
         <p>Enter Your Text Here</p>
