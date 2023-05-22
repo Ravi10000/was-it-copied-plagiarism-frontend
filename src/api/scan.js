@@ -7,10 +7,14 @@ export const scanText = async (text) =>
 export const scanFile = async (formData) =>
   api.post("/scan/file", formData, { headers: { ...authHeader } });
 
-export const getMyScans = async (isAdmin) =>
+export const getMyScans = async (isAdmin = false, skip = 0, limit = 0) =>
   isAdmin
-    ? api.get("/scan/all", { headers: { ...authHeader } })
-    : api.get("/scan", { headers: { ...authHeader } });
+    ? api.get(`/scan/all?skip=${skip}&limit=${limit}`, {
+        headers: { ...authHeader },
+      })
+    : api.get(`/scan?skip=${skip}&limit=${limit}`, {
+        headers: { ...authHeader },
+      });
 
-// export const getAllScans = async () =>
-//   api.get("/scan/all", { headers: { ...authHeader } });
+export const getScanById = async (id) =>
+  api.get(`/scan/${id}`, { headers: { ...authHeader } });

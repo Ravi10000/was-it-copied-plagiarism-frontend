@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 function Record({ scan }) {
   const createdAtDate = new Date(scan?.createdAt).toDateString();
   const createdAtTime = new Date(scan?.createdAt).toLocaleTimeString();
-  console.log({ scan });
   const [showOptions, setShowOptions] = useState(false);
   const optionsRef = useRef(null);
   const navigate = useNavigate();
@@ -27,9 +26,12 @@ function Record({ scan }) {
       <td>
         <input type="checkbox" />
       </td>
-      <td className={styles.title} onClick={() => navigate("/details/id")}>
+      <td
+        className={styles.title}
+        onClick={() => navigate(`/details/${scan?._id}`)}
+      >
         {/* Lorem Ipsum is simply... */}
-        {scan?.text?.slice(0, 20)}...
+        {scan?.title?.slice(0, 20)}...
       </td>
       <td>100%</td>
       <td>

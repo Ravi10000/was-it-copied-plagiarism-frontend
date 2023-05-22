@@ -11,6 +11,7 @@ function Button({
   bg,
   danger,
   isLoading,
+  disabled,
   noFit,
   ...props
 }) {
@@ -25,7 +26,7 @@ function Button({
       ${isLoading && styles.isLoading} 
       ${danger && styles.danger}
       `}
-      disabled={isLoading}
+      disabled={isLoading || disabled}
       style={{
         backgroundColor: color ? color : "",
         width: !noFit ? "fit-content" : "100%",

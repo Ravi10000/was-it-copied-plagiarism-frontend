@@ -2,11 +2,28 @@ import styles from "./report.module.scss";
 import { useState, useRef, useEffect } from "react";
 
 import Button from "../../components/button/button";
+import { getScanById } from "../../api/scan";
+import { useParams } from "react-router-dom";
 
 function ReportPage() {
   const [showOptions, setShowOptions] = useState(false);
   const optionsRef = useRef(null);
+  const [scan, setScan] = useState(null);
+  const { id } = useParams();
+  console.log({ scan });
+  async function handleFetchReport() {
+    try {
+      const res = await getScanById(id);
+      console.log({ res });
+      setScan({ ...res.data.scan, text: res.data.text });
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
+  useEffect(() => {
+    handleFetchReport();
+  }, []);
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (optionsRef.current && !optionsRef.current.contains(event.target)) {
@@ -29,7 +46,7 @@ function ReportPage() {
         />
         <div className={styles.text}>
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
+            {/* Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
             ever since the 1500s, when an unknown printer took a galley of type
             and scrambled it to make a type specimen book. It has survived not
@@ -55,7 +72,8 @@ function ReportPage() {
             It was popularised in the 1960s with the release of Letraset sheets
             containing Lorem Ipsum passages, and more recently with desktop
             publishing software like Aldus PageMaker including versions of Lorem
-            Ipsum.
+            Ipsum. */}
+            {scan?.text}
           </p>
         </div>
         <Button primary>New Search</Button>

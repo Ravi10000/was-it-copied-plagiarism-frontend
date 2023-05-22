@@ -131,3 +131,41 @@ input[type="file"] {
 input[type="checkbox"] {
   cursor: pointer;
 }
+
+.__bottom-bar {
+  background: var(--heading-clr);
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  padding: 10px 20px;
+  color: #fff;
+}
+.__bottom-bar .__rowsCount {
+  display: flex;
+  gap: 20px;
+}
+
+.__bottom-bar .__pagination {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.__bottom-bar .__pagination .__controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.__bottom-bar .__pagination .__controls img {
+  width: 20px;
+  height: fit-content;
+  cursor: pointer;
+}
+
+.__bottom-bar .__pagination .__controls img.__next {
+  transform: rotate(180deg);
+}
+
+input[type="file"] {
+  cursor: pointer;
+}

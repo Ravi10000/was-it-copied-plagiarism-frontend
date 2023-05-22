@@ -4,18 +4,60 @@ import Record from "../../components/record/record";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getMyScans } from "../../api/scan";
+import { setFlash } from "../../redux/flash/flash.actions";
+import { connect } from "react-redux";
 
-function DetailsPage({ isAdmin }) {
+function DetailsPage({ isAdmin, setFlash }) {
   const [scans, setScans] = useState([]);
+  const [skip, setSkip] = useState(0);
+  const [limit, setLimit] = useState(10);
+  const [scanCount, setScanCount] = useState(0);
+  console.log({ scanCount });
+
   async function handleFetchScans() {
     try {
-      const res = await getMyScans(isAdmin);
+      const res = await getMyScans(isAdmin, skip, limit);
+      console.log({ res });
+      if (res.data.status === "success") {
+        setScans(res.data.scans);
+        setScanCount(res.data.scanCount);
+      }
+    } catch (err) {
+      console.log({ err });
+    }
+  }
+
+  async function handleFetchNextScans() {
+    if (skip + limit >= scanCount) {
+      return setFlash({
+        type: "info",
+        message: "No more scans available",
+      });
+    }
+    try {
+      console.log({ isAdmin });
+      const res = await getMyScans(isAdmin, skip + limit, limit);
+      setSkip(skip + limit);
       console.log({ res });
       if (res.data.status === "success") setScans(res.data.scans);
     } catch (err) {
       console.log({ err });
     }
   }
+  async function handleFetchPrevScans() {
+    if (skip == 0) {
+      return;
+    }
+    try {
+      const res = await getMyScans(isAdmin, skip - limit, limit);
+      setSkip(skip - limit);
+      console.log({ res });
+      if (res.data.status === "success") setScans(res.data.scans);
+    } catch (err) {
+      console.log({ err });
+    }
+  }
+
   useEffect(() => {
     handleFetchScans();
   }, []);
@@ -47,8 +89,33 @@ function DetailsPage({ isAdmin }) {
           ))}
         </tbody>
       </table>
+      <div className="__bottom-bar">
+        <div className="__rowsCount">
+          <p>rows per page</p>
+          <p>10</p>
+        </div>
+        <div className="__pagination">
+          <p>
+            {skip + 1}-{skip + scans.length} of {scanCount}
+          </p>
+          <div className="__controls">
+            <img
+              className="__prev"
+              src="/left.png"
+              alt=""
+              onClick={handleFetchPrevScans}
+            />
+            <img
+              className="__next"
+              src="/left.png"
+              alt=""
+              onClick={handleFetchNextScans}
+            />
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
 
-export default DetailsPage;
+export default connect(null, { setFlash })(DetailsPage);

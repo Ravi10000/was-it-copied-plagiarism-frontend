@@ -20,7 +20,7 @@
       border-radius: 2px;
       outline: 1px solid #c3c7ca;
     }
-    &::placeholder{
+    &::placeholder {
       color: #fff;
     }
   }
@@ -39,6 +39,14 @@
     &:hover {
       background: #547cff;
     }
+    .loader {
+      width: 15px;
+      aspect-ratio: 1 / 1;
+      animation: spin 0.5s linear infinite;
+      border: 2px solid #fff;
+      border-right: 2px solid transparent;
+      border-radius: 50px;
+    }
     img {
       width: 20px;
       height: fit-content;
@@ -55,5 +63,11 @@
       top: 0;
       left: 0;
     }
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }

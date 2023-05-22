@@ -82,9 +82,9 @@ function App({ flash, setCurrentUser, currenUser }) {
   async function handleCheckAuth() {
     try {
       const response = await checkAuth();
-      // console.log({ response });
+      console.log({ userResponse: response });
       if (response.data.status === "success") {
-        response?.data?.usertype === "ADMIN" && setIsAdmin(true);
+        response?.data?.user?.usertype === "ADMIN" && setIsAdmin(true);
         setCurrentUser(response.data.user);
       }
     } catch (err) {
