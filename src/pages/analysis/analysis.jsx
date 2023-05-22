@@ -36,6 +36,29 @@ function AnalysisPage() {
             ))}
         </tbody>
       </table>
+      <div className="__bottom-bar">
+        <div className="__rowsCount">
+          <p>rows per page</p>
+          <p>10</p>
+        </div>
+        <div className="__pagination">
+          <p>{/* {skip + 1}-{skip + users.length} of {usersCount} */}</p>
+          <div className="__controls">
+            <img
+              className="__prev"
+              src="/left.png"
+              alt=""
+              // onClick={handleFetchPrevUsers}
+            />
+            <img
+              className="__next"
+              src="/left.png"
+              alt=""
+              // onClick={handleFetchMoreUsers}
+            />
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

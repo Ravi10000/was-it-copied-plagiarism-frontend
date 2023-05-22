@@ -5,15 +5,42 @@ import CreateUser from "../../components/create-user/create-user";
 
 function AllUsersPage() {
   const [users, setUsers] = useState([]);
+  const [skip, setSkip] = useState(0);
+  const [limit, setLimit] = useState(10);
+  const [usersCount, setUsersCount] = useState(0);
+
   async function handleFetchUsers() {
     try {
       const response = await fetchAllUsers();
       console.log({ response });
       if (response.data.status === "success") {
         setUsers(response.data.users);
+        setUsersCount(response.data.usersCount);
       }
     } catch (error) {
       console.log({ error });
+    }
+  }
+
+  async function handleFetchPrevUsers() {
+    if (skip === 0) return;
+    try {
+      const res = await fetchAllUsers(skip - limit, limit);
+      if (res.data.status === "success") {
+        setSkip(skip + limit);
+        setUsers(res.data.users);
+      }
+    } catch (err) {
+      console.log({ err });
+    }
+  }
+  async function handleFetchMoreUsers() {
+    if (skip + limit >= usersCount) return;
+
+    const res = await fetchAllUsers(skip + limit, limit);
+    if (res.data.status === "success") {
+      setSkip(skip + limit);
+      setUsers(res.data.users);
     }
   }
 
@@ -66,6 +93,31 @@ function AllUsersPage() {
           })}
         </tbody>
       </table>
+      <div className="__bottom-bar">
+        <div className="__rowsCount">
+          <p>rows per page</p>
+          <p>10</p>
+        </div>
+        <div className="__pagination">
+          <p>
+            {skip + 1}-{skip + users.length} of {usersCount}
+          </p>
+          <div className="__controls">
+            <img
+              className="__prev"
+              src="/left.png"
+              alt=""
+              onClick={handleFetchPrevUsers}
+            />
+            <img
+              className="__next"
+              src="/left.png"
+              alt=""
+              onClick={handleFetchMoreUsers}
+            />
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

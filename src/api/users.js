@@ -1,7 +1,7 @@
 import api from "./index";
 
-export const fetchAllUsers = () =>
-  api.get("/users", {
+export const fetchAllUsers = (skip, limit) =>
+  api.get(`/users?skip=${skip}&limit=${limit}`, {
     headers: {
       Authorization: "Bearer " + localStorage.getItem("authToken"),
     },
