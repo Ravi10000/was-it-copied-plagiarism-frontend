@@ -18,6 +18,7 @@ function ReportPage() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [optionsRef]);
+
   return (
     <section className={styles.reportPage}>
       <div className={styles.data}>
@@ -82,7 +83,11 @@ function ReportPage() {
             onClick={() => setShowOptions((prevState) => !prevState)}
           >
             <div className={styles.menuIconContainer}>
-              <img className={styles.menuIcon} src="/more-dots-filled.png" alt="" />
+              <img
+                className={styles.menuIcon}
+                src="/more-dots-filled.png"
+                alt=""
+              />
             </div>
             {showOptions && (
               <div className={styles.options} ref={optionsRef}>

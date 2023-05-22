@@ -3,8 +3,23 @@ import styles from "./details.module.scss";
 import Record from "../../components/record/record";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { getMyScans } from "../../api/scan";
 
-function DetailsPage() {
+function DetailsPage({ isAdmin }) {
+  const [scans, setScans] = useState([]);
+  async function handleFetchScans() {
+    try {
+      const res = await getMyScans(isAdmin);
+      console.log({ res });
+      if (res.data.status === "success") setScans(res.data.scans);
+    } catch (err) {
+      console.log({ err });
+    }
+  }
+  useEffect(() => {
+    handleFetchScans();
+  }, []);
+  console.log({ scans });
   return (
     <section className={styles.detailsPage}>
       <h2 className="__sectionTitle">Reports</h2>
@@ -27,22 +42,9 @@ function DetailsPage() {
         </thead>
 
         <tbody>
-          <Record />
-          <Record />
-          <Record />
-          <Record />
-          <Record />
-          <Record />
-          <Record />
-          <Record />
-          <Record />
-          <Record />
-          <Record />
-          <Record />
-          <Record />
-          <Record />
-          <Record />
-          <Record />
+          {scans?.map((scan) => (
+            <Record key={scan?._id} scan={scan} />
+          ))}
         </tbody>
       </table>
     </section>

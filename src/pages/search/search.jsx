@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 // components
 import LongTextInput from "../../components/long-text-input/long-text-input";
 import Button from "../../components/button/button";
-import { scanText } from "../../api/scan";
+import { scanFile, scanText } from "../../api/scan";
 
 function SearchPage() {
   const [text, setText] = useState("");
@@ -21,7 +21,17 @@ function SearchPage() {
       console.log(err);
     }
   }
-
+  async function submitFileForScan(e) {
+    console.log(e.target.files[0]);
+    const formData = new FormData();
+    formData.append("file", e.target.files[0]);
+    try {
+      const res = await scanFile(formData);
+      console.log({ res });
+    } catch (err) {
+      console.log(err);
+    }
+  }
   console.log({ text });
   const navigate = useNavigate();
   return (
@@ -52,7 +62,12 @@ function SearchPage() {
       <button className={styles.uploadeBtn}>
         <img src="/upload-light.png" alt="upload" />
         <p>Search by Files</p>
-        <input className={styles.fileUpload} type="file" />
+        <input
+          className={styles.fileUpload}
+          type="file"
+          name="file"
+          onChange={submitFileForScan}
+        />
       </button>
       {/* )} */}
     </div>

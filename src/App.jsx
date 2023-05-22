@@ -61,6 +61,8 @@ function App({ flash, setCurrentUser, currenUser }) {
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isPostLogin, setIsPostLogin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
   console.log({ isPostLogin });
   const headerRoutes = ["/login", "/signup", "/pricing", "/"];
   const postLoginRoutes = [
@@ -82,6 +84,7 @@ function App({ flash, setCurrentUser, currenUser }) {
       const response = await checkAuth();
       // console.log({ response });
       if (response.data.status === "success") {
+        response?.data?.usertype === "ADMIN" && setIsAdmin(true);
         setCurrentUser(response.data.user);
       }
     } catch (err) {
@@ -148,7 +151,13 @@ function App({ flash, setCurrentUser, currenUser }) {
           <Route
             exact
             path="/details"
-            element={!currenUser ? <Navigate to="/login" /> : <DetailsPage />}
+            element={
+              !currenUser ? (
+                <Navigate to="/login" />
+              ) : (
+                <DetailsPage isAdmin={isAdmin} />
+              )
+            }
           />
           <Route
             exact
