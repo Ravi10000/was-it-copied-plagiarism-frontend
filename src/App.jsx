@@ -54,6 +54,10 @@ import ScrollToTop from "./components/scrollToTop";
 import EditPlagiarismTypes from "./pages/edit-plagiarism-types/edit-plagiarism-types";
 import EditFAQ from "./pages/edit-faq/edit-faq";
 import EditBenefits from "./pages/edit-benefits/edit-benefits";
+import IsNotSignedIn from "./components/auth/is-not-signed-in";
+import IsUser from "./components/auth/is-user";
+import IsAdmin from "./components/auth/is-admin";
+import UsageHistoryPage from "./pages/usage-history/usage-history";
 
 function App({ flash, setCurrentUser, currenUser }) {
   const { pathname } = useLocation();
@@ -62,11 +66,13 @@ function App({ flash, setCurrentUser, currenUser }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isPostLogin, setIsPostLogin] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [fetchingUser, setFetchingUser] = useState(true);
 
   console.log({ isPostLogin });
   const headerRoutes = ["/login", "/signup", "/pricing", "/"];
   const postLoginRoutes = [
     "/users",
+    "/usage-history",
     "/manage-subscriptions",
     "/search",
     "/details",
@@ -80,6 +86,7 @@ function App({ flash, setCurrentUser, currenUser }) {
     "/edit-benefits",
   ];
   async function handleCheckAuth() {
+    setFetchingUser(true);
     try {
       const response = await checkAuth();
       console.log({ userResponse: response });
@@ -89,12 +96,21 @@ function App({ flash, setCurrentUser, currenUser }) {
       }
     } catch (err) {
       console.log(err.message);
+    } finally {
+      setFetchingUser(false);
     }
   }
   useEffect(() => {
     const authToken = localStorage.getItem("authToken");
     console.log({ pathname });
-    if (authToken) handleCheckAuth();
+    if (authToken) {
+      handleCheckAuth();
+    } else {
+      setFetchingUser(false);
+    }
+  }, []);
+
+  useEffect(() => {
     if (pathname === "/") {
       return setIsPostLogin(false);
     }
@@ -107,6 +123,7 @@ function App({ flash, setCurrentUser, currenUser }) {
     });
     setIsPostLogin(isPostLoginTemp);
   }, [pathname]);
+
   return (
     <div className={`${isPostLogin ? styles.postLoginPage : ""}`}>
       <ScrollToTop />
@@ -132,12 +149,22 @@ function App({ flash, setCurrentUser, currenUser }) {
           <Route
             exact
             path="/login"
-            element={currenUser ? <Navigate to="/" /> : <LoginPage />}
+            // element={currenUser ? <Navigate to="/" /> : <LoginPage />}
+            element={
+              <IsNotSignedIn isLoading={fetchingUser}>
+                <LoginPage />
+              </IsNotSignedIn>
+            }
           />
           <Route
             exact
             path="/signup"
-            element={currenUser ? <Navigate to="/" /> : <SignupPage />}
+            element={
+              <IsNotSignedIn isLoading={fetchingUser}>
+                <SignupPage />
+              </IsNotSignedIn>
+            }
+            // element={currenUser ? <Navigate to="/" /> : <SignupPage />}
           />
           <Route exact path="/pricing" element={<PricingPage />} />
           <Route exact path="/verify-email" element={<VerificationPage />} />
@@ -146,90 +173,165 @@ function App({ flash, setCurrentUser, currenUser }) {
           <Route
             exact
             path="/account"
-            element={!currenUser ? <Navigate to="/login" /> : <AccountPage />}
+            // element={!currenUser ? <Navigate to="/login" /> : <AccountPage />}
+            element={
+              <IsUser isLoading={fetchingUser}>
+                <AccountPage />
+              </IsUser>
+            }
           />
           <Route
             exact
             path="/details"
+            // element={
+            //   !currenUser ? (
+            //     <Navigate to="/login" />
+            //   ) : (
+            //     <DetailsPage isAdmin={isAdmin} />
+            //   )
+            // }
             element={
-              !currenUser ? (
-                <Navigate to="/login" />
-              ) : (
+              <IsUser isLoading={fetchingUser}>
                 <DetailsPage isAdmin={isAdmin} />
-              )
+              </IsUser>
+            }
+          />
+          <Route
+            exact
+            path="/usage-history"
+            element={
+              <IsAdmin isLoading={fetchingUser}>
+                <UsageHistoryPage />
+              </IsAdmin>
             }
           />
           <Route
             exact
             path="/details/:id"
-            element={!currenUser ? <Navigate to="/login" /> : <ReportPage />}
+            // element={!currenUser ? <Navigate to="/login" /> : <ReportPage />}
+            element={
+              <IsUser isLoading={fetchingUser}>
+                <ReportPage />
+              </IsUser>
+            }
           />
           <Route
             exact
             path="/search"
-            element={!currenUser ? <Navigate to="/login" /> : <SearchPage />}
+            // element={!currenUser ? <Navigate to="/login" /> : <SearchPage />}
+            element={
+              <IsUser isLoading={fetchingUser}>
+                <SearchPage />
+              </IsUser>
+            }
           />
           <Route
             exact
             path="/manage-subscriptions"
+            // element={
+            //   !currenUser ? (
+            //     <Navigate to="/login" />
+            //   ) : (
+            //     <ManageSubscriptionsPage />
+            //   )
+            // }
             element={
-              !currenUser ? (
-                <Navigate to="/login" />
-              ) : (
+              <IsAdmin isLoading={fetchingUser}>
                 <ManageSubscriptionsPage />
-              )
+              </IsAdmin>
             }
           />
           <Route
             exact
             path="/users"
-            element={!currenUser ? <Navigate to="/login" /> : <AllUsersPage />}
+            // element={!currenUser ? <Navigate to="/login" /> : <AllUsersPage />}
+            element={
+              <IsAdmin isLoading={fetchingUser}>
+                <AllUsersPage />
+              </IsAdmin>
+            }
           />
           <Route
             exact
             path="/analysis"
-            element={!currenUser ? <Navigate to="/login" /> : <AnalysisPage />}
+            // element={!currenUser ? <Navigate to="/login" /> : <AnalysisPage />}
+            element={
+              <IsAdmin isLoading={fetchingUser}>
+                <AnalysisPage />
+              </IsAdmin>
+            }
           />
           <Route
             exact
             path="/payments"
+            // element={
+            //   !currenUser ? <Navigate to="/login" /> : <PaymentDetailsPage />
+            // }
             element={
-              !currenUser ? <Navigate to="/login" /> : <PaymentDetailsPage />
+              <IsAdmin isLoading={fetchingUser}>
+                <PaymentDetailsPage />
+              </IsAdmin>
             }
           />
           <Route
             exact
             path="/admins"
+            // element={
+            //   !currenUser ? <Navigate to="/login" /> : <ListAdminsPage />
+            // }
             element={
-              !currenUser ? <Navigate to="/login" /> : <ListAdminsPage />
+              <IsAdmin isLoading={fetchingUser}>
+                <ListAdminsPage />
+              </IsAdmin>
             }
           />
           <Route
             exact
             path="/how-it-works"
+            // element={
+            //   !currenUser ? <Navigate to="/login" /> : <HowItWorksPage />
+            // }
             element={
-              !currenUser ? <Navigate to="/login" /> : <HowItWorksPage />
+              <IsAdmin isLoading={fetchingUser}>
+                <HowItWorksPage />
+              </IsAdmin>
             }
           />
           <Route
             exact
             path="/plagiarism-types"
+            // element={
+            //   !currenUser ? <Navigate to="/login" /> : <EditPlagiarismTypes />
+            // }
             element={
-              !currenUser ? <Navigate to="/login" /> : <EditPlagiarismTypes />
+              <IsAdmin isLoading={fetchingUser}>
+                <EditPlagiarismTypes />
+              </IsAdmin>
             }
           />
           <Route
             exact
             path="/edit-faqs"
-            element={!currenUser ? <Navigate to="/login" /> : <EditFAQ />}
+            // element={!currenUser ? <Navigate to="/login" /> : <EditFAQ />}
+            element={
+              <IsAdmin isLoading={fetchingUser}>
+                <EditFAQ />
+              </IsAdmin>
+            }
           />
           <Route
             exact
             path="/edit-benefits"
-            element={!currenUser ? <Navigate to="/login" /> : <EditBenefits />}
+            // element={!currenUser ? <Navigate to="/login" /> : <EditBenefits />}
+            element={
+              <IsAdmin isLoading={fetchingUser}>
+                <EditBenefits />
+              </IsAdmin>
+            }
           />
 
           <Route exact path="/" element={<HomePage />} />
+          <Route exact path="/:id" element={<Navigate to="/" />} />
         </Routes>
       </div>
       {headerRoutes.includes(pathname) && <Footer />}

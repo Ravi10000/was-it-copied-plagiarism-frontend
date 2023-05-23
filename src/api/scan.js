@@ -18,3 +18,11 @@ export const getMyScans = async (isAdmin = false, skip = 0, limit = 0) =>
 
 export const getScanById = async (id) =>
   api.get(`/scan/${id}`, { headers: { ...authHeader } });
+
+export const getCredits = async () =>
+  api.get("/scan/credits", { headers: { ...authHeader } });
+
+export const getUsageHistory = async ({ startDate, endDate }) =>
+  api.get(`/scan/history?startDate=${startDate}&endDate=${endDate}`, {
+    headers: { ...authHeader },
+  });

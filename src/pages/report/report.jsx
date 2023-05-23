@@ -3,23 +3,58 @@ import { useState, useRef, useEffect } from "react";
 
 import Button from "../../components/button/button";
 import { getScanById } from "../../api/scan";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function ReportPage() {
+  const navigate = useNavigate();
   const [showOptions, setShowOptions] = useState(false);
   const optionsRef = useRef(null);
   const [scan, setScan] = useState(null);
-  const { id } = useParams();
+  const [title, setTitle] = useState("");
+  const [currentSourceIdx, setCurrentSourceIdx] = useState(0);
+  let currentSource = scan?.sources?.[currentSourceIdx];
+
+  console.log({ currentSource });
+
   console.log({ scan });
+
+  const { id } = useParams();
   async function handleFetchReport() {
     try {
       const res = await getScanById(id);
       console.log({ res });
-      setScan({ ...res.data.scan, text: res.data.text });
+      let scanData = {
+        ...res.data.scan,
+        text: res.data.text,
+        // status: "CREATED", // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! remove this line -  just for testing
+        result: JSON.parse(res?.data?.scan?.result),
+      };
+      if (res.data.scan.status !== "COMPLETED") return setScan(scanData);
+      let { internet, repositories, database, batch } = scanData.result.results;
+      scanData.sources = internet
+        .concat(repositories)
+        .concat(database)
+        .concat(batch);
+      setScan(scanData);
     } catch (err) {
       console.log(err);
     }
   }
+
+  function showNextSource() {
+    if (currentSourceIdx >= scan.sources.length - 1)
+      return setCurrentSourceIdx(0);
+    setCurrentSourceIdx((prevState) => prevState + 1);
+  }
+  function showPrevSource() {
+    if (currentSourceIdx <= 0)
+      return setCurrentSourceIdx(scan.sources.length - 1);
+    setCurrentSourceIdx((prevState) => prevState - 1);
+  }
+
+  useEffect(() => {
+    setTitle(scan?.title);
+  }, [scan]);
 
   useEffect(() => {
     handleFetchReport();
@@ -37,104 +72,122 @@ function ReportPage() {
   }, [optionsRef]);
 
   return (
-    <section className={styles.reportPage}>
-      <div className={styles.data}>
-        <input
-          className={styles.textInput}
-          type="text"
-          defaultValue="Lorem Ipsum is simply..."
-        />
-        <div className={styles.text}>
-          <p>
-            {/* Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus
-            PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply
-            dummy text of the printing and typesetting industry. Lorem Ipsum has
-            been the industry's standard dummy text ever since the 1500s, when
-            an unknown printer took a galley of type and scrambled it to make a
-            type specimen book. It has survived not only five centuries, but
-            also the leap into electronic typesetting, remaining essentially
-            unchanged. It was popularised in the 1960s with the release of
-            Letraset sheets containing Lorem Ipsum passages, and more recently
-            with desktop publishing software like Aldus PageMaker including
-            versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the
-            printing and typesetting industry. Lorem Ipsum has been the
-            industry's standard dummy text ever since the 1500s, when an unknown
-            printer took a galley of type and scrambled it to make a type
-            specimen book. It has survived not only five centuries, but also the
-            leap into electronic typesetting, remaining essentially unchanged.
-            It was popularised in the 1960s with the release of Letraset sheets
-            containing Lorem Ipsum passages, and more recently with desktop
-            publishing software like Aldus PageMaker including versions of Lorem
-            Ipsum. */}
-            {scan?.text}
-          </p>
+    <>
+      {scan?.status !== "COMPLETED" ? (
+        <div className={styles.checking}>
+          <h2>checking for plagiarism...</h2>
         </div>
-        <Button primary>New Search</Button>
-      </div>
-      <div className={styles.analysis}>
-        <div className={styles.percentage}>
-          <p>100%</p>
-        </div>
-        <div className={styles.head}>
-          <div className={styles.left}>
-            <img
-              src="/arrow.png"
-              alt=""
-              className={styles.btn + " " + styles.back}
+      ) : (
+        <section className={styles.reportPage}>
+          <div className={styles.data}>
+            <table className={styles.summary}>
+              <tr>
+                <th>Identical Words: </th>
+                <td>{scan?.result?.results?.score?.identicalWords}</td>
+              </tr>
+              <tr>
+                <th>Minor Changed Words: </th>
+                <td>{scan?.result?.results?.score?.minorChangedWords}</td>
+              </tr>
+              <tr>
+                <th>Related Meaning Words: </th>
+                <td>{scan?.result?.results?.score?.relatedMeaningWords}</td>
+              </tr>
+            </table>
+            <input
+              className={styles.textInput}
+              type="text"
+              value={scan?.title?.slice(0, 20) + "..."}
             />
-            <img
-              src="/arrow.png"
-              alt=""
-              className={styles.btn + " " + styles.forward}
-            />
-            <p>4 matches from 1 source</p>
-          </div>
-          <div
-            className={styles.menu}
-            onClick={() => setShowOptions((prevState) => !prevState)}
-          >
-            <div className={styles.menuIconContainer}>
-              <img
-                className={styles.menuIcon}
-                src="/more-dots-filled.png"
-                alt=""
-              />
+            <div className={styles.text}>
+              <p>{scan?.text}</p>
             </div>
-            {showOptions && (
-              <div className={styles.options} ref={optionsRef}>
-                <div className={styles.option}>
-                  <img src="/info.png" alt="" />
-                  <p>Summary</p>
-                </div>
-                <div className={styles.option}>
-                  <img src="/share.png" alt="" />
-                  <p>share</p>
-                </div>
-                <div className={styles.option}>
-                  <img src="/download (1).png" alt="" />
-                  <p>download pdf</p>
-                </div>
+            <Button primary onClick={() => navigate("/search")}>
+              New Search
+            </Button>
+          </div>
+
+          <div className={styles.analysis}>
+            <div className={styles.percentage}>
+              <p>{scan?.result?.results?.score?.aggregatedScore}%</p>
+            </div>
+            <p>
+              result: {currentSourceIdx + 1} / {scan?.sources?.length}
+            </p>
+            <div className={styles.head}>
+              <div className={styles.left}>
+                <img
+                  src="/arrow.png"
+                  alt=""
+                  className={styles.btn + " " + styles.back}
+                  onClick={showPrevSource}
+                />
+                <img
+                  src="/arrow.png"
+                  alt=""
+                  className={styles.btn + " " + styles.forward}
+                  onClick={showNextSource}
+                />
+                <p>
+                  {Math.floor(
+                    (currentSource?.matchedWords * 100) /
+                      scan?.result?.scannedDocument?.totalWords
+                  )}
+                  % matched
+                </p>
               </div>
-            )}
+              <div
+                className={styles.menu}
+                onClick={() => setShowOptions((prevState) => !prevState)}
+              >
+                <div className={styles.menuIconContainer}>
+                  <img
+                    className={styles.menuIcon}
+                    src="/more-dots-filled.png"
+                    alt=""
+                  />
+                </div>
+                {showOptions && (
+                  <div className={styles.options} ref={optionsRef}>
+                    <div
+                      className={styles.option}
+                      onClick={() => window.open(currentSource?.url)}
+                    >
+                      <img src="/info.png" alt="" />
+                      <p>visit source</p>
+                    </div>
+                    <div className={styles.option}>
+                      <img src="/share.png" alt="" />
+                      <p>share</p>
+                    </div>
+                    <div className={styles.option}>
+                      <img src="/download (1).png" alt="" />
+                      <p>download pdf</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+            <table className={styles.report}>
+              {/* <div className={styles.reportText}> */}
+              <tr>
+                <th>Source : </th>
+                <td>{currentSource?.url.slice(0, 25)}...</td>
+              </tr>
+              <tr>
+                <th>Title : </th>
+                <td>{currentSource?.title}</td>
+              </tr>
+              <tr>
+                <th>Matched Words : </th>
+                <td>{currentSource?.matchedWords}</td>
+                {/* </div> */}
+              </tr>
+            </table>
           </div>
-        </div>
-        <div className={styles.report}>
-          <div className={styles.reportText}>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis
-            perspiciatis magni delectus rerum asperiores eum! Minima esse
-            pariatur consequuntur magnam eius ipsa libero laboriosam nihil
-            aliquam, nostrum qui officia dolores!
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
+      )}
+    </>
   );
 }
 

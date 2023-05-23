@@ -1,0 +1,27 @@
+.loading {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 90909099;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-clr);
+  .loader {
+    border: 5px solid #fff;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    animation: spinLoader 0.5s linear infinite;
+  }
+}
+
+@keyframes spinLoader {
+  to {
+    transform: rotate(360deg);
+  }
+}

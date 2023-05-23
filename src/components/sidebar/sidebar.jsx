@@ -32,14 +32,14 @@ const options = [
 ];
 const adminOptions = [
   {
-    name: "manage-subscriptions",
-    icon: "/page-icons/subscription.png",
-    iconDark: "/page-icons/subscription-dark.png",
-  },
-  {
     name: "users",
     icon: "/page-icons/users.png",
     iconDark: "/page-icons/users-dark.png",
+  },
+  {
+    name: "usage-history",
+    icon: "/page-icons/history.png",
+    iconDark: "/page-icons/history-dark.png",
   },
   {
     name: "admins",
@@ -55,6 +55,11 @@ const adminOptions = [
     name: "payments",
     icon: "/page-icons/card.png",
     iconDark: "/page-icons/card-dark.png",
+  },
+  {
+    name: "manage-subscriptions",
+    icon: "/page-icons/subscription.png",
+    iconDark: "/page-icons/subscription-dark.png",
   },
   {
     name: "how-it-works",
@@ -94,6 +99,9 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen, currentUser }) {
 
   useEffect(() => {
     if (currentUser?.usertype === "ADMIN") setIsAdmin(true);
+  }, [currentUser]);
+
+  useEffect(() => {
     function handleMouseDown(e) {
       if (!sidebarRef.current.contains(e.target)) {
         setIsSidebarOpen(false);
@@ -150,8 +158,7 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen, currentUser }) {
                 navigate(`/${option.name}`);
               }}
             />
-          ))
-          }
+          ))}
       </div>
     </section>
   );

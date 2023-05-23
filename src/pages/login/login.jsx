@@ -57,8 +57,8 @@ function LoginPage({ setCurrentUser, setFlash }) {
       if (response.data.status === "success") {
         localStorage.setItem("authToken", response.data.authToken);
         console.log(response.data.user);
-        setCurrentUser(response.data.user);
-        setFlash({
+        await setCurrentUser(response.data.user);
+        await setFlash({
           type: "success",
           message: "Login Successful",
         });

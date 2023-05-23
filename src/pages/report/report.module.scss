@@ -1,3 +1,10 @@
+.checking {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  padding: 25px;
+}
 .reportPage {
   color: #fff;
   min-height: 100vh;
@@ -40,10 +47,17 @@
       padding: 20px;
       background: #283a5b59;
       box-shadow: 0 8px 32px 0 #1f26875e;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      // backdrop-filter: blur(20px);
+      // -webkit-backdrop-filter: blur(20px);
       border-radius: 10px;
       border: 1px solid #fff;
+    }
+  }
+  table.summary,
+  table.report {
+    text-align: left;
+    td {
+      padding-left: 10px;
     }
   }
   .analysis {
@@ -103,6 +117,7 @@
           gap: 10px;
           background: var(--heading-clr);
           .option {
+            cursor: pointer;
             display: flex;
             align-items: center;
             gap: 5px;
@@ -124,6 +139,9 @@
           }
         }
       }
+    }
+    .report {
+      align-self: flex-start;
     }
   }
 }

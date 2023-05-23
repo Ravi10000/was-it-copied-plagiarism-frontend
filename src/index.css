@@ -169,3 +169,29 @@ input[type="checkbox"] {
 input[type="file"] {
   cursor: pointer;
 }
+
+.__loader_container {
+  width: 100%;
+  padding: 20px;
+  height: fit-content;
+  background: #ffffff69;
+  /* position: absolute; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.__loader_container .__loader {
+  width: 20px;
+  aspect-ratio: 1/1;
+  border: 2px solid var(--primary-clr);
+  border-radius: 50px;
+  border-top: 2px solid transparent;
+  border-right: 2px solid transparent;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
