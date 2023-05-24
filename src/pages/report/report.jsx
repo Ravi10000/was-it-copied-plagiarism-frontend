@@ -35,6 +35,23 @@ function ReportPage() {
         .concat(repositories)
         .concat(database)
         .concat(batch);
+
+      if (scanData?.result?.notifications?.alerts?.length > 0) {
+        scanData.alert = scanData?.result?.notifications?.alerts?.[0];
+        // .map(
+        //   (alert, i) => {
+        const additionalData = JSON.parse(scanData?.alert?.additionalData);
+        let aiTextProbability = 0;
+        additionalData?.results?.forEach((result) => {
+          if (result.probability > aiTextProbability)
+            aiTextProbability = result.probability;
+        });
+        scanData.aiTextProbability = aiTextProbability;
+        // return { ...alert, additionalData };
+        // }
+        // );
+        // scanData.alerts = scanData.result.notifications.alerts;
+      }
       setScan(scanData);
     } catch (err) {
       console.log(err);
@@ -184,6 +201,13 @@ function ReportPage() {
                 {/* </div> */}
               </tr>
             </table>
+            {scan?.alert && (
+              <div className={styles.aiInfo}>
+                <h2>{Math.floor(scan?.aiTextProbability * 100)}%</h2>
+                <h3>{scan?.alert?.title}</h3>
+                <p>{scan?.alert?.message}</p>
+              </div>
+            )}
           </div>
         </section>
       )}

@@ -19,10 +19,28 @@ import { getHowItWorks } from "../../api/howItWorks";
 import PlagiarismTypes from "../plagiarism-types/plagiarism-types";
 import FaqList from "../edit-faq/faq-list/faq-list";
 import BenefitList from "../edit-benefits/benefit-list/benefit-list";
+import { scanText } from "../../api/scan";
 
 function HomePage({ currentUser }) {
-  const [value, setValue] = useState("");
   const navigate = useNavigate();
+  const [value, setValue] = useState("");
+  const [text, setText] = useState("");
+  const [textLoading, setTextLoading] = useState(false);
+
+  async function handleCheckPlagiarism() {
+    setTextLoading(true);
+    try {
+      const res = await scanText(text);
+      console.log({ res });
+      if (res.data.status === "success") {
+        navigate(`/details/${res.data.scan._id}`);
+      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setTextLoading(false);
+    }
+  }
 
   return (
     <div className={styles.homePage}>
@@ -36,8 +54,21 @@ function HomePage({ currentUser }) {
             Plagiarism checker detects plagiarism in your text, checks for other
             writing issues, and helps you build citations
           </p>
-          <LongTextInput value={value} setValue={setValue} />
-          <Button primary lg onClick={() => navigate("/search")}>
+          <LongTextInput
+            text={text}
+            value={text}
+            onChange={(e) => {
+              console.log(e.target.value);
+              setText(e.target.value);
+            }}
+          />
+          <Button
+            primary
+            lg
+            isLoading={textLoading}
+            disabled={text?.length < 255}
+            onClick={handleCheckPlagiarism}
+          >
             Check For Plagiarism
           </Button>
         </div>

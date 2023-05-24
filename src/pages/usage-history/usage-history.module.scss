@@ -1,5 +1,38 @@
 .usageHistoryPage {
   color: #fff;
+
+  .head {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    padding: 20px;
+    h1 {
+      font-size: 2rem;
+    }
+    .credits {
+      width: 150px;
+      padding: 10px 30px;
+      aspect-ratio: 1/1;
+      border-radius: 10px;
+      border: 1px solid #ffffff1f;
+      box-shadow: 2px 2px 10px #00000040;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      .container {
+        img {
+          height: 25px;
+          width: fit-content;
+        }
+        h3 {
+          font-size: 1.75rem;
+        }
+      }
+      // align-items: flex-start;
+    }
+  }
   .table {
     width: 100%;
     overflow-x: scroll;
@@ -53,6 +86,19 @@
           border-bottom: 2px solid var(--primary-clr);
           color: var(--primary-clr);
         }
+      }
+    }
+  }
+}
+
+@media (min-width: 500px) {
+  .usageHistoryPage {
+    .head {
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 20px 80px;
+      h1 {
+        align-self: flex-end;
       }
     }
   }
