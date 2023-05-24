@@ -14,10 +14,6 @@ function ReportPage() {
   const [currentSourceIdx, setCurrentSourceIdx] = useState(0);
   let currentSource = scan?.sources?.[currentSourceIdx];
 
-  console.log({ currentSource });
-
-  console.log({ scan });
-
   const { id } = useParams();
   async function handleFetchReport() {
     try {
