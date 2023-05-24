@@ -26,11 +26,14 @@ function ReportPage() {
       let scanData = {
         ...res.data.scan,
         text: res.data.text,
-        // status: "CREATED", // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! remove this line -  just for testing
-        result: JSON.parse(res?.data?.scan?.result),
       };
+      // if(res.data.scan.status ===)
       if (res.data.scan.status !== "COMPLETED") return setScan(scanData);
-      let { internet, repositories, database, batch } = scanData.result.results;
+      if (res?.data?.scan?.result) {
+        scanData.result = JSON.parse(res?.data?.scan?.result);
+      }
+      let { internet, repositories, database, batch } =
+        scanData?.result?.results;
       scanData.sources = internet
         .concat(repositories)
         .concat(database)
@@ -74,6 +77,12 @@ function ReportPage() {
   }, [scan]);
 
   useEffect(() => {
+    //   let tryFetchingScan = setInterval(async () => {
+    //     const scanResponse = await getScanById();
+    //     console.log({ scanResponse });
+    //     if (scanResponse?.data?.scan?.status !== "CREATED")
+    //       clearInterval(tryFetchingScan);
+    //   }, [10000]);
     handleFetchReport();
   }, []);
   useEffect(() => {

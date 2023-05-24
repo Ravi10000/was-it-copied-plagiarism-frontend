@@ -33,6 +33,7 @@ function UsageHistoryPage({ setFlash }) {
 
   async function handleGetUsageHistory({ startDate, endDate }) {
     setIsFetching(true);
+    setErrorFetchingHistory(false);
     try {
       // const historyResponse = await getUsageHistory({
       //   startDate: "01-05-2023",
@@ -107,14 +108,14 @@ function UsageHistoryPage({ setFlash }) {
     endDate = endDate.toLocaleDateString().split("/");
     let temp = endDate[0];
     endDate[0] = endDate[1];
-    endDate[1] = temp;
+    endDate[1] = temp.length < 2 ? "0" + temp : temp;
     endDate = endDate.join("-");
 
     startDate.setDate(startDate.getDate() - 30);
     startDate = startDate.toLocaleDateString().split("/");
     temp = startDate[0];
     startDate[0] = startDate[1];
-    startDate[1] = temp;
+    startDate[1] = temp.length < 2 ? "0" + temp : temp;
     startDate = startDate.join("-");
 
     console.log({ startDate: endDate, endDate: startDate });
@@ -151,7 +152,7 @@ function UsageHistoryPage({ setFlash }) {
             </div>
             <button className={styles.getButton}>
               <img src="/page-icons/history.png" alt="" />
-              <p>Get Usage History</p>
+              <p>Get History</p>
             </button>
           </form>
         </div>
