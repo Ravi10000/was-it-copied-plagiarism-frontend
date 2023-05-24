@@ -23,7 +23,6 @@ function ReportPage() {
         ...res.data.scan,
         text: res.data.text,
       };
-      // if(res.data.scan.status ===)
       if (res.data.scan.status !== "COMPLETED") return setScan(scanData);
       if (res?.data?.scan?.result) {
         scanData.result = JSON.parse(res?.data?.scan?.result);
