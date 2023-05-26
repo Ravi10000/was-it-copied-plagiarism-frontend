@@ -188,9 +188,9 @@ function UsageHistoryPage({ setFlash }) {
             {usageHistory?.map((row, idx) => {
               if (idx === 0) return <></>;
               return (
-                <tr>
+                <tr key={idx}>
                   {row?.map((cell, idx) => (
-                    <td>{cell}</td>
+                    <td key={idx}>{cell}</td>
                   ))}
                 </tr>
               );
