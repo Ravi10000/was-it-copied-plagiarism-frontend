@@ -62,6 +62,7 @@ function SearchPage() {
           setText(e.target.value);
         }}
       />
+      <p>Text should be greater than 255 characters.</p>
       {/* {text?.length > 0 ? ( */}
       <Button
         primary
