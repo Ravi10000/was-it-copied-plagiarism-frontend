@@ -11,7 +11,6 @@ import { setFlash } from "../../../redux/flash/flash.actions";
 import { connect } from "react-redux";
 
 function PlagiarismItem({ item, enableEdit, fetchPlagiarismTypes, setFlash }) {
-  console.log(`${import.meta.env.VITE_REACT_APP_SERVER_URL}/${item?.icon}`);
   const [showPopup, setShowPopup] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 

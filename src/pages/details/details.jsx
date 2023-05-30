@@ -15,17 +15,11 @@ function DetailsPage({ isAdmin, setFlash }) {
   const [limit, setLimit] = useState(10);
   const [scanCount, setScanCount] = useState(0);
   const [credits, setCredits] = useState(0);
-  console.log({ scanCount });
 
   async function handleFetchScans() {
     setIsFetchingDetails(true);
     try {
-      // const creditsResponse = await getCredits();
-      // if (creditsResponse.data.status === "success")
-      //   setCredits(creditsResponse.data.credits);
-
       const res = await getMyScans(isAdmin, skip, limit);
-      console.log({ res });
       if (res.data.status === "success") {
         setScans(res.data.scans);
         setScanCount(res.data.scanCount);

@@ -10,6 +10,7 @@ import Button from "../../components/button/button";
 import { scanFile, scanText } from "../../api/scan";
 
 function SearchPage() {
+  const navigate = useNavigate();
   const [text, setText] = useState("");
   const [textLoading, setTextLoading] = useState(false);
   const [fileLoading, setFileLoading] = useState(false);
@@ -17,9 +18,7 @@ function SearchPage() {
   async function handleCheckPlagiarism() {
     setTextLoading(true);
     try {
-      console.log({ text });
       const res = await scanText(text);
-      console.log({ res });
       if (res.data.status === "success") {
         navigate(`/details/${res.data.scan._id}`);
       }
@@ -47,8 +46,6 @@ function SearchPage() {
       setFileLoading(false);
     }
   }
-  console.log({ text });
-  const navigate = useNavigate();
   return (
     <div className={styles.searchPage}>
       <input type="text" placeholder="Report Title (optional)" />

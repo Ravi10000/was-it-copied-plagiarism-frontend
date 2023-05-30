@@ -68,7 +68,6 @@ function App({ flash, setCurrentUser, currenUser }) {
   const [isAdmin, setIsAdmin] = useState(false);
   const [fetchingUser, setFetchingUser] = useState(true);
 
-  console.log({ isPostLogin });
   const headerRoutes = ["/login", "/signup", "/pricing", "/"];
   const postLoginRoutes = [
     "/users",
@@ -89,7 +88,6 @@ function App({ flash, setCurrentUser, currenUser }) {
     setFetchingUser(true);
     try {
       const response = await checkAuth();
-      console.log({ userResponse: response });
       if (response.data.status === "success") {
         response?.data?.user?.usertype === "ADMIN" && setIsAdmin(true);
         setCurrentUser(response.data.user);
@@ -102,7 +100,6 @@ function App({ flash, setCurrentUser, currenUser }) {
   }
   useEffect(() => {
     const authToken = localStorage.getItem("authToken");
-    console.log({ pathname });
     if (authToken) {
       handleCheckAuth();
     } else {
@@ -119,7 +116,6 @@ function App({ flash, setCurrentUser, currenUser }) {
       if (pathname.includes(route)) {
         isPostLoginTemp = true;
       }
-      // console.log({ route, isPostLoginTemp });
     });
     setIsPostLogin(isPostLoginTemp);
   }, [pathname]);
@@ -149,7 +145,6 @@ function App({ flash, setCurrentUser, currenUser }) {
           <Route
             exact
             path="/login"
-            // element={currenUser ? <Navigate to="/" /> : <LoginPage />}
             element={
               <IsNotSignedIn isLoading={fetchingUser}>
                 <LoginPage />
@@ -164,7 +159,6 @@ function App({ flash, setCurrentUser, currenUser }) {
                 <SignupPage />
               </IsNotSignedIn>
             }
-            // element={currenUser ? <Navigate to="/" /> : <SignupPage />}
           />
           <Route exact path="/pricing" element={<PricingPage />} />
           <Route exact path="/verify-email" element={<VerificationPage />} />
@@ -173,7 +167,6 @@ function App({ flash, setCurrentUser, currenUser }) {
           <Route
             exact
             path="/account"
-            // element={!currenUser ? <Navigate to="/login" /> : <AccountPage />}
             element={
               <IsUser isLoading={fetchingUser}>
                 <AccountPage />
@@ -183,13 +176,6 @@ function App({ flash, setCurrentUser, currenUser }) {
           <Route
             exact
             path="/details"
-            // element={
-            //   !currenUser ? (
-            //     <Navigate to="/login" />
-            //   ) : (
-            //     <DetailsPage isAdmin={isAdmin} />
-            //   )
-            // }
             element={
               <IsUser isLoading={fetchingUser}>
                 <DetailsPage isAdmin={isAdmin} />
@@ -208,7 +194,6 @@ function App({ flash, setCurrentUser, currenUser }) {
           <Route
             exact
             path="/details/:id"
-            // element={!currenUser ? <Navigate to="/login" /> : <ReportPage />}
             element={
               <IsUser isLoading={fetchingUser}>
                 <ReportPage />
@@ -218,7 +203,6 @@ function App({ flash, setCurrentUser, currenUser }) {
           <Route
             exact
             path="/search"
-            // element={!currenUser ? <Navigate to="/login" /> : <SearchPage />}
             element={
               <IsUser isLoading={fetchingUser}>
                 <SearchPage />
@@ -228,13 +212,6 @@ function App({ flash, setCurrentUser, currenUser }) {
           <Route
             exact
             path="/manage-subscriptions"
-            // element={
-            //   !currenUser ? (
-            //     <Navigate to="/login" />
-            //   ) : (
-            //     <ManageSubscriptionsPage />
-            //   )
-            // }
             element={
               <IsAdmin isLoading={fetchingUser}>
                 <ManageSubscriptionsPage />
@@ -244,7 +221,6 @@ function App({ flash, setCurrentUser, currenUser }) {
           <Route
             exact
             path="/users"
-            // element={!currenUser ? <Navigate to="/login" /> : <AllUsersPage />}
             element={
               <IsAdmin isLoading={fetchingUser}>
                 <AllUsersPage />
@@ -254,7 +230,6 @@ function App({ flash, setCurrentUser, currenUser }) {
           <Route
             exact
             path="/analysis"
-            // element={!currenUser ? <Navigate to="/login" /> : <AnalysisPage />}
             element={
               <IsAdmin isLoading={fetchingUser}>
                 <AnalysisPage />
@@ -264,9 +239,6 @@ function App({ flash, setCurrentUser, currenUser }) {
           <Route
             exact
             path="/payments"
-            // element={
-            //   !currenUser ? <Navigate to="/login" /> : <PaymentDetailsPage />
-            // }
             element={
               <IsAdmin isLoading={fetchingUser}>
                 <PaymentDetailsPage />
@@ -276,9 +248,6 @@ function App({ flash, setCurrentUser, currenUser }) {
           <Route
             exact
             path="/admins"
-            // element={
-            //   !currenUser ? <Navigate to="/login" /> : <ListAdminsPage />
-            // }
             element={
               <IsAdmin isLoading={fetchingUser}>
                 <ListAdminsPage />
@@ -288,9 +257,6 @@ function App({ flash, setCurrentUser, currenUser }) {
           <Route
             exact
             path="/how-it-works"
-            // element={
-            //   !currenUser ? <Navigate to="/login" /> : <HowItWorksPage />
-            // }
             element={
               <IsAdmin isLoading={fetchingUser}>
                 <HowItWorksPage />
@@ -300,9 +266,6 @@ function App({ flash, setCurrentUser, currenUser }) {
           <Route
             exact
             path="/plagiarism-types"
-            // element={
-            //   !currenUser ? <Navigate to="/login" /> : <EditPlagiarismTypes />
-            // }
             element={
               <IsAdmin isLoading={fetchingUser}>
                 <EditPlagiarismTypes />
@@ -312,7 +275,6 @@ function App({ flash, setCurrentUser, currenUser }) {
           <Route
             exact
             path="/edit-faqs"
-            // element={!currenUser ? <Navigate to="/login" /> : <EditFAQ />}
             element={
               <IsAdmin isLoading={fetchingUser}>
                 <EditFAQ />
@@ -322,7 +284,6 @@ function App({ flash, setCurrentUser, currenUser }) {
           <Route
             exact
             path="/edit-benefits"
-            // element={!currenUser ? <Navigate to="/login" /> : <EditBenefits />}
             element={
               <IsAdmin isLoading={fetchingUser}>
                 <EditBenefits />

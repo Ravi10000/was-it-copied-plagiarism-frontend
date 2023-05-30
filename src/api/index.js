@@ -1,6 +1,6 @@
 import axios from "axios";
 const authToken = localStorage.getItem("authToken");
-console.log("authToken", authToken);
+// console.log("authToken", authToken);
 export const authHeader = authToken
   ? { Authorization: `Bearer ${authToken}` }
   : {};
