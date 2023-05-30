@@ -119,7 +119,7 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen, currentUser }) {
       ref={sidebarRef}
     >
       <div className={styles.closeSidebar} onClick={() => navigate("/")}>
-        <img src="/app-icon.svg" alt="" />
+        <img src="/logo-temp-2.png" alt="" />
         {/* <img src="/close-2.png" alt="" /> */}
       </div>
       <div className={styles.optionsContainer}>
