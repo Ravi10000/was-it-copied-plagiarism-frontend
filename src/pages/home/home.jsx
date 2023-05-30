@@ -20,14 +20,22 @@ import PlagiarismTypes from "../plagiarism-types/plagiarism-types";
 import FaqList from "../edit-faq/faq-list/faq-list";
 import BenefitList from "../edit-benefits/benefit-list/benefit-list";
 import { scanText } from "../../api/scan";
+import { setFlash } from "../../redux/flash/flash.actions";
 
-function HomePage({ currentUser }) {
+function HomePage({ currentUser, setFlash }) {
   const navigate = useNavigate();
   const [value, setValue] = useState("");
   const [text, setText] = useState("");
   const [textLoading, setTextLoading] = useState(false);
 
   async function handleCheckPlagiarism() {
+    if (!currentUser) {
+      setFlash({
+        type: "warning",
+        message: "Please login and try again",
+      });
+      return navigate("/login");
+    }
     setTextLoading(true);
     try {
       const res = await scanText(text);
@@ -106,4 +114,4 @@ const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
 });
 
-export default connect(mapStateToProps)(HomePage);
+export default connect(mapStateToProps, { setFlash })(HomePage);
