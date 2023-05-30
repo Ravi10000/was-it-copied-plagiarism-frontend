@@ -89,7 +89,7 @@ function HomePage({ currentUser, setFlash }) {
         </h4>
         <p>
           Ready to stop wasting time with that old-school "plagiarism tool" from
-          the 90's? Start using Quetext today for free!
+          the 90's? Start using plagiarism checker today for free!
         </p>
         {currentUser ? (
           <h2 className={styles.welcome}>

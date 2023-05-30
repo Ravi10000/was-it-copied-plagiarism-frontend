@@ -122,10 +122,10 @@ function PlagiarismChecker() {
             <p>
               It is much easier to do a quick check for potential plagiarism
               before submission rather than convince a teacher after the fact
-              that your academic integrity is not in question. And Quetext even
-              takes checking for plagiarism a step further, helping students
-              identify and cite the source itself with our built-in citation
-              generator.
+              that your academic integrity is not in question. And Plagiarism
+              Checker even takes checking for plagiarism a step further, helping
+              students identify and cite the source itself with our built-in
+              citation generator.
             </p>
           </div>
           <div className={styles.benefit}>
