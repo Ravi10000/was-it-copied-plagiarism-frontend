@@ -33,7 +33,11 @@ function Record({ scan }) {
         {/* Lorem Ipsum is simply... */}
         {scan?.title?.slice(0, 20)}...
       </td>
-      <td>100%</td>
+      <td>
+        {scan?.result?.results?.score?.aggregatedScore
+          ? scan?.result?.results?.score?.aggregatedScore + "%"
+          : "N/A"}
+      </td>
       <td>
         {createdAtDate}, {createdAtTime}
       </td>

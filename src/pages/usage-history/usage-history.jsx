@@ -48,7 +48,7 @@ function UsageHistoryPage({ setFlash }) {
       setUsageHistory(historyResponse?.data?.usageHistory);
     } catch (err) {
       console.error(err.message);
-      setCredits(0);
+      // setCredits(0);
       setErrorFetchingHistory(
         "Error while fetching usage hisotry, too many requests, only 10 calls allowed per 15 minutes"
       );
@@ -56,6 +56,7 @@ function UsageHistoryPage({ setFlash }) {
       setIsFetching(false);
     }
   }
+
   async function handleFetchCredits() {
     try {
       const creditsResponse = await getCredits();
@@ -69,6 +70,7 @@ function UsageHistoryPage({ setFlash }) {
         message:
           "Error while fetching credits too many requests, only 12 calls allowed per 15 minutes",
       });
+      setCredits(0);
     }
   }
 

@@ -15,12 +15,16 @@ function DetailsPage({ isAdmin, setFlash }) {
   const [limit, setLimit] = useState(10);
   const [scanCount, setScanCount] = useState(0);
   const [credits, setCredits] = useState(0);
-
+  console.log({ scans });
   async function handleFetchScans() {
     setIsFetchingDetails(true);
     try {
-      const res = await getMyScans(isAdmin, skip, limit);
+      let res = await getMyScans(isAdmin, skip, limit);
       if (res.data.status === "success") {
+        res.data.scans.map((scan) => {
+          scan.result = JSON.parse(scan.result);
+          return scan;
+        });
         setScans(res.data.scans);
         setScanCount(res.data.scanCount);
       }
@@ -43,7 +47,13 @@ function DetailsPage({ isAdmin, setFlash }) {
       const res = await getMyScans(isAdmin, skip + limit, limit);
       setSkip(skip + limit);
       console.log({ res });
-      if (res.data.status === "success") setScans(res.data.scans);
+      if (res.data.status === "success") {
+        res.data.scans.map((scan) => {
+          scan.result = JSON.parse(scan.result);
+          return scan;
+        });
+        setScans(res.data.scans);
+      }
     } catch (err) {
       console.log({ err });
     }
@@ -56,7 +66,13 @@ function DetailsPage({ isAdmin, setFlash }) {
       const res = await getMyScans(isAdmin, skip - limit, limit);
       setSkip(skip - limit);
       console.log({ res });
-      if (res.data.status === "success") setScans(res.data.scans);
+      if (res.data.status === "success") {
+        res.data.scans.map((scan) => {
+          scan.result = JSON.parse(scan.result);
+          return scan;
+        });
+        setScans(res.data.scans);
+      }
     } catch (err) {
       console.log({ err });
     }
