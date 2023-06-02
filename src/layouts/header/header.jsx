@@ -38,7 +38,12 @@ function Header({ currentUser }) {
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
-        <img src="/logo-temp.svg" alt="logo" onClick={() => navigate("/")} />
+        {/* <img src="/logo-temp.svg" alt="logo" onClick={() => navigate("/")} /> */}
+        <img
+          src="/wic-logo-lg.png"
+          alt="logo"
+          onClick={() => navigate("/")}
+        />
       </div>
       <div className={styles.navContainer}>
         <div className={styles.navList}>

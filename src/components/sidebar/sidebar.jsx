@@ -119,8 +119,8 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen, currentUser }) {
       ref={sidebarRef}
     >
       <div className={styles.closeSidebar} onClick={() => navigate("/")}>
-        <img src="/logo-temp-2.svg" alt="" />
-        {/* <img src="/close-2.png" alt="" /> */}
+        {/* <img src="/logo-temp-2.svg" alt="" /> */}
+        <img className={styles.logo} src="/logo-colored-sm.svg" alt="" />
       </div>
       <div className={styles.optionsContainer}>
         {options?.map((option) => (
