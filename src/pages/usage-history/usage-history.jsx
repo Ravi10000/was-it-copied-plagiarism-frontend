@@ -109,14 +109,14 @@ function UsageHistoryPage({ setFlash }) {
     let endDate = new Date(startDate);
     endDate = endDate.toLocaleDateString().split("/");
     let temp = endDate[0];
-    endDate[0] = endDate[1];
+    endDate[0] = endDate[1].length < 2 ? "0" + endDate[1] : endDate[1];
     endDate[1] = temp.length < 2 ? "0" + temp : temp;
     endDate = endDate.join("-");
 
     startDate.setDate(startDate.getDate() - 30);
     startDate = startDate.toLocaleDateString().split("/");
     temp = startDate[0];
-    startDate[0] = startDate[1];
+    startDate[0] = startDate[1].length < 2 ? "0" + startDate[1] : startDate[1];
     startDate[1] = temp.length < 2 ? "0" + temp : temp;
     startDate = startDate.join("-");
 
