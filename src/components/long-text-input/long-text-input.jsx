@@ -37,7 +37,7 @@ export default function LongTextInput({
         // onChange={(e) => setValue(e.target.value)}
       ></textarea>
       <div className={styles.placeholderText} ref={placeholderRef}>
-        <p>Enter Your Text Here</p>
+        <p>Enter Your Text Here Minimum length 255 characters</p>
         <p>and click the button below to check for plagiarism</p>
       </div>
     </div>
