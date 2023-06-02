@@ -22,7 +22,7 @@ function DetailsPage({ isAdmin, setFlash }) {
       let res = await getMyScans(isAdmin, skip, limit);
       if (res.data.status === "success") {
         res.data.scans.map((scan) => {
-          scan.result = JSON.parse(scan.result);
+          if (scan?.result?.results) scan.result = JSON.parse(scan.result);
           return scan;
         });
         setScans(res.data.scans);
@@ -49,7 +49,7 @@ function DetailsPage({ isAdmin, setFlash }) {
       console.log({ res });
       if (res.data.status === "success") {
         res.data.scans.map((scan) => {
-          scan.result = JSON.parse(scan.result);
+          if (scan?.result?.results) scan.result = JSON.parse(scan.result);
           return scan;
         });
         setScans(res.data.scans);
@@ -68,7 +68,7 @@ function DetailsPage({ isAdmin, setFlash }) {
       console.log({ res });
       if (res.data.status === "success") {
         res.data.scans.map((scan) => {
-          scan.result = JSON.parse(scan.result);
+          if (scan?.result?.results) scan.result = JSON.parse(scan.result);
           return scan;
         });
         setScans(res.data.scans);
