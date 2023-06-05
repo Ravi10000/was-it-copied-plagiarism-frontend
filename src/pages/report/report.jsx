@@ -111,24 +111,27 @@ function ReportPage() {
           <div className={styles.data}>
             {scan?.status === "COMPLETED" && (
               <table className={styles.summary}>
-                <tr>
-                  <th>Identical Words: </th>
-                  <td>{scan?.result?.results?.score?.identicalWords}</td>
-                </tr>
-                <tr>
-                  <th>Minor Changed Words: </th>
-                  <td>{scan?.result?.results?.score?.minorChangedWords}</td>
-                </tr>
-                <tr>
-                  <th>Related Meaning Words: </th>
-                  <td>{scan?.result?.results?.score?.relatedMeaningWords}</td>
-                </tr>
+                <thead>
+                  <tr>
+                    <th>Identical Words: </th>
+                    <td>{scan?.result?.results?.score?.identicalWords}</td>
+                  </tr>
+                  <tr>
+                    <th>Minor Changed Words: </th>
+                    <td>{scan?.result?.results?.score?.minorChangedWords}</td>
+                  </tr>
+                  <tr>
+                    <th>Related Meaning Words: </th>
+                    <td>{scan?.result?.results?.score?.relatedMeaningWords}</td>
+                  </tr>
+                </thead>
               </table>
             )}
             <input
               className={styles.textInput}
               type="text"
               value={scan?.title?.slice(0, 20) + "..."}
+              readOnly
             />
             <div className={styles.text}>
               <p>{scan?.text}</p>
@@ -203,20 +206,20 @@ function ReportPage() {
                 </div>
               </div>
               <table className={styles.report}>
-                {/* <div className={styles.reportText}> */}
-                <tr>
-                  <th>Source : </th>
-                  <td>{currentSource?.url.slice(0, 25)}...</td>
-                </tr>
-                <tr>
-                  <th>Title : </th>
-                  <td>{currentSource?.title}</td>
-                </tr>
-                <tr>
-                  <th>Matched Words : </th>
-                  <td>{currentSource?.matchedWords}</td>
-                  {/* </div> */}
-                </tr>
+                <thead>
+                  <tr>
+                    <th>Source : </th>
+                    <td>{currentSource?.url.slice(0, 25)}...</td>
+                  </tr>
+                  <tr>
+                    <th>Title : </th>
+                    <td>{currentSource?.title}</td>
+                  </tr>
+                  <tr>
+                    <th>Matched Words : </th>
+                    <td>{currentSource?.matchedWords}</td>
+                  </tr>
+                </thead>
               </table>
               {scan?.alert && (
                 <div className={styles.aiInfo}>

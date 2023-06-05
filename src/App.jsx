@@ -59,8 +59,6 @@ import IsUser from "./components/auth/is-user";
 import IsAdmin from "./components/auth/is-admin";
 import UsageHistoryPage from "./pages/usage-history/usage-history";
 
-import { socket } from "./api/websockets";
-
 function App({ flash, setCurrentUser, currenUser }) {
   const { pathname } = useLocation();
   // console.log({ pathname });

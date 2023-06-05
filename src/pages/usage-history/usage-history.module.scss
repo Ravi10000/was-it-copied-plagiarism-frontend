@@ -127,6 +127,13 @@
       }
     }
   }
+  .entry {
+    &:hover {
+      filter: brightness(1.2);
+      cursor: pointer;
+      color: var(--primary-clr);
+    }
+  }
   .errorMessage {
     padding: 20px;
     text-align: center;

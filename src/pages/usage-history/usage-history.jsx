@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
 import styles from "./usage-history.module.scss";
+import { useEffect, useState } from "react";
 import { getCredits, getUsageHistory } from "../../api/scan";
 import { setFlash } from "../../redux/flash/flash.actions";
 import { connect } from "react-redux";
 import DatePicker from "../../components/date-picker/date-picker";
 import Button from "../../components/button/button";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 function UsageHistoryPage({ setFlash }) {
+  const navigate = useNavigate();
   const [credits, setCredits] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
 
@@ -190,7 +192,13 @@ function UsageHistoryPage({ setFlash }) {
             {usageHistory?.map((row, idx) => {
               if (idx === 0) return <></>;
               return (
-                <tr key={idx}>
+                <tr
+                  className={styles.entry}
+                  key={idx}
+                  onClick={() => {
+                    navigate("/details/" + row[1]);
+                  }}
+                >
                   {row?.map((cell, idx) => (
                     <td key={idx}>{cell}</td>
                   ))}
