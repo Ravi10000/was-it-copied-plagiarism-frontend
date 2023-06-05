@@ -11,7 +11,7 @@ function Footer() {
         <nav>
           <li>About Us</li>
           <li>Pricing</li>
-          <li>Plagiarism Checker</li>
+          <li onClick={() => navigate("/search")}>Plagiarism Checker</li>
         </nav>
         <div className={styles.bottomSection}>
           <div className={styles.linksContainer}>

@@ -10,11 +10,10 @@ function ReportPage() {
   const [showOptions, setShowOptions] = useState(false);
   const optionsRef = useRef(null);
   const [scan, setScan] = useState(null);
-  const [title, setTitle] = useState("");
   const [currentSourceIdx, setCurrentSourceIdx] = useState(0);
-  let currentSource = scan?.sources?.[currentSourceIdx];
+  const [isFetching, setIsFetching] = useState(true);
 
-  console.log({ scan });
+  let currentSource = scan?.sources?.[currentSourceIdx];
 
   const { id } = useParams();
   async function handleFetchReport() {
@@ -55,6 +54,8 @@ function ReportPage() {
       }
     } catch (err) {
       console.log(err);
+    } finally {
+      setIsFetching(false);
     }
   }
 
@@ -70,12 +71,9 @@ function ReportPage() {
   }
 
   useEffect(() => {
-    setTitle(scan?.title);
-  }, [scan]);
-
-  useEffect(() => {
     handleFetchReport();
   }, []);
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (optionsRef.current && !optionsRef.current.contains(event.target)) {
@@ -88,11 +86,25 @@ function ReportPage() {
     };
   }, [optionsRef]);
 
+  useEffect(() => {
+    const pollData = setInterval(() => {
+      handleFetchReport();
+    }, 10000);
+    if (scan?.status !== "CREATED") clearInterval(pollData);
+    return () => clearInterval(pollData);
+  }, [scan]);
+
   return (
     <>
       {scan?.status === "CREATED" ? (
         <div className={styles.checking}>
           <h2>checking for plagiarism...</h2>
+          <div className={styles.loader}></div>
+        </div>
+      ) : isFetching ? (
+        <div className={styles.loaderContainer}>
+          <h2>loading results</h2>
+          <div className={styles.loader}></div>
         </div>
       ) : (
         <section className={styles.reportPage}>

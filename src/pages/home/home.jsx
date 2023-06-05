@@ -56,10 +56,10 @@ function HomePage({ currentUser, setFlash }) {
         <div className={styles.content}>
           {/* <img className={styles.hover} src="/patchwork.png" alt="" /> */}
           <h1 className={styles.title}>
-            Plagiarism <span>Checker</span>
+            Was it <span>Copied?</span>
           </h1>
           <p className={styles.subtitle}>
-            Plagiarism checker detects plagiarism in your text, checks for other
+            Was it copied, detects plagiarism in your text, checks for other
             writing issues, and helps you build citations
           </p>
           <LongTextInput
@@ -85,7 +85,7 @@ function HomePage({ currentUser, setFlash }) {
       <section className={styles.getStarted}>
         {/* <p className={styles.title}>GET STARTED</p> */}
         <h4 className={`__sectionTitle ${styles.title}`}>
-          Try <span>Plagiarism checker</span> today!
+          Try <span>Was It Copied?</span> today!
         </h4>
         <p>
           Ready to stop wasting time with that old-school "plagiarism tool" from

@@ -7,6 +7,23 @@
   text-align: center;
   margin-top: 50px;
 }
+.loader {
+  height: 30px;
+  width: 30px;
+  border-radius: 50px;
+  border: 2px solid #fff;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+  animation: spin 1s linear infinite;
+}
+.loaderContainer {
+  margin-top: 50px;
+  gap: 10px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .errorMsg {
   text-align: center;
   margin-top: 100px;
@@ -167,6 +184,11 @@
   }
 }
 
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 @media (min-width: 800px) {
   .reportPage {
     padding: 50px;

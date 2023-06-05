@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import LoadinPage from "../loading/loading";
 
 function DetailsPage({ isAdmin, setFlash }) {
+  console.log({ isAdmin });
   const [scans, setScans] = useState([]);
   const [isFetchingDetails, setIsFetchingDetails] = useState(false);
   const [skip, setSkip] = useState(0);

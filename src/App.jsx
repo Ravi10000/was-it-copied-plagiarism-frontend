@@ -59,6 +59,8 @@ import IsUser from "./components/auth/is-user";
 import IsAdmin from "./components/auth/is-admin";
 import UsageHistoryPage from "./pages/usage-history/usage-history";
 
+import { socket } from "./api/websockets";
+
 function App({ flash, setCurrentUser, currenUser }) {
   const { pathname } = useLocation();
   // console.log({ pathname });
@@ -67,7 +69,7 @@ function App({ flash, setCurrentUser, currenUser }) {
   const [isPostLogin, setIsPostLogin] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [fetchingUser, setFetchingUser] = useState(true);
-
+  console.log({ isAdmin });
   const headerRoutes = ["/login", "/signup", "/pricing", "/"];
   const postLoginRoutes = [
     "/users",
@@ -89,7 +91,7 @@ function App({ flash, setCurrentUser, currenUser }) {
     try {
       const response = await checkAuth();
       if (response.data.status === "success") {
-        response?.data?.user?.usertype === "ADMIN" && setIsAdmin(true);
+        if (response?.data?.user?.usertype === "ADMIN") setIsAdmin(true);
         setCurrentUser(response.data.user);
       }
     } catch (err) {
