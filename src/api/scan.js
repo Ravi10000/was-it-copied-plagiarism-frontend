@@ -3,8 +3,15 @@ import api, { authHeader } from "./index";
 export const scanText = async (text) =>
   api.post("/scan/text", { text }, { headers: { ...authHeader } });
 
-export const scanFile = async (formData) =>
-  api.post("/scan/file", formData, { headers: { ...authHeader } });
+export const scanFile = async (formData, setProgress) =>
+  api.post("/scan/file", formData, {
+    headers: { ...authHeader },
+    onUploadProgress: (file) => {
+      let percentCompleted = Math.round((file.loaded * 100) / file.total);
+      console.log({ percentCompleted });
+      setProgress(percentCompleted);
+    },
+  });
 
 export const getMyScans = async (isAdmin = false, skip = 0, limit = 0) =>
   isAdmin

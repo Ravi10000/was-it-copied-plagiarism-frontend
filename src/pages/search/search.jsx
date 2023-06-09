@@ -8,12 +8,14 @@ import { useNavigate } from "react-router-dom";
 import LongTextInput from "../../components/long-text-input/long-text-input";
 import Button from "../../components/button/button";
 import { scanFile, scanText } from "../../api/scan";
+import api from "../../api/index";
 
 function SearchPage() {
   const navigate = useNavigate();
   const [text, setText] = useState("");
   const [textLoading, setTextLoading] = useState(false);
   const [fileLoading, setFileLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   async function handleCheckPlagiarism() {
     setTextLoading(true);
@@ -34,7 +36,17 @@ function SearchPage() {
     const formData = new FormData();
     formData.append("file", e.target.files[0]);
     try {
-      const res = await scanFile(formData);
+      const res = await scanFile(formData, setProgress);
+      // const res = await api.post("/scan/file", formData, {
+      //   headers: {
+
+      //   },
+      //   onUploadProgress: (file) => {
+      //     let percentCompleted = Math.round((file.loaded * 100) / file.total);
+      //     console.log({ percentCompleted });
+      //     setProgress(percentCompleted);
+      //   },
+      // });
       console.log({ res });
       if (res.data.status === "success") {
         navigate(`/details/${res.data.scan._id}`);
@@ -71,20 +83,33 @@ function SearchPage() {
       >
         Check Plagiarism
       </Button>
-      {/* ) : ( */}
-      <button className={styles.uploadeBtn}>
-        <img src="/upload-light.png" alt="upload" />
-        <p>Search by Files</p>
-        {fileLoading && <div className={styles.loader}></div>}
-        <input
-          className={styles.fileUpload}
-          type="file"
-          name="file"
-          accept=".doc,.docx, .pdf, .txt"
-          onChange={submitFileForScan}
-        />
-      </button>
-      {/* )} */}
+      {progress ? (
+        <div className={styles.progressBarContainer}>
+          {/* <div className={styles.progressDetails}> */}
+          <p>uploading...</p>
+          <div className={styles.progressBar}>
+            <div
+              className={styles.barInner}
+              style={{ width: `${progress}%` }}
+            ></div>
+          </div>
+          <p>{progress}%</p>
+          {/* </div> */}
+        </div>
+      ) : (
+        <button className={styles.uploadeBtn}>
+          <img src="/upload-light.png" alt="upload" />
+          <p>Search by Files</p>
+          {fileLoading && <div className={styles.loader}></div>}
+          <input
+            className={styles.fileUpload}
+            type="file"
+            name="file"
+            accept=".doc,.docx, .pdf, .txt"
+            onChange={submitFileForScan}
+          />
+        </button>
+      )}
     </div>
   );
 }

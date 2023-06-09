@@ -65,6 +65,28 @@
       left: 0;
     }
   }
+
+  .progressBarContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    .progressBar {
+      width: 400px;
+      // padding: 3px;
+      background: #fff;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      .barInner {
+        border-radius: 50px 0 0 50px;
+        height: 10px;
+        background: var(--primary-clr);
+        transition: width 0.25s ease-in-out;
+      }
+    }
+  }
 }
 
 @keyframes spin {
