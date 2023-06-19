@@ -2,11 +2,13 @@ import styles from "./footer.module.scss";
 
 import Button from "../../components/button/button";
 import { useNavigate } from "react-router-dom";
+import TodquestMessage from "../../components/todquest-message/todquest-message";
 
 function Footer() {
   const navigate = useNavigate();
   return (
     <section className={styles.footer}>
+      <TodquestMessage/>
       <div className={styles.content}>
         <nav>
           <li>About Us</li>

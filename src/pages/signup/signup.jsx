@@ -58,7 +58,7 @@ function SignupPage({ setFlash, setCurrentUser }) {
     <div className={styles.signupPage}>
       <div className={styles.signupHero}>
         <div className={styles.content}>
-          <img src="/logo-light.png" alt="" />
+          <img src="/wic-logo-lg.png" alt="" />
           <h1 className={styles.title}>Welcome to the community</h1>
         </div>
       </div>
