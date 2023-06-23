@@ -1,24 +1,25 @@
-import styles from "./details.module.scss";
+import styles from "./checker-analysis.styles.module.scss";
 
 import Record from "../../components/record/record";
-import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getCredits, getMyScans } from "../../api/scan";
+import { getAllScans, getMyScans } from "../../api/scan";
 import { setFlash } from "../../redux/flash/flash.actions";
 import { connect } from "react-redux";
 import LoadinPage from "../loading/loading";
 
-function DetailsPage({ setFlash }) {
+function CheckerAnalysisPage({ setFlash }) {
   const [scans, setScans] = useState([]);
   const [isFetchingDetails, setIsFetchingDetails] = useState(false);
   const [skip, setSkip] = useState(0);
   const [limit, setLimit] = useState(10);
   const [scanCount, setScanCount] = useState(0);
+
   console.log({ scans });
+
   async function handleFetchScans() {
     setIsFetchingDetails(true);
     try {
-      let res = await getMyScans(skip, limit);
+      let res = await getAllScans(skip, limit);
       if (res.data.status === "success") {
         res.data.scans.map((scan) => {
           if (scan?.result?.results) scan.result = JSON.parse(scan.result);
@@ -42,7 +43,7 @@ function DetailsPage({ setFlash }) {
       });
     }
     try {
-      const res = await getMyScans(skip + limit, limit);
+      const res = await getAllScans(skip + limit, limit);
       setSkip(skip + limit);
       console.log({ res });
       if (res.data.status === "success") {
@@ -61,7 +62,7 @@ function DetailsPage({ setFlash }) {
       return;
     }
     try {
-      const res = await getMyScans(skip - limit, limit);
+      const res = await getAllScans(skip - limit, limit);
       setSkip(skip - limit);
       console.log({ res });
       if (res.data.status === "success") {
@@ -141,4 +142,4 @@ function DetailsPage({ setFlash }) {
   );
 }
 
-export default connect(null, { setFlash })(DetailsPage);
+export default connect(null, { setFlash })(CheckerAnalysisPage);

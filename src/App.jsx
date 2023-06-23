@@ -45,7 +45,7 @@ import { setCurrentUser } from "./redux/user/user.actions";
 // api calls
 import { checkAuth } from "./api/users";
 import AllUsersPage from "./pages/all-users/all-users";
-import AnalysisPage from "./pages/analysis/analysis";
+// import AnalysisPage from "./pages/analysis/analysis";
 import PaymentDetailsPage from "./pages/payment-details/payment-details";
 import Footer from "./layouts/footer/footer";
 import ListAdminsPage from "./pages/list-admins/list-admins";
@@ -58,6 +58,7 @@ import IsNotSignedIn from "./components/auth/is-not-signed-in";
 import IsUser from "./components/auth/is-user";
 import IsAdmin from "./components/auth/is-admin";
 import UsageHistoryPage from "./pages/usage-history/usage-history";
+import CheckerAnalysisPage from "./pages/checker-analysis/checker-analysis";
 
 function App({ flash, setCurrentUser, currenUser }) {
   const { pathname } = useLocation();
@@ -248,7 +249,7 @@ function App({ flash, setCurrentUser, currenUser }) {
             path="/analysis"
             element={
               <IsAdmin isLoading={fetchingUser}>
-                <AnalysisPage />
+                <CheckerAnalysisPage />
               </IsAdmin>
             }
           />

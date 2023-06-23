@@ -13,14 +13,24 @@ export const scanFile = async (formData, setProgress) =>
     },
   });
 
-export const getMyScans = async (isAdmin = false, skip = 0, limit = 0) =>
-  isAdmin
-    ? api.get(`/scan/all?skip=${skip}&limit=${limit}`, {
-        headers: { ...authHeader },
-      })
-    : api.get(`/scan?skip=${skip}&limit=${limit}`, {
-        headers: { ...authHeader },
-      });
+// export const getMyScans = async (isAdmin = false, skip = 0, limit = 0) =>
+//   isAdmin
+//     ? api.get(`/scan/all?skip=${skip}&limit=${limit}`, {
+//         headers: { ...authHeader },
+//       })
+//     : api.get(`/scan?skip=${skip}&limit=${limit}`, {
+//         headers: { ...authHeader },
+//       });
+
+export const getMyScans = async (skip = 0, limit = 0) =>
+  api.get(`/scan?skip=${skip}&limit=${limit}`, {
+    headers: { ...authHeader },
+  });
+
+export const getAllScans = async (skip = 0, limit = 0) =>
+  api.get(`/scan/all?skip=${skip}&limit=${limit}`, {
+    headers: { ...authHeader },
+  });
 
 export const getScanById = async (id) =>
   api.get(`/scan/${id}`, { headers: { ...authHeader } });
