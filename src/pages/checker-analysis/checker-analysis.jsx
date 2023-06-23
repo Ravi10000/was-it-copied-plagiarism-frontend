@@ -1,6 +1,6 @@
 import styles from "./checker-analysis.styles.module.scss";
 
-  import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getAllScans, getMyScans } from "../../api/scan";
 import { setFlash } from "../../redux/flash/flash.actions";
 import { connect } from "react-redux";
@@ -21,12 +21,14 @@ function CheckerAnalysisPage({ setFlash }) {
     try {
       let res = await getAllScans(skip, limit);
       if (res.data.status === "success") {
-        res.data.scans.map((scan) => {
-          if (scan?.result?.results) scan.result = JSON.parse(scan.result);
+        res.data.scans = res.data.scans.map((scan) => {
+          console.log({ scan });
+          if (scan?.result) scan.result = JSON.parse(scan.result);
           return scan;
         });
         setScans(res.data.scans);
-        setScanCount(res.data.scanCount);
+        setSkip(limit);
+        if (skip === 0) setScanCount(res.data.scanCount);
       }
     } catch (err) {
       console.log({ err });
@@ -36,45 +38,21 @@ function CheckerAnalysisPage({ setFlash }) {
   }
 
   async function handleFetchNextScans() {
-    if (skip + limit >= scanCount) {
+    if (skip >= scanCount) {
       return setFlash({
         type: "info",
         message: "No more scans available",
       });
     }
-    try {
-      const res = await getAllScans(skip + limit, limit);
-      setSkip(skip + limit);
-      console.log({ res });
-      if (res.data.status === "success") {
-        res.data.scans.map((scan) => {
-          if (scan?.result?.results) scan.result = JSON.parse(scan.result);
-          return scan;
-        });
-        setScans(res.data.scans);
-      }
-    } catch (err) {
-      console.log({ err });
-    }
+    await handleFetchScans(skip, limit);
+    setSkip(skip + limit);
   }
   async function handleFetchPrevScans() {
-    if (skip == 0) {
+    if (skip <= 10) {
       return;
     }
-    try {
-      const res = await getAllScans(skip - limit, limit);
-      setSkip(skip - limit);
-      console.log({ res });
-      if (res.data.status === "success") {
-        res.data.scans.map((scan) => {
-          if (scan?.result?.results) scan.result = JSON.parse(scan.result);
-          return scan;
-        });
-        setScans(res.data.scans);
-      }
-    } catch (err) {
-      console.log({ err });
-    }
+    await handleFetchScans(skip, limit);
+    setSkip(skip - limit);
   }
 
   useEffect(() => {
@@ -120,7 +98,7 @@ function CheckerAnalysisPage({ setFlash }) {
             </div>
             <div className="__pagination">
               <p>
-                {skip + 1}-{skip + scans.length} of {scanCount}
+                {skip - limit + 1}-{skip - limit + scans.length} of {scanCount}
               </p>
               <div className="__controls">
                 <img
