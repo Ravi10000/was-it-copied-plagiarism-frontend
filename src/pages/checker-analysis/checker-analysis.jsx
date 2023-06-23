@@ -1,11 +1,11 @@
 import styles from "./checker-analysis.styles.module.scss";
 
-import Record from "../../components/record/record";
-import { useEffect, useState } from "react";
+  import { useEffect, useState } from "react";
 import { getAllScans, getMyScans } from "../../api/scan";
 import { setFlash } from "../../redux/flash/flash.actions";
 import { connect } from "react-redux";
 import LoadinPage from "../loading/loading";
+import AnalysisRecord from "./analysis-record/analysis-record";
 
 function CheckerAnalysisPage({ setFlash }) {
   const [scans, setScans] = useState([]);
@@ -95,9 +95,11 @@ function CheckerAnalysisPage({ setFlash }) {
           <table className={styles.table}>
             <thead>
               <tr>
-                <th onClick={() => setSelectAll(true)}>
+                {/* <th onClick={() => setSelectAll(true)}>
                   <input type="checkbox" />
-                </th>
+                </th> */}
+                <th>Name</th>
+                <th>Email</th>
                 <th>Title</th>
                 <th>Similarity Score</th>
                 <th>Date</th>
@@ -107,7 +109,7 @@ function CheckerAnalysisPage({ setFlash }) {
 
             <tbody>
               {scans?.map((scan) => (
-                <Record key={scan?._id} scan={scan} />
+                <AnalysisRecord key={scan?._id} scan={scan} />
               ))}
             </tbody>
           </table>

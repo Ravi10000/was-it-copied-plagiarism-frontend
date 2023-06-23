@@ -94,9 +94,9 @@ function DetailsPage({ setFlash }) {
           <table className={styles.table}>
             <thead>
               <tr>
-                <th onClick={() => setSelectAll(true)}>
+                {/* <th onClick={() => setSelectAll(true)}>
                   <input type="checkbox" />
-                </th>
+                </th> */}
                 <th>Title</th>
                 <th>Similarity Score</th>
                 <th>Date</th>

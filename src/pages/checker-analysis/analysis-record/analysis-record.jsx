@@ -1,8 +1,8 @@
-import styles from "./record.module.scss";
+import styles from "./analysis-record.module.scss";
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Record({ scan }) {
+function AnalysisRecord({ scan }) {
   const createdAtDate = new Date(scan?.createdAt).toDateString();
   const createdAtTime = new Date(scan?.createdAt).toLocaleTimeString();
   const [showOptions, setShowOptions] = useState(false);
@@ -26,6 +26,10 @@ function Record({ scan }) {
       {/* <td>
         <input type="checkbox" />
       </td> */}
+      <td>
+        {scan?.user?.fname} {scan?.user?.lname}
+      </td>
+      <td>{scan?.user?.email} </td>
       <td
         className={styles.title}
         onClick={() => navigate(`/details/${scan?._id}`)}
@@ -33,7 +37,11 @@ function Record({ scan }) {
         {/* Lorem Ipsum is simply... */}
         {scan?.title?.slice(0, 20)}...
       </td>
-      <td>{scan?.result?.results?.score?.aggregatedScore ? scan?.result?.results?.score?.aggregatedScore + "%" : "N/A" }</td>
+      <td>
+        {scan?.result?.results?.score?.aggregatedScore
+          ? scan?.result?.results?.score?.aggregatedScore + "%"
+          : "N/A"}
+      </td>
       <td>
         {createdAtDate}, {createdAtTime}
       </td>
@@ -63,4 +71,4 @@ function Record({ scan }) {
   );
 }
 
-export default Record;
+export default AnalysisRecord;
