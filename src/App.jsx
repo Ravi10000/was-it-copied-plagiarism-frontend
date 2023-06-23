@@ -161,8 +161,24 @@ function App({ flash, setCurrentUser, currenUser }) {
             }
           />
           <Route exact path="/pricing" element={<PricingPage />} />
-          <Route exact path="/verify-email" element={<VerificationPage />} />
-          <Route exact path="/verified" element={<VerifiedPage />} />
+          <Route
+            exact
+            path="/verify-email"
+            element={
+              <IsNotSignedIn isLoading={fetchingUser}>
+                <VerificationPage />
+              </IsNotSignedIn>
+            }
+          />
+          <Route
+            exact
+            path="/verified"
+            element={
+              <IsNotSignedIn isLoading={fetchingUser}>
+                <VerifiedPage />
+              </IsNotSignedIn>
+            }
+          />
 
           <Route
             exact

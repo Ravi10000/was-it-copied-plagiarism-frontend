@@ -4,23 +4,18 @@ import { useNavigate } from "react-router-dom";
 const options = [
   {
     name: "account",
-    icon: "/account/user.png",
-    iconDark: "/account/user-dark.png",
+    icon: "/profile-icons/user.png",
+    iconDark: "/profile-icons/user-dark.png",
   },
   {
     name: "subscription",
-    icon: "/account/subscription.png",
-    iconDark: "/account/subscription-dark.png",
+    icon: "/profile-icons/subscription.png",
+    iconDark: "/profile-icons/subscription-dark.png",
   },
-  // {
-  //   name: "Billing",
-  //   icon: "/account/card.png",
-  //   iconDark: "/account/card-dark.png",
-  // },
   {
     name: "sign out",
-    icon: "/account/sign-out.png",
-    iconDark: "/account/sign-out-dark.png",
+    icon: "/profile-icons/sign-out.png",
+    iconDark: "/profile-icons/sign-out-dark.png",
   },
 ];
 
