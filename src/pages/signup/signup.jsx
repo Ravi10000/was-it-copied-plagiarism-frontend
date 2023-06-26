@@ -101,7 +101,7 @@ function SignupPage({ setFlash, setCurrentUser }) {
           <TextInput
             label="Email"
             type="email"
-            placeholder="Enter Email Id"
+            placeholder="Enter Email Address"
             error={errors?.email?.message}
             register={{
               ...register("email", {
