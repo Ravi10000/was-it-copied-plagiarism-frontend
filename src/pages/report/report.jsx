@@ -13,6 +13,7 @@ function ReportPage() {
   const [currentSourceIdx, setCurrentSourceIdx] = useState(0);
   const [isFetching, setIsFetching] = useState(true);
 
+  console.log({ scan });
   let currentSource = scan?.sources?.[currentSourceIdx];
 
   const { id } = useParams();
