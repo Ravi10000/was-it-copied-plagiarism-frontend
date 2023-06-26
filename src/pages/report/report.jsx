@@ -135,7 +135,7 @@ function ReportPage() {
               readOnly
             />
             <div className={styles.text}>
-              <p>{scan?.text}</p>
+              <p>{scan?.text || "Scan Text Cannot Be Fetched"}</p>
             </div>
             <Button primary onClick={() => navigate("/search")}>
               New Search

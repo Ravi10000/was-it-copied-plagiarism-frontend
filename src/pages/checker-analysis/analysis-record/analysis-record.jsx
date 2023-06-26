@@ -22,21 +22,15 @@ function AnalysisRecord({ scan }) {
   });
 
   return (
-    <tr className={styles.record}>
-      {/* <td>
-        <input type="checkbox" />
-      </td> */}
+    <tr
+      className={styles.record}
+      onClick={() => navigate(`/details/${scan?._id}`)}
+    >
       <td>
         {scan?.user?.fname} {scan?.user?.lname}
       </td>
       <td>{scan?.user?.email} </td>
-      <td
-        className={styles.title}
-        onClick={() => navigate(`/details/${scan?._id}`)}
-      >
-        {/* Lorem Ipsum is simply... */}
-        {scan?.title?.slice(0, 20)}...
-      </td>
+      <td className={styles.title}>{scan?.title?.slice(0, 20)}...</td>
       <td>
         {scan?.result?.results?.score?.aggregatedScore
           ? scan?.result?.results?.score?.aggregatedScore + "%"
