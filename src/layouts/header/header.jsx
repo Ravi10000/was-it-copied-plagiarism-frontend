@@ -66,7 +66,8 @@ function Header({ currentUser }) {
                 info="Empower Yourself"
                 imgUrl="/teachers.png"
               />
-              <NavItem name="For Copywriters" imgUrl="copywrite.png" />
+              <NavItem name="For Copywriters" 
+                info="Improve your work" imgUrl="copywrite.png" />
             </div>
           </div>
           <div

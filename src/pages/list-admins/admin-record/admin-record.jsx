@@ -122,7 +122,7 @@ function AdminRecord({ user, handleFetchUsers, setFlash }) {
               type="email"
               name="email"
               label="Email Id"
-              placeholder="Enter Email Id"
+              placeholder="Enter Email Address"
               defaultValue={user?.email}
               error={errors?.email?.message}
               register={{

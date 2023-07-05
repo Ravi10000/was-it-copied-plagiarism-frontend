@@ -93,7 +93,7 @@ function CreateUserComponent({ title, usertype, handleFetch, setFlash }) {
             <TextInput
               label="Email"
               type="email"
-              placeholder="Enter Email Id"
+              placeholder="Enter Email Address"
               error={errors?.email?.message}
               register={{
                 ...register("email", {
