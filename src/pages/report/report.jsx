@@ -131,8 +131,7 @@ function ReportPage() {
             <input
               className={styles.textInput}
               type="text"
-              value={scan?.title?.slice(0, 20) + "..."}
-              readOnly
+              defaultValue={scan?.title?.slice(0, 20) + "..."}
             />
             <div className={styles.text}>
               <p>{scan?.text || "Scan Text Cannot Be Fetched"}</p>
