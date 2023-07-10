@@ -1,15 +1,15 @@
-import api from "./index";
+import api, { bearerToken } from "./index";
 
 export const fetchAllUsers = (skip, limit) =>
   api.get(`/users?skip=${skip}&limit=${limit}`, {
     headers: {
-      Authorization: "Bearer " + localStorage.getItem("authToken"),
+      Authorization: bearerToken(),
     },
   });
 export const fetchAllAdmins = () =>
   api.get("/users/admins", {
     headers: {
-      Authorization: "Bearer " + localStorage.getItem("authToken"),
+      Authorization: bearerToken(),
     },
   });
 
@@ -26,8 +26,7 @@ export const signin = (formData) =>
 export const checkAuth = () =>
   api.get("/users/user", {
     headers: {
-      Authorization: "Bearer " + localStorage.getItem("authToken"),
-      "Content-Type": "multipart/form-data",
+      Authorization: bearerToken(),
     },
   });
 
@@ -35,14 +34,14 @@ export const updateUserDetails = (formData) =>
   api.put("/users", formData, {
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + localStorage.getItem("authToken"),
+      Authorization: bearerToken(),
     },
   });
 export const updateAdminDetails = (id, formData) =>
   api.put(`/users/${id}`, formData, {
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + localStorage.getItem("authToken"),
+      Authorization: bearerToken(),
     },
   });
 
@@ -53,7 +52,7 @@ export const createUser = (usertype, formData) =>
   api.post(`/users/create/${usertype}`, formData, {
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + localStorage.getItem("authToken"),
+      Authorization: bearerToken(),
     },
   });
 

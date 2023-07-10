@@ -59,6 +59,7 @@ import IsUser from "./components/auth/is-user";
 import IsAdmin from "./components/auth/is-admin";
 import UsageHistoryPage from "./pages/usage-history/usage-history";
 import CheckerAnalysisPage from "./pages/checker-analysis/checker-analysis";
+import { getAuthToken } from "./api";
 
 function App({ flash, setCurrentUser, currenUser }) {
   const { pathname } = useLocation();
@@ -94,13 +95,15 @@ function App({ flash, setCurrentUser, currenUser }) {
         setCurrentUser(response.data.user);
       }
     } catch (err) {
-      console.log(err.message);
+      console.log(err);
     } finally {
       setFetchingUser(false);
     }
   }
   useEffect(() => {
-    const authToken = localStorage.getItem("authToken");
+    // const authToken = localStorage.getItem("authToken");
+    const authToken = getAuthToken();
+    console.log({ authToken });
     if (authToken) {
       handleCheckAuth();
     } else {
